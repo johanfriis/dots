@@ -11,3 +11,6 @@
 	path = nvim/pack/vendor/start/rose-pine
 	url = https://github.com/rose-pine/neovim.git
 	branch = main
+[submodule "nvim/pack/vendor/start/vim-pandoc"]
+	path = nvim/pack/vendor/start/vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc.git
