@@ -1,0 +1,12 @@
+default:
+	just -l
+
+packages:
+	nvim --headless -u NONE -c 'lua require("plugins").bootstrap()'
+
+clean:
+	rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
+
+treesitter-markdown:
+    EXTENSION_WIKI_LINK=1 EXTENSION_TAGS=1 nvim -c 'TSInstallSync! markdown'
+    EXTENSION_WIKI_LINK=1 EXTENSION_TAGS=1 nvim -c 'TSInstallSync! markdown_inline'
