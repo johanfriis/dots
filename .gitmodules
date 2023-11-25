@@ -6,3 +6,7 @@
 	path = nvim/pack/vendor/start/vim-just
 	url = https://github.com/NoahTheDuke/vim-just.git
 	branch = main
+[submodule "nvim/pack/vendor/start/rose-pine"]
+	path = nvim/pack/vendor/start/rose-pine
+	url = https://github.com/rose-pine/neovim.git
+	branch = main
