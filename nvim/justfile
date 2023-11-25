@@ -1,9 +1,6 @@
 default:
 	just -l
 
-packages:
-	nvim --headless -u NONE -c 'lua require("plugins").bootstrap()'
-
 clean:
 	rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
 
