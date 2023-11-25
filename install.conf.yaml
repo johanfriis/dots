@@ -3,13 +3,22 @@
       create: true
       relink: true
 
-- clean:
-    ~/.config:
-      recursive: true
-
 - link:
     ~/.config/nvim: nvim
     ~/.config/tmux: tmux
     ~/.config/wezterm: wezterm
+    ~/.config/starship.toml: starship.toml
+
+- clean:
+    ~/.config:
+      recursive: true
+
+- create:
+    ~/dev:
+    ~/dev/bin:
+    ~/dev/tmp:
+    ~/dev/work:
+    ~/dev/tools:
+    ~/dev/projects:
 
 - shell: []
