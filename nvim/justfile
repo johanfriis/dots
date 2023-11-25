@@ -11,11 +11,11 @@ vim-target := "start"
 
 plugin-add repo name target=vim-target:
   git submodule add{{branch}} {{git-host / repo + ".git"}} {{vim-plugin-dir / target / name}}
-  git commit -m "{{"nvim: added submodule " + name}}"
+  git commit -m "{{"nvim: added plugin " + name}}"
 
 [confirm]
 plugin-delete name target=vim-target:
   git submodule deinit {{vim-plugin-dir / target / name}}
   git rm {{vim-plugin-dir / target / name}}
   rm -rf {{".git/modules" / vim-plugin-dir / target / name}}
-  git commit -m "{{"nvim: removed submodule " + name}}"
+  git commit -m "{{"nvim: removed plugin " + name}}"
