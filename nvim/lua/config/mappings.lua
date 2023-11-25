@@ -1,4 +1,5 @@
-local g = vim.g
+local map = require('utils.functions').map
+local leader = require('utils.functions').leader
 
 -- ============================================================================
 -- mappings ===
@@ -7,6 +8,7 @@ local g = vim.g
 map({'n', 'x'}, 'gy', '"+y', { desc = 'Yank to system clipboard' })
 map({'n', 'x'}, 'gyy', '"+yy', { desc = 'Yank to system clipboard' })
 map('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
+
 -- Paste in visual with P to not copy selected text (:h v_P)
 map('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
 map("n", "gV", "`[v`]", { desc = 'Reselect pasted text' })

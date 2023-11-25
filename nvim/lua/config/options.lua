@@ -2,13 +2,14 @@ local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
 local fn  = vim.fn
+local autocmd = require('utils.functions').autocmd
 
 -- ============================================================================
 do -- {{{ general options setup ===
 
   opt.mouse        = 'a'                                        -- Enable mouse
-  opt.mousescroll  = 'ver:25,hor:6'                             -- Customize mouse scroll
-  opt.switchbuf    = 'usetab'                                   -- Use already opened buffers when switching
+  opt.mousescroll  = 'ver:1,hor:1'                              -- Customize mouse scroll
+  opt.switchbuf    = 'uselast'                                  -- Use already opened buffers when switching
   opt.backup       = false                                      -- Don't store backup
   opt.writebackup  = false                                      -- Don't store backup
 
@@ -17,7 +18,6 @@ do -- {{{ general options setup ===
 
   opt.shadafile    = fn.stdpath('state') .. '/shada/main.shada' -- Set directory for 'shadafile'
   opt.shada        = [[!,'100,<50,s10,h,f1]]                    -- Add file marks to shadafile
-
 
   opt.timeout      = true                                       -- wait for timeout
   opt.timeoutlen   = 400                                        -- only wait for this long
@@ -28,19 +28,18 @@ end
 -- }}}
 
 
+-- ============================================================================
+do -- {{{ customize netrw to fit my style ===
 
--- {{{ NETRW 
-do
   g.netrw_liststyle    = 3
   g.netrw_browse_split = 0
   g.netrw_preview      = 1
   g.netrw_alto         = 0
   g.netrw_banner       = 0
   g.netrw_winsize      = 20
+
 end
 -- }}}
-
-
 
 
 -- ============================================================================
@@ -59,7 +58,7 @@ do -- {{{ appearance options setup ===
   -- render lots of colors
   opt.termguicolors = true
   opt.background    = 'dark'
-  cmd.colorscheme     'quiet'
+  cmd.colorscheme     'rose-pine-moon' -- 'quiet'
 
   -- Enable syntax highlighing if it wasn't already (as it is time consuming)
   if vim.fn.exists("syntax_on") ~= 1 then
@@ -67,7 +66,7 @@ do -- {{{ appearance options setup ===
   end
 
   -- flash text on yank
-  augroup('Highlights', {
+  autocmd('Highlights', {
     TextYankPost = {
       callback = function() vim.highlight.on_yank() end,
     },
@@ -157,8 +156,9 @@ do -- {{{ editing options setup ===
                       'p' ..    -- don't break following periods
                       ''
 
+  -- 'o' has a tendency to be reset to it's default, opening comments
   -- prevent 'o' from opening comments
-  augroup('FormatOptions', {
+  autocmd('FormatOptions', {
     FileType = {
       pattern = { '*' },
       command = [[setlocal formatoptions-=c formatoptions-=o]]
@@ -167,3 +167,5 @@ do -- {{{ editing options setup ===
 
 end
 -- }}}
+
+---- vim: foldmethod=marker ts=2 sts=2 sw=2 et
