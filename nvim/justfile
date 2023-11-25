@@ -1,8 +1,25 @@
 default:
-	just -l
+  @just --list --unsorted --justfile {{justfile()}}
 
 clean:
-	rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
+  rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
+
+branch := "main"
+git-host := "https://github.com"
+vim-plugin-dir := "pack/vendor"
+vim-target := "start"
+
+plugin-add repo name target=vim-target:
+  git submodule add -b {{branch}} {{git-host / repo + ".git"}} {{vim-plugin-dir / target / name}}
+  git commit -m "{{"nvim: added submodule " + repo}}"
+
+[confirm]
+plugin-delete name target=vim-target:
+  git submodule deinit {{vim-plugin-dir / target / name}}
+  git rm {{vim-plugin-dir / target / name}}
+  rm -rf {{".git/modules" / vim-plugin-dir / target / name}}
+  git commit -m "{{"nvim: removed submodule " + name}}"
+
 
 treesitter-markdown:
     EXTENSION_WIKI_LINK=1 EXTENSION_TAGS=1 nvim -c 'TSInstallSync! markdown'
