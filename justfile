@@ -6,16 +6,16 @@ git-host := "https://github.com"
 vim-plugin-dir := "nvim/pack/vendor"
 vim-target := "start"
 
-vim-submodule-add repo target=vim-target:
+nvim-submodule-add repo target=vim-target:
   git submodule add -b {{branch}} {{git-host / repo + ".git"}} {{vim-plugin-dir / target / file_name(repo)}}
-  git commit -m "{{"added submodule " + repo}}"
+  git commit -m "{{"nvim: added submodule " + repo}}"
 
 [confirm]
-vim-submodule-delete name target=vim-target:
+nvim-submodule-delete name target=vim-target:
   git submodule deinit {{vim-plugin-dir / target / name}}
   git rm {{vim-plugin-dir / target / name}}
   rm -rf {{".git/modules" / vim-plugin-dir / target / name}}
-  git commit -m "{{"removed submodule " + name}}"
+  git commit -m "{{"nvim: removed submodule " + name}}"
 
 submodule-add repo target:
   git submodule add -b {{branch}} {{git-host / repo + ".git"}} {{target}}
