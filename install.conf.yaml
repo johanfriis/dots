@@ -10,5 +10,6 @@
 - link:
     ~/.config/nvim: nvim
     ~/.config/tmux: tmux
+    ~/.config/wezterm: wezterm
 
 - shell: []
