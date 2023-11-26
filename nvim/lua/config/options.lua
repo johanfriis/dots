@@ -61,7 +61,8 @@ do -- {{{ appearance options setup ===
 
   -- flash text on yank
   autocmd('Highlights', {
-    TextYankPost = {
+    {
+      events = { 'TextYankPost' },
       callback = function() vim.highlight.on_yank() end,
     },
   })
@@ -153,7 +154,8 @@ do -- {{{ editing options setup ===
   -- 'o' has a tendency to be reset to it's default, opening comments
   -- prevent 'o' from opening comments
   autocmd('FormatOptions', {
-    FileType = {
+    {
+      events = { 'FileType' },
       pattern = { '*' },
       command = [[setlocal formatoptions-=c formatoptions-=o]]
     },

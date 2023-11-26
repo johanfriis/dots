@@ -22,9 +22,11 @@ end
 
 M.autocmd = function(name, autocmds)
   local group = api.nvim_create_augroup(name, {})
-  for event, opts in pairs(autocmds) do
+  for _, opts in ipairs(autocmds) do
+    local events = opts.events
+    opts.events = nil
     opts.group = group
-    api.nvim_create_autocmd(event, opts)
+    api.nvim_create_autocmd(events, opts)
   end
 end
 
