@@ -24,3 +24,6 @@
 [submodule "nvim/pack/plugins/opt/mini.move"]
 	path = nvim/pack/plugins/opt/mini.move
 	url = https://github.com/echasnovski/mini.move.git
+[submodule "nvim/pack/plugins/opt/mini.pairs"]
+	path = nvim/pack/plugins/opt/mini.pairs
+	url = https://github.com/echasnovski/mini.pairs.git
