@@ -4,11 +4,11 @@ default:
 clean:
   rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
 
-git-root := `git rev-parse --show-toplevel`
-branch := if env("BRANCH", "") != "" { "{{' -b' +  env_var(BRANCH) }}"} else {""}
-git-host := "https://github.com"
+git-root       := `git rev-parse --show-toplevel`
+branch         := if env("BRANCH", "") != "" { "{{' -b' +  env_var(BRANCH) }}"} else {""}
+git-host       := "https://github.com"
 vim-plugin-dir := "pack/plugins"
-vim-target := "opt"
+vim-target     := "opt"
 
 plugin-add repo name target=vim-target:
   git submodule add{{branch}} {{git-host / repo + ".git"}} {{vim-plugin-dir / target / name}}

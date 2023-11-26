@@ -1,5 +1,5 @@
-local hl = require('utils.functions').hl
 local palette = require('rose-pine.palette')
+local hl      = require('utils.functions').hl
 
 ------------------------------------------------------------------------------
 --- Make Pandoc a bit prettier --
@@ -9,8 +9,8 @@ local palette = require('rose-pine.palette')
 vim.cmd [[syntax clear pandocAtxStart]]
 
 
-hl('pandocSetexHeader', { fg = palette.love })
-hl('pandocAtxHeader', { fg = palette.iris })
+hl('pandocSetexHeader',   { fg = palette.love })
+hl('pandocAtxHeader',     { fg = palette.iris })
 hl('pandocAtxHeaderMark', { fg = palette.subtle })
 
 --pandocEmphasis
