@@ -54,3 +54,6 @@
 [submodule "nvim/pack/plugins/opt/snippy"]
 	path = nvim/pack/plugins/opt/snippy
 	url = https://github.com/dcampos/nvim-snippy.git
+[submodule "nvim/pack/plugins/opt/cmp-snippy"]
+	path = nvim/pack/plugins/opt/cmp-snippy
+	url = https://github.com/dcampos/cmp-snippy.git
