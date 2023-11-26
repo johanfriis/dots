@@ -45,3 +45,6 @@
 [submodule "nvim/pack/plugins/opt/cmp-cmdline"]
 	path = nvim/pack/plugins/opt/cmp-cmdline
 	url = https://github.com/hrsh7th/cmp-cmdline.git
+[submodule "nvim/pack/plugins/opt/cmp-vsnip"]
+	path = nvim/pack/plugins/opt/cmp-vsnip
+	url = https://github.com/hrsh7th/cmp-vsnip.git
