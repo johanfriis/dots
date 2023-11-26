@@ -18,5 +18,5 @@ plugin-add repo name target=vim-target:
 plugin-delete name target=vim-target:
   git submodule deinit {{vim-plugin-dir / target / name}}
   git rm {{vim-plugin-dir / target / name}}
-  rm -rf {{git-root / ".git/modules" / vim-plugin-dir / target / name}}
+  rm -rf {{git-root / ".git/modules/nvim" / vim-plugin-dir / target / name}}
   git commit -m "{{"nvim: removed plugin " + name}}"
