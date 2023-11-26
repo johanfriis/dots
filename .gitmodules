@@ -21,3 +21,6 @@
 [submodule "nvim/pack/plugins/opt/mini.align"]
 	path = nvim/pack/plugins/opt/mini.align
 	url = https://github.com/echasnovski/mini.align.git
+[submodule "nvim/pack/plugins/opt/mini.move"]
+	path = nvim/pack/plugins/opt/mini.move
+	url = https://github.com/echasnovski/mini.move.git
