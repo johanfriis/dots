@@ -51,3 +51,6 @@
 [submodule "nvim/pack/plugins/opt/vim-vsnip"]
 	path = nvim/pack/plugins/opt/vim-vsnip
 	url = https://github.com/hrsh7th/vim-vsnip.git
+[submodule "nvim/pack/plugins/opt/snippy"]
+	path = nvim/pack/plugins/opt/snippy
+	url = https://github.com/dcampos/nvim-snippy.git
