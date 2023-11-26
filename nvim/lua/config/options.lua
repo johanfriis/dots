@@ -54,12 +54,6 @@ do -- {{{ appearance options setup ===
   local right    = '%{&spelllang} %y %8(%l,%c%) %4p%%'
   opt.statusline = left .. ' %= ' .. center .. ' %= ' .. right
 
-  -- Colors -----------------------------------------------------------------
-  -- render lots of colors
-  opt.termguicolors = true
-  opt.background    = 'dark'
-  cmd.colorscheme     'rose-pine-moon' -- 'quiet'
-
   -- Enable syntax highlighing if it wasn't already (as it is time consuming)
   if vim.fn.exists("syntax_on") ~= 1 then
     vim.cmd([[syntax enable]])

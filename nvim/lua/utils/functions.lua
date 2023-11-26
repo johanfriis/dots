@@ -192,6 +192,22 @@ M.open_lazygit = function()
 end
 
 
+-- --------------------------------------------------------------------------
+-- print any number of objects ---
+M.put = function(...)
+  local objects = {}
+  -- Not using `{...}` because it removes `nil` input
+  for i = 1, select('#', ...) do
+    local v = select(i, ...)
+    table.insert(objects, vim.inspect(v))
+  end
+
+  print(table.concat(objects, '\n'))
+
+  return ...
+end
+
+
 return M
 
 -- vim: foldmethod=marker ts=2 sts=2 sw=2 et

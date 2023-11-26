@@ -1,3 +1,8 @@
+local load = require('utils.pack').load
+
+load 'vim-pandoc'
+load 'vim-pandoc-syntax'
+
 ------------------------------------------------------------------------------
 --- Configure Pandoc --
 ---
