@@ -27,3 +27,6 @@
 [submodule "nvim/pack/plugins/opt/mini.pairs"]
 	path = nvim/pack/plugins/opt/mini.pairs
 	url = https://github.com/echasnovski/mini.pairs.git
+[submodule "nvim/pack/plugins/opt/lspconfig"]
+	path = nvim/pack/plugins/opt/lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
