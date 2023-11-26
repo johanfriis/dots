@@ -30,3 +30,6 @@
 [submodule "nvim/pack/plugins/opt/lspconfig"]
 	path = nvim/pack/plugins/opt/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "nvim/pack/plugins/opt/cmp"]
+	path = nvim/pack/plugins/opt/cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
