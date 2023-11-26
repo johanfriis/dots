@@ -15,3 +15,6 @@
 [submodule "nvim/pack/plugins/opt/vim-just"]
 	path = nvim/pack/plugins/opt/vim-just
 	url = https://github.com/NoahTheDuke/vim-just.git
+[submodule "nvim/pack/plugins/opt/mini.comment"]
+	path = nvim/pack/plugins/opt/mini.comment
+	url = https://github.com/echasnovski/mini.comment.git
