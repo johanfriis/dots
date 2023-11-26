@@ -24,3 +24,6 @@
 [submodule "nvim/pack/plugins/opt/mini.move"]
 	path = nvim/pack/plugins/opt/mini.move
 	url = https://github.com/echasnovski/mini.move.git
+[submodule "nvim/pack/plugins/opt/mini.trailspace"]
+	path = nvim/pack/plugins/opt/mini.trailspace
+	url = https://github.com/echasnovski/mini.trailspace.git
