@@ -3,17 +3,15 @@
 	url = https://github.com/anishathalye/dotbot.git
 	branch = master
 	ignore = dirty
-[submodule "nvim/pack/vendor/start/vim-just"]
-	path = nvim/pack/vendor/start/vim-just
-	url = https://github.com/NoahTheDuke/vim-just.git
-	branch = main
-[submodule "nvim/pack/vendor/start/rose-pine"]
-	path = nvim/pack/vendor/start/rose-pine
-	url = https://github.com/rose-pine/neovim.git
-	branch = main
-[submodule "nvim/pack/vendor/start/vim-pandoc"]
-	path = nvim/pack/vendor/start/vim-pandoc
-	url = https://github.com/vim-pandoc/vim-pandoc.git
-[submodule "nvim/pack/vendor/start/vim-pandoc-syntax"]
-	path = nvim/pack/vendor/start/vim-pandoc-syntax
+[submodule "nvim/pack/plugins/opt/vim-pandoc-syntax"]
+	path = nvim/pack/plugins/opt/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
+[submodule "nvim/pack/plugins/opt/vim-pandoc"]
+	path = nvim/pack/plugins/opt/vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc.git
+[submodule "nvim/pack/plugins/opt/rose-pine"]
+	path = nvim/pack/plugins/opt/rose-pine
+	url = https://github.com/rose-pine/neovim.git
+[submodule "nvim/pack/plugins/opt/vim-just"]
+	path = nvim/pack/plugins/opt/vim-just
+	url = https://github.com/NoahTheDuke/vim-just.git

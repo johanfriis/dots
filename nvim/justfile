@@ -4,10 +4,11 @@ default:
 clean:
   rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
 
+git-root := `git rev-parse --show-toplevel`
 branch := if env("BRANCH", "") != "" { "{{' -b' +  env_var(BRANCH) }}"} else {""}
 git-host := "https://github.com"
-vim-plugin-dir := "pack/vendor"
-vim-target := "start"
+vim-plugin-dir := "pack/plugins"
+vim-target := "opt"
 
 plugin-add repo name target=vim-target:
   git submodule add{{branch}} {{git-host / repo + ".git"}} {{vim-plugin-dir / target / name}}
@@ -17,5 +18,5 @@ plugin-add repo name target=vim-target:
 plugin-delete name target=vim-target:
   git submodule deinit {{vim-plugin-dir / target / name}}
   git rm {{vim-plugin-dir / target / name}}
-  rm -rf {{".git/modules" / vim-plugin-dir / target / name}}
+  rm -rf {{git-root / ".git/modules" / vim-plugin-dir / target / name}}
   git commit -m "{{"nvim: removed plugin " + name}}"
