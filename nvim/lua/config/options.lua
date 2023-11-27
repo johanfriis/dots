@@ -94,8 +94,8 @@ do -- {{{ appearance options setup ===
   opt.splitright    = true        -- Vertical splits will be to the right
 
 
-  opt.winblend      = 4           -- Make floating windows slightly transparent
-  opt.pumblend      = 4           -- Make builtin completion menus slightly transparent
+  opt.winblend      = 2           -- Make floating windows slightly transparent
+  opt.pumblend      = 2           -- Make builtin completion menus slightly transparent
   opt.pumheight     = 10          -- Make popup menu smaller
 
   -- stylua: ignore start

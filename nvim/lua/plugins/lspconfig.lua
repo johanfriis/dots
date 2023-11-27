@@ -1,5 +1,6 @@
 local f = require('utils.functions')
 local p = require('utils.pack')
+local palette = require('rose-pine.palette')
 local bufmap = f.bufmap
 
 ------------------------------------------------------------------------------
@@ -32,6 +33,11 @@ local attach = function() --client, bufnr
 
 end
 
+-- highlight! link FloatBorder Normal highlight! link NormalFloat Normal
+f.hl('FloatBorder', { fg = palette.iris, bg = palette.surface })
+f.hl('NormalFloat', { bg = palette.surface })
+
+
 ------------------------------------------------------------------------------
 --- Setup
 
@@ -39,7 +45,7 @@ p.add({
   'mason',
   'mason-lspconfig',
   'neodev',
-  'cmp-lsp'
+  'cmp-lsp',
 })
 
 local lspconfig       = require('lspconfig')
@@ -62,11 +68,17 @@ defaults.capabilities = vim.tbl_deep_extend(
   cmp_lsp.default_capabilities()
 )
 
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' }),
+}
+
 mason_lspconfig.setup_handlers({
   function(server_name)
     lspconfig[server_name].setup({
       on_attach = attach,
       capabilities = defaults.capabilities,
+      handlers = handlers
     })
   end,
 })
