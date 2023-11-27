@@ -15,7 +15,7 @@ vim.g['pandoc#filetypes#pandoc_markdown'] = 1
 -- I would have liked to use 'hA' (hard, smart auto), but it does not treat my
 -- log notes well. I would have to find a way to make pandoc understand that the
 -- note: / meet: / work: bullets are just that, bullets
-vim.g['pandoc#formatting#mode'] = 'hA' -- 'hA'
+vim.g['pandoc#formatting#mode'] = 'h' -- 'hA'
 vim.g['pandoc#formatting#textwidth'] = 79
 
 -- nice cursor movement on paragraphs
