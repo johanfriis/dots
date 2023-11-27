@@ -7,6 +7,7 @@ local palette = require('rose-pine.palette')
 
 -- https://github.com/hrsh7th/nvim-cmp/tree/main
 
+
 ------------------------------------------------------------------------------
 --- Config
 
@@ -46,7 +47,7 @@ local supertab = function(fallback)
     if #cmp.get_entries() == 1 then
       cmp.confirm({ select = true })
     else
-      cmp.select_next_item()
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Item })
     end
   elseif snippy.can_expand_or_advance() then
     snippy.expand_or_advance()
@@ -60,13 +61,34 @@ local supertab = function(fallback)
   end
 end
 
+local supertab_shift = function(fallback)
+  if cmp.visible() then
+    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Item })
+  elseif snippy.can_jump(-1) then
+    snippy.previous()
+  else
+    fallback()
+  end
+end
+
+local super_cr = function(fallback)
+  if cmp.visible() and cmp.get_active_entry() then
+    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+  else
+    cmp.close()
+    fallback()
+  end
+end
+
 cmp.setup({
   sources = sources,
+
+  preselect = cmp.PreselectMode.Item,
 
   completion = {
     keyword_length = 3,
     autocomplete = false,
-    completeopt = 'menu,menuone,noinsert',
+    -- completeopt = 'menu,menuone,noselect,noinsert',
   },
 
   snippet = {
@@ -80,29 +102,15 @@ cmp.setup({
       i = supertab,
       s = supertab,
     }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif snippy.can_jump(-1) then
-        snippy.previous()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    ['<S-Tab>'] = supertab_shift,
 
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-        else
-          fallback()
-        end
-      end,
+      i = super_cr,
       s = cmp.mapping.confirm({ select = true }),
-    })
+    }),
   }),
 
   window = {
@@ -117,7 +125,7 @@ cmp.setup({
   },
 
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
 
   formatting = {
