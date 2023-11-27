@@ -78,3 +78,6 @@
 [submodule "nvim/pack/plugins/opt/lazygit"]
 	path = nvim/pack/plugins/opt/lazygit
 	url = https://github.com/kdheepak/lazygit.nvim.git
+[submodule "nvim/pack/plugins/opt/mini.clue"]
+	path = nvim/pack/plugins/opt/mini.clue
+	url = https://github.com/echasnovski/mini.clue.git
