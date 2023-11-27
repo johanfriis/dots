@@ -84,3 +84,7 @@
 [submodule "nvim/pack/plugins/opt/plenary"]
 	path = nvim/pack/plugins/opt/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
+[submodule "nvim/pack/plugins/opt/telescope"]
+	path = nvim/pack/plugins/opt/telescope
+	url = https://github.com/nvim-telescope/telescope.nvim.git
+	branch = 0.1.x
