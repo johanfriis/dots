@@ -1,7 +1,7 @@
-local load = require('utils.pack').load
+local p = require('utils.pack')
 
-load('mini.align', {})
-load('mini.comment', {})
-load('mini.move', {})
-load('mini.pairs', {})
+p.load('mini.align', {})
+p.load('mini.comment', {})
+p.lazy('mini.move', {})
+p.lazy('mini.pairs', {})
 
