@@ -3,6 +3,11 @@ local f = require('utils.functions')
 local palette = require('rose-pine.palette')
 
 ------------------------------------------------------------------------------
+--- Docs
+
+-- https://github.com/hrsh7th/nvim-cmp/tree/main
+
+------------------------------------------------------------------------------
 --- Config
 
 local sources = {
