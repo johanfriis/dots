@@ -48,6 +48,11 @@ M.map = function(mode, keys, cmd, opts)
   keymap.set(mode, keys, cmd, o)
 end
 
+M.bufmap = function(mode, lhs, rhs)
+  local opts = { buffer = true }
+  M.buf(mode, lhs, rhs, opts)
+end
+
 
 -- --------------------------------------------------------------------------
 -- simple highlighting ---
