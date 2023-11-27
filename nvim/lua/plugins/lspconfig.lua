@@ -1,6 +1,5 @@
 local f = require('utils.functions')
 local p = require('utils.pack')
-local palette = require('rose-pine.palette')
 local bufmap = f.bufmap
 
 ------------------------------------------------------------------------------
@@ -32,11 +31,6 @@ local attach = function() --client, bufnr
   bufmap({ 'n', 'v' }, 'gl', vim.lsp.buf.code_action)
 
 end
-
--- highlight! link FloatBorder Normal highlight! link NormalFloat Normal
-f.hl('FloatBorder', { fg = palette.iris, bg = palette.surface })
-f.hl('NormalFloat', { bg = palette.surface })
-
 
 ------------------------------------------------------------------------------
 --- Setup

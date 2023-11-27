@@ -20,7 +20,8 @@ local sources = {
 }
 
 local window_style = {
-  border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  border = 'single',
+  -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:PmenuBorder,Search:None",
   side_padding = 1,
 }
