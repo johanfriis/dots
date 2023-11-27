@@ -58,7 +58,14 @@ end
 -- ctermfg, ctermbg, cterm,
 
 M.hl = function(group, definitions)
-  api.nvim_set_hl(0, group, definitions or {})
+  local groups = group
+  if type(group) == 'string' then
+    groups = { group }
+  end
+
+  for _, g in ipairs(groups) do
+    api.nvim_set_hl(0, g, definitions or {})
+  end
 end
 
 
@@ -209,6 +216,15 @@ M.put = function(...)
   return ...
 end
 
+-- --------------------------------------------------------------------------
+-- check if cursor has non-whitespace directly before it ---
+M.has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+-- --------------------------------------------------------------------------
 
 return M
 
