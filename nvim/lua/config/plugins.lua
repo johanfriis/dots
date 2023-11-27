@@ -8,3 +8,7 @@ p.load('cmp')
 
 p.lazy('copilot', nil, { 'InsertEnter' })
 p.load('lspconfig')
+
+vim.api.nvim_create_user_command('LazyGit', function()
+  p.load('lazygit')
+end, {})
