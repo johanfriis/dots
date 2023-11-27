@@ -6,8 +6,14 @@ local M = {}
 
 local plugins_dir = vim.fn.stdpath('config') .. '/lua/plugins/'
 
+M.add = function(plugins)
+  for _, plugin in ipairs(plugins) do
+    vim.cmd(string.format([[%s %s]], 'packadd', plugin))
+  end
+end
+
 M.load = function(plugin, opts)
-  vim.cmd(string.format([[%s %s]], 'packadd', plugin))
+  M.add({ plugin })
 
   -- If opts are set, require the plugin and call setup with the
   -- opts. Otherwise, try to load a config file from plugins directory with same
