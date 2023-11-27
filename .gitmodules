@@ -72,3 +72,6 @@
 [submodule "nvim/pack/plugins/opt/neodev"]
 	path = nvim/pack/plugins/opt/neodev
 	url = https://github.com/folke/neodev.nvim.git
+[submodule "nvim/pack/plugins/opt/trouble"]
+	path = nvim/pack/plugins/opt/trouble
+	url = https://github.com/folke/trouble.nvim.git
