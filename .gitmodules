@@ -63,3 +63,6 @@
 [submodule "nvim/pack/plugins/opt/copilot-cmp"]
 	path = nvim/pack/plugins/opt/copilot-cmp
 	url = https://github.com/zbirenbaum/copilot-cmp.git
+[submodule "nvim/pack/plugins/opt/mason"]
+	path = nvim/pack/plugins/opt/mason
+	url = https://github.com/williamboman/mason.nvim.git
