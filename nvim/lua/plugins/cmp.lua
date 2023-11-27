@@ -30,7 +30,6 @@ p.add({
   'cmp-cmdline',
   'cmp-snippy',
   'snippy',
-  'lspkind'
 })
 -- p.load('copilot-cmp')
 
