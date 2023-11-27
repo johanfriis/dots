@@ -5,7 +5,7 @@ clean:
   rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
 
 git-root       := `git rev-parse --show-toplevel`
-branch         := if env("BRANCH", "") != "" { "{{' -b' +  env_var(BRANCH) }}"} else {""}
+branch         := if env("BRANCH", "") != "" { ' -b ' +  env_var("BRANCH") } else {""}
 git-host       := "https://github.com"
 vim-plugin-dir := "pack/plugins"
 vim-target     := "opt"
