@@ -66,3 +66,6 @@
 [submodule "nvim/pack/plugins/opt/mason"]
 	path = nvim/pack/plugins/opt/mason
 	url = https://github.com/williamboman/mason.nvim.git
+[submodule "nvim/pack/plugins/opt/mason-lspconfig"]
+	path = nvim/pack/plugins/opt/mason-lspconfig
+	url = https://github.com/williamboman/mason-lspconfig.nvim.git
