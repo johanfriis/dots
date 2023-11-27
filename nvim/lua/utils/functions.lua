@@ -43,14 +43,14 @@ local default_keymap_opts = {
   unique = false
 }
 
-M.map = function(mode, keys, cmd, opts)
+M.map = function(mode, lhs, rhs, opts)
   local o = vim.tbl_deep_extend('force', default_keymap_opts, opts or {})
-  keymap.set(mode, keys, cmd, o)
+  keymap.set(mode, lhs, rhs, o)
 end
 
 M.bufmap = function(mode, lhs, rhs)
   local opts = { buffer = true }
-  M.buf(mode, lhs, rhs, opts)
+  M.map(mode, lhs, rhs, opts)
 end
 
 
@@ -145,7 +145,7 @@ end
 --       behind this is to explicitly select desired completion (currently this
 --       is also done with one '<Tab>' keystroke).
 
-local cr_cr_keys = {
+local cr_keys = {
   ['cr'] = api.nvim_replace_termcodes('<CR>', true, true, true),
   ['ctrl-y'] = api.nvim_replace_termcodes('<C-y>', true, true, true),
   ['ctrl-y_cr'] = api.nvim_replace_termcodes('<C-y><CR>', true, true, true),
@@ -154,7 +154,7 @@ local cr_cr_keys = {
 M.cr_action = function()
   if vim.fn.pumvisible() ~= 0 then
     local item_selected = fn.complete_info()['selected'] ~= -1
-    return item_selected and cr_cr_keys['ctrl-y'] or cr_keys['ctrl-y_cr']
+    return item_selected and cr_keys['ctrl-y'] or cr_keys['ctrl-y_cr']
   else
     return require('mini.pairs').cr()
   end
@@ -175,7 +175,7 @@ end
 -- Toggle quickfix window ---
 
 M.toggle_quickfix = function()
-  local quickfix_wins = tbl_filter(
+  local quickfix_wins = vim.tbl_filter(
   function(win_id) return fn.getwininfo(win_id)[1].quickfix == 1 end,
   api.nvim_tabpage_list_wins(0)
   )
@@ -202,7 +202,7 @@ M.open_lazygit = function()
     end,
   })
   cmd [[startinsert]]
-  b.minipairs_disable = true
+  vim.b.minipairs_disable = true
 end
 
 

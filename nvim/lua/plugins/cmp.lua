@@ -12,11 +12,11 @@ local palette = require('rose-pine.palette')
 --- Config
 
 local sources = {
-  -- { name = 'nvim_lsp' },
+  { name = 'nvim_lsp', group_index = 1 },
   -- { name = 'copilot' },
-  { name = 'snippy', group_index = 1 },
-  { name = 'buffer', group_index = 2 },
-  { name = 'path', group_index = 2 },
+  { name = 'snippy', group_index = 2 },
+  { name = 'buffer', group_index = 3 },
+  { name = 'path', group_index = 3 },
 }
 
 local window_style = {
@@ -29,8 +29,7 @@ local window_style = {
 --- Setup
 
 p.add({
-  -- 'lspconfig',
-  -- 'cmp-lsp',
+  'cmp-lsp',
   'cmp-buffer',
   'cmp-path',
   'cmp-cmdline',
@@ -80,7 +79,7 @@ local super_cr = function(fallback)
   end
 end
 
-cmp.setup({
+local config = {
   sources = sources,
 
   preselect = cmp.PreselectMode.Item,
@@ -200,15 +199,18 @@ cmp.setup({
       vim_item.kind = kind_icons[vim_item.kind]
       -- print(entry.source.name)
       vim_item.menu = "      " .. ({
-        buffer  = '[Buffer]',
-        snippy  = '[Snippet]',
-        path    = '[Path]',
-        cmdline = '[Cmd]',
+        nvim_lsp = '[LSP]',
+        buffer   = '[Buffer]',
+        snippy   = '[Snippet]',
+        path     = '[Path]',
+        cmdline  = '[Cmd]',
       })[entry.source.name]
       return vim_item
     end,
   },
-})
+}
+
+cmp.setup(config)
 
 -- cmp.setup.cmdline({ '/', '?' }, {
 --   mapping = cmp.mapping.preset.cmdline(),

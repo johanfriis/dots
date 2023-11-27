@@ -7,4 +7,4 @@ p.lazy('mini.pairs', {})
 p.load('cmp')
 
 p.lazy('copilot', nil, { 'InsertEnter' })
-
+p.load('lspconfig')

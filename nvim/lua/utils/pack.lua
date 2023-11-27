@@ -7,7 +7,12 @@ local M = {}
 local plugins_dir = vim.fn.stdpath('config') .. '/lua/plugins/'
 
 M.add = function(plugins)
-  for _, plugin in ipairs(plugins) do
+  local _plugins = plugins
+  if type(plugins) ~= 'table' then
+    _plugins = { plugins }
+  end
+
+  for _, plugin in ipairs(_plugins) do
     vim.cmd(string.format([[%s %s]], 'packadd', plugin))
   end
 end
