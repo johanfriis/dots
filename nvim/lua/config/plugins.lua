@@ -10,5 +10,6 @@ p.lazy('copilot', nil, { 'InsertEnter' })
 p.load('lspconfig')
 
 vim.api.nvim_create_user_command('LazyGit', function()
+  vim.api.nvim_del_user_command('LazyGit')
   p.load('lazygit')
 end, {})
