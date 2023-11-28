@@ -88,3 +88,6 @@
 	path = nvim/pack/plugins/opt/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
 	branch = 0.1.x
+[submodule "nvim/pack/plugins/opt/telekasten"]
+	path = nvim/pack/plugins/opt/telekasten
+	url = https://github.com/renerocksai/telekasten.nvim.git
