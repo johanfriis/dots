@@ -11,7 +11,9 @@ end
 config.color_scheme = 'rose-pine-moon'
 config.colors = {
   selection_fg = '#e0def4',
-  selection_bg = '#44415a'
+  selection_bg = '#44415a',
+  -- cursor_fg = '#232136',
+  cursor_bg = '#908caa',
 }
 
 
