@@ -31,6 +31,7 @@ map({'n', 'x'}, [[s]], [[<Nop>]])
 map('c', '<C-p>', '<Up>', { silent = false })
 map('c', '<C-n>', '<Down>', { silent = false })
 
+
 -- delegate 'CR' to a customer function
 --map('i', '<CR>', cr_action)
 
@@ -44,24 +45,15 @@ map('c', '<C-n>', '<Down>', { silent = false })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
--- leader groups for use with mini.clues
-_G.leader_groups = {
-  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
-  { mode = 'n', keys = '<Leader>c', desc = '+Code' },
-  { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
-  { mode = 'n', keys = '<Leader>f', desc = '+Find' },
-  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
-  { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
-}
+leader('n', 'gg', '<Cmd>LazyGit<CR>', 'Open LazyGit')
 
 -- 'b' is for 'buffer'
-leader('n', 'ba', [[<Cmd>b#<CR>]],                                 'Alternate')
-leader('n', 'bd', [[<Cmd>lua MiniBufremove.delete()<CR>]],         'Delete')
-leader('n', 'bD', [[<Cmd>lua MiniBufremove.delete(0, true)<CR>]],  'Delete!')
-leader('n', 'bs', [[<Cmd>lua new_scratch_buffer()<CR>]],           'Scratch')
-leader('n', 'bw', [[<Cmd>lua MiniBufremove.wipeout()<CR>]],        'Wipeout')
-leader('n', 'bW', [[<Cmd>lua MiniBufremove.wipeout(0, true)<CR>]], 'Wipeout!')
+-- leader('n', 'ba', [[<Cmd>b#<CR>]],                                 'Alternate')
+-- leader('n', 'bd', [[<Cmd>lua MiniBufremove.delete()<CR>]],         'Delete')
+-- leader('n', 'bD', [[<Cmd>lua MiniBufremove.delete(0, true)<CR>]],  'Delete!')
+-- leader('n', 'bs', [[<Cmd>lua new_scratch_buffer()<CR>]],           'Scratch')
+-- leader('n', 'bw', [[<Cmd>lua MiniBufremove.wipeout()<CR>]],        'Wipeout')
+-- leader('n', 'bW', [[<Cmd>lua MiniBufremove.wipeout(0, true)<CR>]], 'Wipeout!')
 
 -- 'c' is for 'code'
 
@@ -80,44 +72,44 @@ leader('n', 'tcc', '<Cmd>setlocal cursorcolumn!<CR>',          "Toggle 'cursorco
 
 
 -- 'e' is for 'explore'
-leader('n', 'ed', [[<Cmd>lua MiniFiles.open()<CR>]],                             'Directory')
-leader('n', 'ef', [[<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>]], 'File directory')
--- TODO maybe we don't want this one?
-leader('n', 'el', [[<Cmd>lua MiniFiles.open('~/dev/notes/log')<CR>]],            'ZK Logs')
-leader('n', 'eq', [[<Cmd>lua _G.toggle_quickfix()<CR>]],                         'Quickfix')
-
--- 'f' is for 'fuzzy find'
-leader('n', 'f/', [[<Cmd>Pick history scope='/'<CR>]],                             '"/" history')
-leader('n', 'f:', [[<Cmd>Pick history scope=':'<CR>]],                             '":" history')
-leader('n', 'fa', [[<Cmd>Pick git_hunks scope='staged'<CR>]],                      'Added hunks (all)')
-leader('n', 'fA', [[<Cmd>Pick git_hunks path='%' scope='staged'<CR>]],             'Added hunks (current)')
-leader('n', 'fb', [[<Cmd>Pick buffers<CR>]],                                       'Open buffers')
-leader('n', 'fc', [[<Cmd>Pick git_commits choose_type='show_patch'<CR>]],          'Commits')
-leader('n', 'fC', [[<Cmd>Pick git_commits path='%' choose_type='show_patch'<CR>]], 'Buffer commits')
-leader('n', 'fd', [[<Cmd>Pick diagnostic scope='all'<CR>]],                        'Diagnostic workspace')
-leader('n', 'fD', [[<Cmd>Pick diagnostic scope='current'<CR>]],                    'Diagnostic buffer')
-leader('n', 'ff', [[<Cmd>Pick files<CR>]],                                         'Files')
-leader('n', 'fg', [[<Cmd>Pick grep_live<CR>]],                                     'Grep live')
-leader('n', 'fG', [[<Cmd>Pick grep pattern='<cword>'<CR>]],                        'Grep current word')
-leader('n', 'fh', [[<Cmd>Pick help<CR>]],                                          'Help tags')
-leader('n', 'fH', [[<Cmd>Pick hl_groups<CR>]],                                     'Highlight groups')
-leader('n', 'fl', [[<Cmd>Pick buf_lines scope='all'<CR>]],                         'Lines (all)')
-leader('n', 'fL', [[<Cmd>Pick buf_lines scope='current'<CR>]],                     'Lines (current)')
-leader('n', 'fm', [[<Cmd>Pick git_hunks<CR>]],                                     'Modified hunks (all)')
-leader('n', 'fM', [[<Cmd>Pick git_hunks path='%'<CR>]],                            'Modified hunks (current)')
-leader('n', 'fo', [[<Cmd>Pick oldfiles<CR>]],                                      'Old files')
-leader('n', 'fO', [[<Cmd>Pick options<CR>]],                                       'Options')
-leader('n', 'fr', [[<Cmd>Pick resume<CR>]],                                        'Resume')
-leader('n', 'fR', [[<Cmd>Pick lsp scope='references'<CR>]],                        'References (LSP)')
-leader('n', 'fs', [[<Cmd>Pick lsp scope='workspace_symbol'<CR>]],                  'Symbols workspace (LSP)')
-leader('n', 'fS', [[<Cmd>Pick lsp scope='document_symbol'<CR>]],                   'Symbols buffer (LSP)')
+-- leader('n', 'ed', [[<Cmd>lua MiniFiles.open()<CR>]],                             'Directory')
+-- leader('n', 'ef', [[<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>]], 'File directory')
+-- -- TODO maybe we don't want this one?
+-- leader('n', 'el', [[<Cmd>lua MiniFiles.open('~/dev/notes/log')<CR>]],            'ZK Logs')
+-- leader('n', 'eq', [[<Cmd>lua _G.toggle_quickfix()<CR>]],                         'Quickfix')
+--
+-- -- 'f' is for 'fuzzy find'
+-- leader('n', 'f/', [[<Cmd>Pick history scope='/'<CR>]],                             '"/" history')
+-- leader('n', 'f:', [[<Cmd>Pick history scope=':'<CR>]],                             '":" history')
+-- leader('n', 'fa', [[<Cmd>Pick git_hunks scope='staged'<CR>]],                      'Added hunks (all)')
+-- leader('n', 'fA', [[<Cmd>Pick git_hunks path='%' scope='staged'<CR>]],             'Added hunks (current)')
+-- leader('n', 'fb', [[<Cmd>Pick buffers<CR>]],                                       'Open buffers')
+-- leader('n', 'fc', [[<Cmd>Pick git_commits choose_type='show_patch'<CR>]],          'Commits')
+-- leader('n', 'fC', [[<Cmd>Pick git_commits path='%' choose_type='show_patch'<CR>]], 'Buffer commits')
+-- leader('n', 'fd', [[<Cmd>Pick diagnostic scope='all'<CR>]],                        'Diagnostic workspace')
+-- leader('n', 'fD', [[<Cmd>Pick diagnostic scope='current'<CR>]],                    'Diagnostic buffer')
+-- leader('n', 'ff', [[<Cmd>Pick files<CR>]],                                         'Files')
+-- leader('n', 'fg', [[<Cmd>Pick grep_live<CR>]],                                     'Grep live')
+-- leader('n', 'fG', [[<Cmd>Pick grep pattern='<cword>'<CR>]],                        'Grep current word')
+-- leader('n', 'fh', [[<Cmd>Pick help<CR>]],                                          'Help tags')
+-- leader('n', 'fH', [[<Cmd>Pick hl_groups<CR>]],                                     'Highlight groups')
+-- leader('n', 'fl', [[<Cmd>Pick buf_lines scope='all'<CR>]],                         'Lines (all)')
+-- leader('n', 'fL', [[<Cmd>Pick buf_lines scope='current'<CR>]],                     'Lines (current)')
+-- leader('n', 'fm', [[<Cmd>Pick git_hunks<CR>]],                                     'Modified hunks (all)')
+-- leader('n', 'fM', [[<Cmd>Pick git_hunks path='%'<CR>]],                            'Modified hunks (current)')
+-- leader('n', 'fo', [[<Cmd>Pick oldfiles<CR>]],                                      'Old files')
+-- leader('n', 'fO', [[<Cmd>Pick options<CR>]],                                       'Options')
+-- leader('n', 'fr', [[<Cmd>Pick resume<CR>]],                                        'Resume')
+-- leader('n', 'fR', [[<Cmd>Pick lsp scope='references'<CR>]],                        'References (LSP)')
+-- leader('n', 'fs', [[<Cmd>Pick lsp scope='workspace_symbol'<CR>]],                  'Symbols workspace (LSP)')
+-- leader('n', 'fS', [[<Cmd>Pick lsp scope='document_symbol'<CR>]],                   'Symbols buffer (LSP)')
 -- TODO add a picker for TODO / FIXME / etc ...
 
 -- g is for git
 --  leader('n', 'gA', [[<Cmd>lua require("gitsigns").stage_buffer()<CR>]],        'Add buffer')
 --  leader('n', 'ga', [[<Cmd>lua require("gitsigns").stage_hunk()<CR>]],          'Add (stage) hunk')
 --  leader('n', 'gb', [[<Cmd>lua require("gitsigns").blame_line()<CR>]],          'Blame line')
-leader('n', 'gg', [[<Cmd>lua open_lazygit()<CR>]],                          'Git tab')
+-- leader('n', 'gg', [[<Cmd>lua open_lazygit()<CR>]],                          'Git tab')
 --  leader('n', 'gp', [[<Cmd>lua require("gitsigns").preview_hunk()<CR>]],        'Preview hunk')
 --  leader('n', 'gq', [[<Cmd>lua require("gitsigns").setqflist()<CR>:copen<CR>]], 'Quickfix hunks')
 --  leader('n', 'gu', [[<Cmd>lua require("gitsigns").undo_stage_hunk()<CR>]],     'Undo stage hunk')
