@@ -1,12 +1,13 @@
 local clue = require('mini.clue')
 
 local main_clues = {
-  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
-  { mode = 'n', keys = '<Leader>c', desc = '+Code' },
-  { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
-  { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+  -- { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
+  -- { mode = 'n', keys = '<Leader>c', desc = '+Code' },
+  -- { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
+  -- { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
+  { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
   { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
 }
 

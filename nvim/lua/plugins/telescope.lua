@@ -1,18 +1,24 @@
 local f = require('utils.functions')
 local p = require('utils.pack')
 
-p.add('plenary')
+p.add({
+  'plenary',
+  'telescope-file-browser'
+})
 
 local telescope = require('telescope')
-local builtin = require('telescope.builtin')
+-- local builtin = require('telescope.builtin')
+-- local extensions = require('telescope.extensions')
 local actions = require('telescope.actions')
 local layout_actions = require('telescope.actions.layout')
 
 -------------------------------------------------------------------------------
 --- Mappings
 
-f.map('n', '§', '<Cmd>Telescope buffers<CR>')
-f.map('n', '<Tab>', '<Cmd>Telescope find_files<CR>')
+f.map('n', '§',     "<Cmd>Telescope buffers<CR>")
+f.map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
+
+f.leader('n', 'e', "<Cmd>Telescope file_browser<CR>")
 
 
 -------------------------------------------------------------------------------
@@ -33,9 +39,7 @@ telescope.setup({
       },
       n = {
         ['q'] = actions.close,
-        ['§'] = actions.close,
         ['p'] = layout_actions.toggle_preview,
-        ['o'] = actions.select_default,
       },
     },
   },
@@ -53,10 +57,25 @@ telescope.setup({
       },
       mappings = {
         n = {
+          ['§'] = actions.close,
           ['d'] = actions.delete_buffer,
+          ['o'] = actions.select_default,
         },
+      },
+    },
+  },
+  extensions = {
+    file_browser = {
+      theme = 'dropdown',
+      hijack_netrw = true,
+      initial_mode = 'normal',
+      layout_config = {
+        height = 0.5,
+        anchor = 'N',
+        mirror = true,
       },
     },
   },
 })
 
+telescope.load_extension('file_browser')
