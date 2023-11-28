@@ -35,7 +35,7 @@ map('c', '<C-n>', '<Down>', { silent = false })
 --map('i', '<CR>', cr_action)
 
 -- show Lexplore
-map('n', '§', '<CMD>Lexplore<CR>')
+-- map('n', '§', '<CMD>Lexplore<CR>')
 
 
 -- ============================================================================
