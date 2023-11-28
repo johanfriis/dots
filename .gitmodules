@@ -91,3 +91,6 @@
 [submodule "nvim/pack/plugins/opt/telekasten"]
 	path = nvim/pack/plugins/opt/telekasten
 	url = https://github.com/renerocksai/telekasten.nvim.git
+[submodule "nvim/pack/plugins/opt/telescope-file-browser"]
+	path = nvim/pack/plugins/opt/telescope-file-browser
+	url = https://github.com/nvim-telescope/telescope-file-browser.nvim.git
