@@ -7,6 +7,7 @@ local main_clues = {
   -- { mode = 'n', keys = '<Leader>f', desc = '+Find' },
   { mode = 'n', keys = '<Leader>g', desc = '+Git' },
   { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
+  { mode = 'n', keys = '<Leader>n', desc = '+Notes' },
   { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
   { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
 }

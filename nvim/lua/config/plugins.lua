@@ -6,6 +6,7 @@ p.lazy('mini.move', {})
 p.lazy('mini.pairs', {})
 
 p.lazy('telescope')
+p.lazy('telekasten')
 
 p.lazy('copilot', nil, { 'InsertEnter' })
 p.load('cmp')

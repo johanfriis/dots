@@ -38,6 +38,7 @@ telescope.setup({
         ['<C-k>'] = actions.move_selection_previous,
       },
       n = {
+        ['<C-g>'] = actions.close,
         ['q'] = actions.close,
         ['p'] = layout_actions.toggle_preview,
       },
@@ -68,6 +69,9 @@ telescope.setup({
     file_browser = {
       theme = 'dropdown',
       hijack_netrw = true,
+      git_status = false,
+      dir_icon = ' ',
+      cwd_to_path = true,
       initial_mode = 'normal',
       layout_config = {
         height = 0.5,
