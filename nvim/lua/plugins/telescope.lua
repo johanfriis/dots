@@ -9,23 +9,10 @@ local actions = require('telescope.actions')
 local layout_actions = require('telescope.actions.layout')
 
 -------------------------------------------------------------------------------
---- Helpers
-
-local find_files = function()
-  vim.fn.system("git rev-parse --is-inside-work-tree")
-  if vim.v.shell_error == 0 then
-    builtin.git_files()
-  else
-    builtin.find_files()
-  end
-end
-
-
--------------------------------------------------------------------------------
 --- Mappings
 
 f.map('n', '§', '<Cmd>Telescope buffers<CR>')
-f.map('n', '<Tab>', find_files)
+f.map('n', '<Tab>', '<Cmd>Telescope find_files<CR>')
 
 
 -------------------------------------------------------------------------------
