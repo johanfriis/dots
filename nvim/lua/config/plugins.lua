@@ -17,7 +17,7 @@ p.load('telekasten', nil, {
 
 -- BufWinEnter
 p.load('copilot', nil, {{ events = 'InsertEnter' }})
-p.load('cmp', nil, {{ events = { 'BufEnter', 'BufNewFile' }}})
+p.load('cmp')
 p.load('lspconfig', nil, {{ events = { 'BufEnter', 'BufNewFile' }}})
 
 vim.api.nvim_create_user_command('Telekasten', function(event)
