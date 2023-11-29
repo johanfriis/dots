@@ -3,12 +3,6 @@
 	url = https://github.com/anishathalye/dotbot.git
 	branch = master
 	ignore = dirty
-[submodule "nvim/pack/plugins/opt/vim-pandoc-syntax"]
-	path = nvim/pack/plugins/opt/vim-pandoc-syntax
-	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
-[submodule "nvim/pack/plugins/opt/vim-pandoc"]
-	path = nvim/pack/plugins/opt/vim-pandoc
-	url = https://github.com/vim-pandoc/vim-pandoc.git
 [submodule "nvim/pack/plugins/opt/rose-pine"]
 	path = nvim/pack/plugins/opt/rose-pine
 	url = https://github.com/rose-pine/neovim.git
