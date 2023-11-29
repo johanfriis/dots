@@ -83,7 +83,7 @@ do -- {{{ appearance options setup ===
   opt.signcolumn    = 'yes'       -- Always show signcolumn or it would frequently shift
 
   opt.cursorline    = true        -- Enable highlighting of the current line
-  opt.textwidth     = 80          -- Set the desired maximum textwidth
+  opt.textwidth     = 79          -- Set the desired maximum textwidth
   -- opt.colorcolumn   = '+1'        -- Draw colored column one step to the right of desired maximum width
 
   opt.breakindent   = true        -- Indent wrapped lines to match line start
