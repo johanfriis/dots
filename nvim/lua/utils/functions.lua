@@ -20,7 +20,7 @@ end
 -- --------------------------------------------------------------------------
 -- Make it easier to create autocmds ---
 
-M.autocmd = function(name, autocmds)
+M.autocmds = function(name, autocmds)
   local group = api.nvim_create_augroup(name, {})
   for _, opts in ipairs(autocmds) do
     local events = opts.events

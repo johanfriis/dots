@@ -2,7 +2,7 @@ local opt = vim.opt
 local g = vim.g
 local cmd = vim.cmd
 local fn  = vim.fn
-local autocmd = require('utils.functions').autocmd
+local autocmds = require('utils.functions').autocmds
 
 -- ============================================================================
 do -- {{{ general options setup ===
@@ -60,7 +60,7 @@ do -- {{{ appearance options setup ===
   end
 
   -- flash text on yank
-  autocmd('Highlights', {
+  autocmds('Highlights', {
     {
       events = { 'TextYankPost' },
       callback = function() vim.highlight.on_yank() end,
@@ -153,7 +153,7 @@ do -- {{{ editing options setup ===
 
   -- 'o' has a tendency to be reset to it's default, opening comments
   -- prevent 'o' from opening comments
-  autocmd('FormatOptions', {
+  autocmds('FormatOptions', {
     {
       events = { 'FileType' },
       pattern = { '*' },
