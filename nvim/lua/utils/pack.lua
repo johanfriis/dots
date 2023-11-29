@@ -1,5 +1,4 @@
-local put = require('utils.functions').put
-local autocmd = require('utils.functions').autocmd
+local f = require('utils.functions')
 local uv = vim.uv
 
 local M = {}
@@ -17,7 +16,7 @@ M.add = function(plugins)
   end
 end
 
-M.load = function(plugin, opts)
+local do_load = function(plugin, opts)
   M.add({ plugin })
 
   -- If opts are set, require the plugin and call setup with the
@@ -40,18 +39,34 @@ M.load = function(plugin, opts)
   end
 end
 
-M.lazy = function(plugin, opts, events)
-  local ev = events or { 'VimEnter' }
-  autocmd("LazyLoad " .. plugin, {
-    {
-      events = ev,
-      pattern = '*',
-      callback = function()
-        M.load(plugin, opts)
-      end
-    }
-  })
-end
+M.load = function(plugin, opts, autocmds)
 
+  if autocmds then
+    local group_name = 'lazyload - ' .. plugin
+
+    local callback = function()
+      vim.api.nvim_del_augroup_by_name(group_name)
+      do_load(plugin, opts)
+    end
+
+    local default_cmd = {
+      events = 'VimEnter',
+      pattern = '*',
+      callback = callback,
+    }
+
+    if type(autocmds) == 'boolean' then
+      f.autocmds(group_name, { default_cmd })
+    elseif type(autocmds) == 'table' then
+      for _, cmd in ipairs(autocmds) do
+        cmd.callback = callback
+      end
+      f.autocmds(group_name, autocmds)
+    end
+  else
+    do_load(plugin, opts)
+  end
+
+end
 
 return M
