@@ -1,5 +1,6 @@
 local f = require('utils.functions')
 local p = require('utils.pack')
+local palette = require('rose-pine.palette')
 
 p.add({
   'plenary',
@@ -20,6 +21,22 @@ f.map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
 
 f.leader('n', 'e', "<Cmd>Telescope file_browser<CR>")
 
+-------------------------------------------------------------------------------
+--- Highlights
+
+f.hl('TelescopeNormal',         { fg = palette.subtle, bg = palette.base })
+f.hl('TelescopeBorder',         { fg = palette.iris,   bg = palette.base })
+f.hl('TelescopePromptBorder',   { fg = palette.iris,   bg = palette.base })
+f.hl('TelescopeResultsBorder',  { fg = palette.iris,   bg = palette.base })
+f.hl('TelescopePreviewBorder',  { fg = palette.iris,   bg = palette.base })
+
+f.hl('TelescopeSelection',      { fg = palette.love,   bg = palette.highlight_low })
+f.hl('TelescopeSelectionCaret', { fg = palette.love })
+f.hl('TelescopeMultiSelection', { fg = palette.pine })
+
+f.hl('TelescopeMatching',       { fg = palette.love,   bg = palette.highlight_low })
+f.hl('TelescopePromptPrefix',   { fg = palette.love,   bg = palette.highlight_low })
+f.hl('TelescopePromptNormal',   { bg = palette.base })
 
 -------------------------------------------------------------------------------
 --- Setup
