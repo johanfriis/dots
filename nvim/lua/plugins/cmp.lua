@@ -160,13 +160,13 @@ local config = {
         TypeParameter = "󰅲",
       }
 
-      f.hl("Pmenu", { bg = palette.surface })
-      f.hl("PmenuSel", { bg = palette.highlight_med })
-      f.hl("PmenuBorder", { fg = palette.iris, bg = palette.surface })
+      f.hl("Pmenu",                 { bg = palette.base })
+      f.hl("PmenuSel",              { fg = palette.love, bg = palette.highlight_low })
+      f.hl("PmenuBorder",           { fg = palette.iris, bg = palette.base })
 
-      f.hl("CmpItemAbbrMatch", { fg = palette.gold, bold = true })
+      f.hl("CmpItemAbbrMatch",      { fg = palette.gold, bold = true })
       f.hl("CmpItemAbbrMatchFuzzy", { fg = palette.rose, bold = true })
-      f.hl("CmpItemMenu", { fg = palette.iris, italic = true })
+      f.hl("CmpItemMenu",           { fg = palette.iris, italic = true })
       f.hl("CmpItemAbbrDeprecated", { fg = "#7E8294", strikethrough = true })
 
       f.hl({
@@ -195,7 +195,7 @@ local config = {
         "CmpItemKindInterface",
         "CmpItemKindColor",
         "CmpItemKindTypeParameter",
-      }, { fg = palette.highlight_med })
+      }, { fg = palette.highlight_high })
 
       vim_item.kind = kind_icons[vim_item.kind]
       -- print(entry.source.name)
