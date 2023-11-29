@@ -9,24 +9,28 @@ local servers = {
   'lua_ls',
 }
 
-local attach = function() --client, bufnr
+local attach = function(client) --client, bufnr
+
+  if client.name == 'marksman' then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
 
   p.add('trouble')
-  local trouble = require('trouble')
+  -- local trouble = require('trouble')
 
   bufmap('n', 'K',  vim.lsp.buf.hover)
-  bufmap('n', 'gd', vim.lsp.buf.definition)
+  bufmap('n', 'gd', '<Cmd>Trouble lsp_definitions<CR>')
   bufmap('n', 'gD', vim.lsp.buf.declaration)
   bufmap('n', 'gi', vim.lsp.buf.implementation)
   bufmap('n', 'gt', vim.lsp.buf.type_definition)
-  bufmap('n', 'gr', vim.lsp.buf.references)
+  bufmap('n', 'gr', '<Cmd>Trouble lsp_references<CR>')
   bufmap('n', 'gs', vim.lsp.buf.signature_help)
   bufmap('n', 'gn', vim.lsp.buf.rename)
-  bufmap('n', 'gf', vim.lsp.buf.format)
+  -- bufmap('n', 'gf', vim.lsp.buf.format)
   bufmap('n', 'gl', vim.diagnostic.open_float)
   bufmap('n', '[d', vim.diagnostic.goto_prev)
   bufmap('n', ']d', vim.diagnostic.goto_next)
-  bufmap('n', 'ge', trouble.open)
+  bufmap('n', 'ge', '<Cmd>Trouble<CR>')
 
   bufmap({ 'n', 'v' }, 'gl', vim.lsp.buf.code_action)
 
