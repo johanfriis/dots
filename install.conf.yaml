@@ -4,6 +4,7 @@
       relink: true
 
 - link:
+    ~/.config/fish: fish
     ~/.config/nvim: nvim
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
