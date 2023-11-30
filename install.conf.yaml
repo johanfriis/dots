@@ -4,6 +4,7 @@
       relink: true
 
 - link:
+    ~/.terminfo: terminfo
     ~/.config/fish: fish
     ~/.config/nvim: nvim
     ~/.config/wezterm: wezterm

@@ -7,6 +7,7 @@ if wez.config_builder() then
 	config = wez.config_builder()
 end
 
+config.underline_position = -5
 -------------------------------------------------------------------------------
 -- {{{ // COLORS
 
