@@ -1,5 +1,10 @@
 local p = require('utils.pack')
 
+-- only load startuptime if we are actually debugging it
+if vim.iter(vim.v.argv):any(function(pred) return pred == "--startuptime" end) then
+  p.load('vim-startuptime')
+end
+
 p.load('smart-splits')
 p.load('mini.align', {}, true)
 p.load('mini.comment', {}, true)

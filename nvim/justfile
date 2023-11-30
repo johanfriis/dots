@@ -1,8 +1,13 @@
 default:
   @just --list --unsorted --justfile {{justfile()}}
 
-clean:
-  rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
+## ----------------------------------------------------------------------------
+## Utils
+debug *args:
+  nvim {{args}} --startuptime /tmp/vim-startuptime
+
+## ----------------------------------------------------------------------------
+## Plugin Handling
 
 git-root       := `git rev-parse --show-toplevel`
 branch         := if env("BRANCH", "") != "" { ' -b ' +  env_var("BRANCH") } else {""}
@@ -20,3 +25,10 @@ plugin-delete name target=vim-target:
   git rm {{vim-plugin-dir / target / name}}
   rm -rf {{git-root / ".git/modules/nvim" / vim-plugin-dir / target / name}}
   git commit -m "{{"nvim: removed plugin " + name}}"
+
+
+## ----------------------------------------------------------------------------
+## Housekeeping
+
+clean:
+  rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
