@@ -7,7 +7,12 @@ if wez.config_builder() then
 	config = wez.config_builder()
 end
 
+config.default_workspace = 'main'
+config.initial_cols = 50
+config.initial_rows = 25
+config.scrollback_lines = 50000
 config.underline_position = -5
+
 -------------------------------------------------------------------------------
 -- {{{ // COLORS
 
@@ -40,6 +45,10 @@ config.colors = {
 config.command_palette_font_size = 15
 config.command_palette_fg_color = colors.text
 config.command_palette_bg_color = colors.surface
+
+config.char_select_font_size = 15
+config.char_select_fg_color = colors.love
+config.char_select_bg_color = "#990000"
 
 config.inactive_pane_hsb = {
   saturation = 0.9,
@@ -87,7 +96,7 @@ config.use_resize_increments = true
 config.window_padding = {
   left = 20,
   right = 20,
-  top = 20,
+  top = 46, -- this give fullscreen a padding to match top cutout
   bottom = 0,
 }
 
@@ -210,21 +219,29 @@ map('n', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'TABS' })
 map('-', 'LEADER',       act.SplitHorizontal(here))
 map('_', 'LEADER',       act.SplitVertical(here))
 
-map('h', 'LEADER',       act.ActivateTabRelative(-1))
-map('l', 'LEADER',       act.ActivateTabRelative(1))
-map('j', 'LEADER',       act.SwitchWorkspaceRelative(1))
-map('k', 'LEADER',       act.SwitchWorkspaceRelative(-1))
+map('a', 'LEADER',       act.ActivateLastTab)
+map('h', 'CTRL|LEADER',  act.ActivateTabRelative(-1))
+map('l', 'CTRL|LEADER',  act.ActivateTabRelative(1))
+map('j', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(1))
+map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
 
 map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
 map('p', 'SHIFT|LEADER', act.PaneSelect { mode = 'SwapWithActive' })
+
+map('1', 'LEADER',       act.ActivateTab(0))
+map('2', 'LEADER',       act.ActivateTab(1))
+map('3', 'LEADER',       act.ActivateTab(2))
+map('4', 'LEADER',       act.ActivateTab(3))
 
 map('w', 'LEADER',       act.SwitchToWorkspace)
 map('w', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'WORKSPACES' })
 
 map('z', 'LEADER',       act.TogglePaneZoomState)
 map(':', 'LEADER',       act.CharSelect)
-map('c', 'LEADER',       act.QuickSelect)
+map('c', 'LEADER',       act.ActivateCopyMode)
+map('c', 'SHIFT|LEADER', act.QuickSelect)
 map('/', 'LEADER',       act.Search { CaseSensitiveString = "" })
+map('f', 'LEADER',       act.ToggleFullScreen)
 
 map('r', 'LEADER',       utils.RenameTab)
 map('r', 'CTRL|LEADER',  utils.RenameWorkspace)
@@ -246,7 +263,6 @@ split_nav(keys, 'resize', 'j')
 split_nav(keys, 'resize', 'k')
 split_nav(keys, 'resize', 'l')
 
-
 config.key_tables = {
   move_tab = {
     { key = 'h', action = act.MoveTabRelative(-1)},
@@ -259,21 +275,10 @@ config.key_tables = {
   },
 }
 
-
-
-
-
 config.keys = keys
 
 -- }}}
 
-
-
-
-
-
-
-
 return config
 
----- vim: foldmethod=marker ts=2 sts=2 sw=2 et
+-- vim: foldmethod=marker ts=2 sts=2 sw=2 et
