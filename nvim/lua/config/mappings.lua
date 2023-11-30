@@ -13,10 +13,13 @@ map('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
 map('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
 map("n", "gV", "`[v`]", { desc = 'Reselect pasted text' })
 
-
 -- Move by visible lines
 map({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true })
 map({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+
+-- Out / Indent
+map({ 'x' }, '<', "<gv", { nowait = true })
+map({ 'x' }, '>', ">gv", { nowait = true })
 
 -- some readline mappings in insert and command mode
 map({'i', 'c'}, '<C-b>', '<Left>',  { silent = false, desc = 'Left' })

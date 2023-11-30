@@ -2,7 +2,6 @@ local p = require('utils.pack')
 
 p.load('mini.align', {}, true)
 p.load('mini.comment', {}, true)
-p.load('mini.move', {}, true)
 p.load('mini.pairs', {}, true)
 p.load('mini-clue', nil, true)
 
