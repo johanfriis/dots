@@ -1,6 +1,10 @@
 default:
   @just --list --unsorted --justfile {{justfile()}}
 
+# create dotfile links for all targets
+link:
+  ./install --only link
+
 # show the terminals colors
 what-colors:
   msgcat --color=test
