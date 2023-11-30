@@ -17,3 +17,7 @@ hl('NormalFloat', { bg = palette.base })
 hl('FloatBorder', { fg = palette.iris, bg = palette.base })
 hl('FloatTitle',  { fg = palette.iris, bg = palette.base })
 hl('FloatFooter', { fg = palette.iris, bg = palette.base })
+
+
+-- TODO use winhighlight to style inactive windows
+-- set winhighlight=Normal:MyNormal,NormalNC:MyNormalNC

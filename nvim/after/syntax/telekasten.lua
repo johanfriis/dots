@@ -21,6 +21,8 @@ hl('tkTag', { fg = palette.foam })
 hl('markdownH1', { fg = palette.love })
 hl('markdownH2', { fg = palette.iris })
 
+hl('markdownCode', { fg = palette.rose, strikethrough = true })
+
 -- XXX This is actually fixed by turning off semantic tokens on the lsp
 --     I'm still going to leavr this comment here for now, as it if very useful
 -- Remove semantic highlight on markdown link
