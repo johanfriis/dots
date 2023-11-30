@@ -209,19 +209,13 @@ map('n', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'TABS' })
 map('-', 'LEADER',       act.SplitHorizontal(here))
 map('_', 'LEADER',       act.SplitVertical(here))
 
-map('h', 'LEADER',       act.ActivatePaneDirection 'Left')
-map('j', 'LEADER',       act.ActivatePaneDirection 'Down')
-map('k', 'LEADER',       act.ActivatePaneDirection 'Up')
-map('l', 'LEADER',       act.ActivatePaneDirection 'Right')
-
-map('h', 'CTRL|LEADER',  act.ActivateTabRelative(-1))
-map('l', 'CTRL|LEADER',  act.ActivateTabRelative(1))
-map('j', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(1))
-map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
+map('h', 'LEADER',       act.ActivateTabRelative(-1))
+map('l', 'LEADER',       act.ActivateTabRelative(1))
+map('j', 'LEADER',       act.SwitchWorkspaceRelative(1))
+map('k', 'LEADER',       act.SwitchWorkspaceRelative(-1))
 
 map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
 map('p', 'SHIFT|LEADER', act.PaneSelect { mode = 'SwapWithActive' })
-map('p', 'CTRL|LEADER',  act.ActivateKeyTable { name = 'resize_pane', one_shot = false })
 
 map('w', 'LEADER',       act.SwitchToWorkspace)
 map('w', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'WORKSPACES' })
@@ -238,19 +232,21 @@ map('.', 'LEADER',       act.ShowDebugOverlay)
 -- map('r', 'LEADER',       a.ReloadConfiguration)
 
 
+local split_nav = require('smart-splits').split_nav
+
+-- move between split panes
+split_nav(keys, 'move', 'h')
+split_nav(keys, 'move', 'j')
+split_nav(keys, 'move', 'k')
+split_nav(keys, 'move', 'l')
+-- resize panes
+split_nav(keys, 'resize', 'h')
+split_nav(keys, 'resize', 'j')
+split_nav(keys, 'resize', 'k')
+split_nav(keys, 'resize', 'l')
+
 
 config.key_tables = {
-  resize_pane = {
-    { key = 'h', action = act.AdjustPaneSize { 'Left',  5 }},
-    { key = 'j', action = act.AdjustPaneSize { 'Down',  5 }},
-    { key = 'k', action = act.AdjustPaneSize { 'Up',    5 }},
-    { key = 'l', action = act.AdjustPaneSize { 'Right', 5 }},
-
-    -- Cancel the mode by pressing escape
-    { key = 'q',      action = 'PopKeyTable' },
-    { key = 'Escape', action = 'PopKeyTable' },
-    { key = 'Enter',  action = 'PopKeyTable' },
-  },
   move_tab = {
     { key = 'h', action = act.MoveTabRelative(-1)},
     { key = 'l', action = act.MoveTabRelative(1)},
