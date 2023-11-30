@@ -8,6 +8,7 @@ local hl      = require('utils.functions').hl
 -- starting point that I found:
 -- https://www.reddit.com/r/neovim/comments/vr9m43/comment/iewhk7x
 -- https://github.com/lukas-reineke/headlines.nvim
+-- https://github.com/ribru17/nvim/blob/master/queries/markdown/highlights.scm
 
 -- }}}
 
@@ -44,11 +45,11 @@ hl('MarkdownHighlight',     { fg = palette.love, standout = true })
 
 -- Headers
 hl('@text.title.1.markdown',         { fg = palette.love, underdouble = true, bold = true  })
-hl('@text.title.2.markdown',         { fg = palette.iris, underline = true })
-hl('@text.title.3.markdown',         { fg = palette.iris })
-hl('@text.title.4.markdown',         { fg = palette.iris })
-hl('@text.title.5.markdown',         { fg = palette.iris })
-hl('@text.title.6.markdown',         { fg = palette.iris })
+hl('@text.title.2.markdown',         { fg = palette.iris, undercurl = true, bold = true })
+hl('@text.title.3.markdown',         { fg = palette.gold, underline = true, bold = true })
+hl('@text.title.4.markdown',         { fg = palette.love, italic = true })
+hl('@text.title.5.markdown',         { fg = palette.iris, italic = true })
+hl('@text.title.6.markdown',         { fg = palette.gold, italic = true })
 
 hl('@text.title.1.marker.markdown',  { fg = palette.muted })
 hl('@text.title.2.marker.markdown',  { fg = palette.muted })
@@ -57,24 +58,38 @@ hl('@text.title.4.marker.markdown',  { fg = palette.muted })
 hl('@text.title.5.marker.markdown',  { fg = palette.muted })
 hl('@text.title.6.marker.markdown',  { fg = palette.muted })
 
-hl('@text.emphasis.markdown_inline', { fg = palette.text })
-hl('@text.strong.markdown_inline',   { fg = palette.text })
+-- we need these as well, since syntax delimiters are matched
+-- immediately and treesitter ones are not.
+hl('markdownH1Delimiter', { fg = palette.muted })
+hl('markdownH2Delimiter', { fg = palette.muted })
+hl('markdownH3Delimiter', { fg = palette.muted })
+hl('markdownH4Delimiter', { fg = palette.muted })
+hl('markdownH5Delimiter', { fg = palette.muted })
+hl('markdownH6Delimiter', { fg = palette.muted })
+
+hl('@text.emphasis.markdown_inline', { fg = palette.iris, italic = true })
+hl('@text.strong.markdown_inline',   { fg = palette.love, bold = true })
+hl('@text.strike.markdown_inline',   { fg = palette.subtle })
 
 hl('@text.literal.block.markdown',   { bg = palette.surface })
-hl('@text.literal.markdown_inline',  { bg = palette.surface })
+hl('@text.literal.markdown_inline',  { bg = palette.overlay })
 hl('@text.quote.markdown',           { bg = palette.surface })
 
 -- Conceal Header Markers
 vim.cmd [[syntax match MarkdownHeaderMark "^#\{1,6}\s\ze\w.\+$" conceal]]
 
 -- MarkdownTag #tag
-vim.cmd [[syntax region MarkdownTag matchgroup=MarkdownTagMarker start="\(^\|\s\)\zs#\ze\<" end="\>" oneline]]
+vim.cmd [[syntax region MarkdownTag matchgroup=MarkdownTagMarker start="\(^\|\s\)\zs#\ze\<" end="\ze\(\s\|,\|$\)" oneline]]
 hl('MarkdownTagMarker', { fg = palette.muted })
-hl('MarkdownTag', { fg = palette.rose })
+hl('MarkdownTag', { fg = palette.pine })
 
 -- Markdown List Marker
 
--- vim.cmd [[syntax match MarkdownListStart "\m^\s*\zs[*+-]\ze.*$" keepend conceal]]
+-- vim.cmd [[syntax match MarkdownListBullet "\m^\s*\zs[*+-]\ze.*$" keepend conceal]]
+-- vim.cmd [[syntax match MarkdownListBullet "^\s*\zs[-+*]\ze\s"]] -- conceal cchar=•]]
+vim.cmd [[syntax region MarkdownListPrefix start="^\s*\ze[-+*]" end="[-+*]\zs\s" keepend oneline display contains=MarkdownListBullet]]
+vim.cmd [[syntax match MarkdownListBullet "[-+*]" contained conceal cchar=•]]
+hl('MarkdownListBullet', { fg = palette.muted })
 
 ------------------------------------------------------------------------------
 --- Custom "Log" language --
