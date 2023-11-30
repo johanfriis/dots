@@ -88,3 +88,6 @@
 [submodule "nvim/pack/plugins/opt/smart-splits"]
 	path = nvim/pack/plugins/opt/smart-splits
 	url = https://github.com/mrjones2014/smart-splits.nvim.git
+[submodule "nvim/pack/plugins/opt/vim-startuptime"]
+	path = nvim/pack/plugins/opt/vim-startuptime
+	url = https://github.com/dstein64/vim-startuptime.git
