@@ -1,0 +1,5 @@
+vim.opt.formatlistpat = [[^\s*[0-9\-\+\*\☰\≻\◉]\+[\.\)]*\s\+]]
+vim.cmd [[setlocal conceallevel=2]]
+vim.cmd [[setlocal concealcursor=nv]]
+vim.cmd [[setlocal nonumber]]
+vim.cmd [[setlocal sw=2]]

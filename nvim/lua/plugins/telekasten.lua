@@ -22,7 +22,13 @@ tk.setup({
   template_new_weekly = '.templates/weekly.md',
   calendar_opts = {
     weeknm = 1, --> WK01
-  }
+  },
+
+  install_syntax = false,
+  take_over_my_home = false,
+  auto_set_filetype = false,
+  auto_set_syntax = false,
+
 })
 
 

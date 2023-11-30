@@ -4,7 +4,9 @@ local f = require('utils.functions')
 
 local closable = {
   'help',
-  'startuptime'
+  'query',
+  'checkhealth',
+  'startuptime',
 }
 
 f.autocmds('UserCloseWithQ', {{

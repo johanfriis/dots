@@ -11,6 +11,8 @@ p.load('mini.comment', {}, true)
 p.load('mini.pairs', {}, true)
 p.load('mini-clue', nil, true)
 
+p.load('nvim-treesitter')
+
 p.load('telescope', nil, {
   { events = 'FileType', pattern = 'telekasten' },
   { events = { 'BufEnter', 'BufNewFile' }}
