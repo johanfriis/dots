@@ -85,3 +85,6 @@
 [submodule "nvim/pack/plugins/opt/telescope-file-browser"]
 	path = nvim/pack/plugins/opt/telescope-file-browser
 	url = https://github.com/nvim-telescope/telescope-file-browser.nvim.git
+[submodule "nvim/pack/plugins/opt/smart-splits"]
+	path = nvim/pack/plugins/opt/smart-splits
+	url = https://github.com/mrjones2014/smart-splits.nvim.git
