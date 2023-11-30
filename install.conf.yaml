@@ -5,7 +5,6 @@
 
 - link:
     ~/.config/nvim: nvim
-    ~/.config/tmux: tmux
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
     ~/.config/starship.toml: starship.toml
