@@ -91,3 +91,6 @@
 [submodule "nvim/pack/plugins/opt/vim-startuptime"]
 	path = nvim/pack/plugins/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
+[submodule "nvim/pack/plugins/opt/nvim-treesitter"]
+	path = nvim/pack/plugins/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
