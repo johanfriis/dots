@@ -1,20 +1,48 @@
-local wezterm = require 'wezterm'
+local wez = require 'wezterm'
+local act = wez.action
 
 local config = {}
 
-if wezterm.config_builder() then
-	config = wezterm.config_builder()
+if wez.config_builder() then
+	config = wez.config_builder()
 end
 
 -------------------------------------------------------------------------------
 -- {{{ // COLORS
 
+local colors = require('rose-pine').moon
+
 config.color_scheme = 'rose-pine-moon'
 config.colors = {
   selection_fg = '#e0def4',
   selection_bg = '#44415a',
-  -- cursor_fg = '#232136',
-  cursor_bg = '#908caa',
+  cursor_fg = colors.surface,
+  cursor_bg = colors.subtle,
+  tab_bar = {
+    background = colors.base,
+    active_tab = {
+      bg_color = colors.base,
+      fg_color = colors.iris,
+      intensity = 'Bold',
+    },
+    inactive_tab = {
+      bg_color = colors.base,
+      fg_color = colors.subtle,
+    },
+    inactive_tab_hover = {
+      bg_color = colors.base,
+      fg_color = colors.text,
+    },
+  },
+}
+
+config.command_palette_font_size = 15
+config.command_palette_fg_color = colors.text
+config.command_palette_bg_color = colors.surface
+
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.8,
 }
 
 -- }}}
@@ -22,13 +50,13 @@ config.colors = {
 -------------------------------------------------------------------------------
 -- {{{ // FONT
 
-config.font = wezterm.font { family = 'CaskaydiaCove Nerd Font' }
+config.font = wez.font { family = 'CaskaydiaCove Nerd Font' }
 
 config.font_rules = {
 	{
 		intensity = 'Bold',
 		italic = false,
-		font = wezterm.font {
+		font = wez.font {
 			family = 'CaskaydiaCove Nerd Font',
 			weight = 'Bold',
 			style = 'Normal',
@@ -47,26 +75,207 @@ config.font_size = 13
 -------------------------------------------------------------------------------
 -- {{{ // UI
 
-config.enable_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
+config.adjust_window_size_when_changing_font_size = false
+
+-- don't show title bar but have resize handles
+config.window_decorations = 'RESIZE'
+
+ -- resize in terminal cell size increments
+config.use_resize_increments = true
+
+config.window_padding = {
+  left = 20,
+  right = 20,
+  top = 20,
+  bottom = 0,
+}
+
+-- }}}
+
+-------------------------------------------------------------------------------
+-- {{{ // TAB BAR
+
+-- config.enable_tab_bar = false
+-- config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.use_resize_increments = true -- resize in terminal cell size increments
+
+config.show_tab_index_in_tab_bar = true -- resize in terminal cell size increments
+config.show_new_tab_button_in_tab_bar = false -- resize in terminal cell size increments
+config.tab_max_width = 18 -- resize in terminal cell size increments
+
+function tab_title(tab_info)
+  local title = tab_info.tab_title
+  -- if the tab title is explicitly set, take that
+  if title and #title > 0 then
+    return title
+  end
+  -- Otherwise, use the title from the active pane in that tab
+  return tab_info.active_pane.title
+end
+
+wez.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local title = wez.truncate_right(tab_title(tab), max_width - 2)
+
+    return {
+      { Text = ' ' },
+      { Text = title },
+      { Foreground = { Color = colors.subtle } },
+      { Text = '  ' },
+    }
+  end
+)
+
+-- }}}
+
+-------------------------------------------------------------------------------
+-- {{{ // EVENTS
+
+-- use this as a hack to bring the tab bar in line with the first and last
+-- column of terminal text, controlled by side padding
+wez.on('update-status', function(window, _) -- window, pane
+
+  local active_tab = window:active_tab()
+  local pane_infos = active_tab:panes_with_info()
+  local active_pane = {}
+
+  for _, pane in ipairs(pane_infos) do
+    if pane.is_active == true then
+      active_pane = pane
+    end
+  end
+
+  window:set_left_status(' ')
+
+  -- show the name of the active workspace
+  local right_status = {
+    { Foreground = { Color = colors.rose }},
+    { Text = window:active_workspace() },
+    { Text = '  ' },
+  }
+
+  -- show the name of any active key tables
+  local active_key_table = window:active_key_table()
+  if active_key_table then
+    table.insert(right_status, 1, { Text = ' } ' })
+    table.insert(right_status, 1, { Text = active_key_table })
+    table.insert(right_status, 1, { Text = '{ ' })
+    table.insert(right_status, 1, { Foreground = { Color = colors.gold }})
+  end
+
+  -- show a message if current pane is zoomed
+  if active_pane.is_zoomed then
+    print(" I MA SOOOEMED")
+    table.insert(right_status, 1, { Text = '( zoomed ) ' })
+    table.insert(right_status, 1, { Foreground = { Color = colors.love }})
+  end
+
+  window:set_right_status(wez.format(right_status))
+end)
 
 -- }}}
 
 -------------------------------------------------------------------------------
 -- {{{ // KEYBINDINGS
 
-local a = wezterm.actions
-local map = require('utils').map
-
+config.leader = { key = 's', mods = 'CTRL'}
 config.disable_default_key_bindings = true
 
-config.keys = {
+local keys = {}
+local utils = require('utils')
+local map = utils.map(keys)
+
+local here = { domain = 'CurrentPaneDomain' }
+
+
+map('c', 'SUPER',        act.CopyTo "Clipboard")
+map('v', 'SUPER',        act.PasteFrom "Clipboard")
+
+map('-', 'SUPER',        act.DecreaseFontSize)
+map('=', 'SUPER',        act.IncreaseFontSize)
+map('0', 'SUPER',        act.ResetFontSize)
+
+map('p', 'SUPER',        act.ActivateCommandPalette)
+
+-- map('n', 'LEADER',       a.SpawnWindow)
+map('d', 'LEADER',       act.CloseCurrentPane { confirm = true } )
+
+map('n', 'LEADER',       act.SpawnTab "CurrentPaneDomain")
+map('n', 'CTRL|LEADER',  act.ActivateKeyTable { name = 'move_tab', one_shot = false })
+map('n', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'TABS' })
+
+map('-', 'LEADER',       act.SplitHorizontal(here))
+map('_', 'LEADER',       act.SplitVertical(here))
+
+map('h', 'LEADER',       act.ActivatePaneDirection 'Left')
+map('j', 'LEADER',       act.ActivatePaneDirection 'Down')
+map('k', 'LEADER',       act.ActivatePaneDirection 'Up')
+map('l', 'LEADER',       act.ActivatePaneDirection 'Right')
+
+map('h', 'CTRL|LEADER',  act.ActivateTabRelative(-1))
+map('l', 'CTRL|LEADER',  act.ActivateTabRelative(1))
+map('j', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(1))
+map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
+
+map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
+map('p', 'SHIFT|LEADER', act.PaneSelect { mode = 'SwapWithActive' })
+map('p', 'CTRL|LEADER',  act.ActivateKeyTable { name = 'resize_pane', one_shot = false })
+
+map('w', 'LEADER',       act.SwitchToWorkspace)
+map('w', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'WORKSPACES' })
+
+map('z', 'LEADER',       act.TogglePaneZoomState)
+map(':', 'LEADER',       act.CharSelect)
+map('c', 'LEADER',       act.QuickSelect)
+map('/', 'LEADER',       act.Search { CaseSensitiveString = "" })
+
+map('r', 'LEADER',       utils.RenameTab)
+map('r', 'CTRL|LEADER',  utils.RenameWorkspace)
+
+map('.', 'LEADER',       act.ShowDebugOverlay)
+-- map('r', 'LEADER',       a.ReloadConfiguration)
+
+
+
+config.key_tables = {
+  resize_pane = {
+    { key = 'h', action = act.AdjustPaneSize { 'Left',  5 }},
+    { key = 'j', action = act.AdjustPaneSize { 'Down',  5 }},
+    { key = 'k', action = act.AdjustPaneSize { 'Up',    5 }},
+    { key = 'l', action = act.AdjustPaneSize { 'Right', 5 }},
+
+    -- Cancel the mode by pressing escape
+    { key = 'q',      action = 'PopKeyTable' },
+    { key = 'Escape', action = 'PopKeyTable' },
+    { key = 'Enter',  action = 'PopKeyTable' },
+  },
+  move_tab = {
+    { key = 'h', action = act.MoveTabRelative(-1)},
+    { key = 'l', action = act.MoveTabRelative(1)},
+
+    -- Cancel the mode by pressing escape
+    { key = 'q',      action = 'PopKeyTable' },
+    { key = 'Escape', action = 'PopKeyTable' },
+    { key = 'Enter',  action = 'PopKeyTable' },
+  },
 }
 
+
+
+
+
+config.keys = keys
+
 -- }}}
+
+
+
+
+
+
+
 
 return config
 
