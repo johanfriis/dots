@@ -5,8 +5,16 @@ local fn     = vim.fn
 
 local M = {}
 
--- --------------------------------------------------------------------------
--- setInterval using libuv 
+
+--- --------------------------------------------------------------------------
+--- Quick creation of home based paths
+
+M.home = function(path)
+  return vim.fn.expand("~/" .. path)
+end
+
+--- --------------------------------------------------------------------------
+--- setInterval using libuv 
 
 M.setInterval = function (interval, callback)
   local timer = vim.uv.new_timer()
@@ -17,8 +25,8 @@ M.setInterval = function (interval, callback)
 end
 
 
--- --------------------------------------------------------------------------
--- Make it easier to create autocmds ---
+--- --------------------------------------------------------------------------
+--- Make it easier to create autocmds ---
 
 M.autocmds = function(name, autocmds)
   local group = api.nvim_create_augroup(name, {})
@@ -31,8 +39,8 @@ M.autocmds = function(name, autocmds)
 end
 
 
--- --------------------------------------------------------------------------
--- Make it easier to create mappings with sensible defaults ---
+--- --------------------------------------------------------------------------
+--- Make it easier to create mappings with sensible defaults ---
 
 local default_keymap_opts = {
   noremap = true,
@@ -54,13 +62,13 @@ M.bufmap = function(mode, lhs, rhs)
 end
 
 
--- --------------------------------------------------------------------------
--- simple highlighting ---
+--- --------------------------------------------------------------------------
+--- simple highlighting ---
 
--- fg (or foreground), bg (or background), sp (or special), blend,
--- bold, standout, underline, undercurl, underdouble, underdotted,
--- underdashed, strikethrough, italic, reverse, nocombine, link,
--- ctermfg, ctermbg, cterm,
+--- fg (or foreground), bg (or background), sp (or special), blend,
+--- bold, standout, underline, undercurl, underdouble, underdotted,
+--- underdashed, strikethrough, italic, reverse, nocombine, link,
+--- ctermfg, ctermbg, cterm,
 
 M.hl = function(group, definitions)
   local groups = group
@@ -74,8 +82,8 @@ M.hl = function(group, definitions)
 end
 
 
--- --------------------------------------------------------------------------
--- Create `<Leader>` mappings ---
+--- --------------------------------------------------------------------------
+--- Create `<Leader>` mappings ---
 
 M.leader = function(mode, suffix, rhs, desc, opts)
   opts = opts or {}
@@ -84,10 +92,10 @@ M.leader = function(mode, suffix, rhs, desc, opts)
 end
 
 
--- --------------------------------------------------------------------------
--- Toggle diagnostic for current buffer ---
+--- --------------------------------------------------------------------------
+--- Toggle diagnostic for current buffer ---
 
--- Diagnostic state per buffer
+--- Diagnostic state per buffer
 local buffer_diagnostic_state = {}
 
 M.toggle_diagnostic = function()
@@ -108,8 +116,8 @@ M.toggle_diagnostic = function()
 end
 
 
--- --------------------------------------------------------------------------
--- Toggle colorcolumn for current buffer ---
+--- --------------------------------------------------------------------------
+--- Toggle colorcolumn for current buffer ---
 
 M.toggle_colorcolumn = function()
   --  local current_state = api.nvim_get_option_value('colorcolumn', {})
@@ -125,25 +133,25 @@ M.toggle_colorcolumn = function()
 end
 
 
--- --------------------------------------------------------------------------
--- Action for `<CR>` which respects completion and autopairs ---
+--- --------------------------------------------------------------------------
+--- Action for `<CR>` which respects completion and autopairs ---
 
--- Mapping should be done after everything else because `<CR>` can be
--- overridden by something else (notably 'mini-pairs.lua'). This should be an
--- expression mapping:
--- vim.api.nvim_set_keymap('i', '<CR>', 'v:lua._cr_action()', { expr = true })
---
--- Its current logic:
--- - If no popup menu is visible, use "no popup keys" getter. This is where
---   autopairs plugin should be used. Like with 'nvim-autopairs'
---   `get_nopopup_keys` is simply `npairs.autopairs_cr`.
--- - If popup menu is visible:
---     - If item is selected, execute "confirm popup" action and close
---       popup. This is where completion engine takes care of snippet expanding
---       and more.
---     - If item is not selected, close popup and execute '<CR>'. Reasoning
---       behind this is to explicitly select desired completion (currently this
---       is also done with one '<Tab>' keystroke).
+--- Mapping should be done after everything else because `<CR>` can be
+--- overridden by something else (notably 'mini-pairs.lua'). This should be an
+--- expression mapping:
+--- vim.api.nvim_set_keymap('i', '<CR>', 'v:lua._cr_action()', { expr = true })
+---
+--- Its current logic:
+--- - If no popup menu is visible, use "no popup keys" getter. This is where
+---   autopairs plugin should be used. Like with 'nvim-autopairs'
+---   `get_nopopup_keys` is simply `npairs.autopairs_cr`.
+--- - If popup menu is visible:
+---     - If item is selected, execute "confirm popup" action and close
+---       popup. This is where completion engine takes care of snippet expanding
+---       and more.
+---     - If item is not selected, close popup and execute '<CR>'. Reasoning
+---       behind this is to explicitly select desired completion (currently this
+---       is also done with one '<Tab>' keystroke).
 
 local cr_keys = {
   ['cr'] = api.nvim_replace_termcodes('<CR>', true, true, true),
@@ -161,8 +169,8 @@ M.cr_action = function()
 end
 
 
--- --------------------------------------------------------------------------
--- Create scratch buffer and focus on it ---
+--- --------------------------------------------------------------------------
+--- Create scratch buffer and focus on it ---
 
 M.new_scratch_buffer = function()
   local buf_id = vim.api.nvim_create_buf(true, true)
@@ -171,8 +179,8 @@ M.new_scratch_buffer = function()
 end
 
 
--- --------------------------------------------------------------------------
--- Toggle quickfix window ---
+--- --------------------------------------------------------------------------
+--- Toggle quickfix window ---
 
 M.toggle_quickfix = function()
   local quickfix_wins = vim.tbl_filter(
@@ -185,8 +193,8 @@ M.toggle_quickfix = function()
 end
 
 
--- --------------------------------------------------------------------------
--- Toggle LazyGit ---
+--- --------------------------------------------------------------------------
+--- Toggle LazyGit ---
 
 M.open_lazygit = function()
   cmd [[tabedit]]
@@ -206,8 +214,8 @@ M.open_lazygit = function()
 end
 
 
--- --------------------------------------------------------------------------
--- print any number of objects ---
+--- --------------------------------------------------------------------------
+--- print any number of objects ---
 M.put = function(...)
   local objects = {}
   -- Not using `{...}` because it removes `nil` input
@@ -221,16 +229,16 @@ M.put = function(...)
   return ...
 end
 
--- --------------------------------------------------------------------------
--- check if cursor has non-whitespace directly before it ---
+--- --------------------------------------------------------------------------
+--- check if cursor has non-whitespace directly before it ---
 M.has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- --------------------------------------------------------------------------
+--- --------------------------------------------------------------------------
 
 return M
 
--- vim: foldmethod=marker ts=2 sts=2 sw=2 et
+--- vim: foldmethod=marker ts=2 sts=2 sw=2 et

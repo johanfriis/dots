@@ -4,7 +4,8 @@ local palette = require('rose-pine.palette')
 
 p.add({
   'plenary',
-  'telescope-file-browser'
+  'telescope-file-browser',
+  'whaler',
 })
 
 local telescope = require('telescope')
@@ -12,6 +13,7 @@ local telescope = require('telescope')
 -- local extensions = require('telescope.extensions')
 local actions = require('telescope.actions')
 local layout_actions = require('telescope.actions.layout')
+
 
 -------------------------------------------------------------------------------
 --- Mappings
@@ -96,7 +98,31 @@ telescope.setup({
         mirror = true,
       },
     },
+    whaler = {
+      auto_file_explorer = false,
+      auto_cwd = true,
+      -- file_explorer = 'telescope_find_files',
+      -- file_explorer_config = {
+      --   plugin_name = 'telescope',
+      --   command = 'Telescope find_files',
+      --   prefix_dir = " cwd = "
+      -- },
+      oneoff_directories = {
+        { alias = 'Dots', path = f.home('dev/dots') },
+        { alias = 'Neovim', path = f.home('dev/dots/nvim') },
+      },
+      directories = {
+        f.home('dev/work'),
+        f.home('dev/smurfs'),
+        f.home('dev/projects'),
+      },
+    },
   },
 })
 
 telescope.load_extension('file_browser')
+
+-- https://github.com/salorak/whaler.nvim
+telescope.load_extension('whaler')
+
+---- vim: foldmethod=marker ts=2 sts=2 sw=2 et
