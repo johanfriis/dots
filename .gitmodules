@@ -94,3 +94,6 @@
 [submodule "nvim/pack/plugins/opt/nvim-treesitter"]
 	path = nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "nvim/pack/plugins/opt/whaler"]
+	path = nvim/pack/plugins/opt/whaler
+	url = https://github.com/SalOrak/whaler.git
