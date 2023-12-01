@@ -6,10 +6,12 @@ p.add({
   'plenary',
   'telescope-file-browser',
   'whaler',
+  'telescope-undo'
 })
 
 local telescope = require('telescope')
--- local builtin = require('telescope.builtin')
+local builtin = require('telescope.builtin')
+local themes = require('telescope.themes')
 -- local extensions = require('telescope.extensions')
 local actions = require('telescope.actions')
 local layout_actions = require('telescope.actions.layout')
@@ -17,11 +19,6 @@ local layout_actions = require('telescope.actions.layout')
 
 -------------------------------------------------------------------------------
 --- Mappings
-
-f.map('n', '§',     "<Cmd>Telescope buffers<CR>")
-f.map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
-
-f.leader('n', 'e', "<Cmd>Telescope file_browser<CR>")
 
 -------------------------------------------------------------------------------
 --- Highlights
@@ -108,14 +105,19 @@ telescope.setup({
       --   prefix_dir = " cwd = "
       -- },
       oneoff_directories = {
-        { alias = 'Dots', path = f.home('dev/dots') },
-        { alias = 'Neovim', path = f.home('dev/dots/nvim') },
+        { alias = 'bin',    path = f.home('dev/bin') },
+        { alias = 'dots',   path = f.home('dev/dots') },
+        { alias = 'notes',  path = f.home('dev/notes') },
+        { alias = 'neovim', path = f.home('dev/dots/nvim') },
       },
       directories = {
-        f.home('dev/work'),
-        f.home('dev/smurfs'),
-        f.home('dev/projects'),
+        { alias = 'work',     path = f.home('work') },
+        { alias = 'smurfs',   path = f.home('dev/smurfs') },
+        { alias = 'projects', path = f.home('dev/projects') },
       },
+    },
+    undo = {
+
     },
   },
 })
@@ -124,5 +126,7 @@ telescope.load_extension('file_browser')
 
 -- https://github.com/salorak/whaler.nvim
 telescope.load_extension('whaler')
+-- https://github.com/debugloop/telescope-undo.nvim
+telescope.load_extension('undo')
 
 ---- vim: foldmethod=marker ts=2 sts=2 sw=2 et

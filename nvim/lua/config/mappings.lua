@@ -1,5 +1,6 @@
 local map = require('utils.functions').map
 local leader = require('utils.functions').leader
+local pickers = require('utils.pickers')
 
 -- ============================================================================
 -- mappings ===
@@ -42,6 +43,10 @@ map('c', '<C-n>', '<Down>', { silent = false })
 -- map('n', '§', '<CMD>Lexplore<CR>')
 
 
+map('n', '§',     "<Cmd>Telescope buffers<CR>")
+map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
+
+
 -- ============================================================================
 -- leader mappings ===
 
@@ -49,6 +54,15 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
 leader('n', 'gg', '<Cmd>LazyGit<CR>', 'Open LazyGit')
+
+leader('n', 'pg', '<Cmd>Telescope git_files<CR>',                 '[G]it File')
+leader('n', 'pb', "<Cmd>Telescope file_browser<CR>",              '[B]rowse File')
+leader('n', 'ps', "<Cmd>Telescope live_grep<CR>",                 '[S]earch File')
+leader('n', 'pr', "<Cmd>Telescope oldfiles<CR>",                  '[R]ecent File')
+leader('n', 'pt', "<Cmd>Telescope current_buffer_fuzzy_find<CR>", '[T]his File')
+leader('n', 'pa', pickers.adjacent,                               '[A]djacent File')
+leader('n', 'pj', "<Cmd>Telescope whaler<CR>",                    '[J]ump Dir')
+leader('n', 'pu', "<Cmd>Telescope undo<CR>",                      '[U]ndo Tree')
 
 -- 'b' is for 'buffer'
 -- leader('n', 'ba', [[<Cmd>b#<CR>]],                                 'Alternate')
