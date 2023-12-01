@@ -13,11 +13,27 @@
   navigate = true
   light = false
   line-numbers = true
-  side-by-side = true
+  ; side-by-side = true
   true-color = always
+
+  dark = true
+  file-style = omit
+  hunk-header-decoration-style = omit
+  hunk-header-file-style = magenta
+  hunk-header-line-number-style = dim magenta
+  hunk-header-style = file line-number syntax
+  line-numbers = false
+  minus-emph-style = bold red "#4E2D40"
+  minus-empty-line-marker-style = normal "#3f0001"
+  minus-non-emph-style = dim red
+  minus-style = bold red
+  plus-emph-style = bold "#acd385" "#3A4551"
+  plus-empty-line-marker-style = normal "#002800"
+  plus-non-emph-style = dim green
+  plus-style = bold "#acd385"
   syntax-theme = Dracula
-  plus-style = bold syntax "#25465A"
-  minus-style = bold syntax "#4E2D40"
+  whitespace-error-style = reverse red
+  zero-style = dim syntax
 
 [merge]
   conflictstyle = diff3

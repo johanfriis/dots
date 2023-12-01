@@ -117,6 +117,12 @@ telescope.setup({
       },
     },
     undo = {
+      use_delta = true,
+      layout_strategy = 'vertical',
+      initial_mode = 'normal',
+      layout_config = {
+        preview_height = 0.7,
+      },
 
     },
   },
