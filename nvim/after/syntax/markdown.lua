@@ -67,9 +67,12 @@ hl('markdownH4Delimiter', { fg = palette.muted })
 hl('markdownH5Delimiter', { fg = palette.muted })
 hl('markdownH6Delimiter', { fg = palette.muted })
 
-hl('@text.emphasis.markdown_inline', { fg = palette.iris, italic = true })
-hl('@text.strong.markdown_inline',   { fg = palette.love, bold = true })
+hl('@text.emphasis.markdown_inline', {})
+hl('@text.strong.markdown_inline',   {})
 hl('@text.strike.markdown_inline',   { fg = palette.subtle })
+hl('markdownItalic', { fg = palette.iris, italic = true })
+hl('markdownBold',   { fg = palette.love, bold = true })
+hl('markdownBoldItalic',             { fg = palette.gold, bold = true, italic = true })
 
 hl('@text.literal.block.markdown',   { bg = palette.surface })
 hl('@text.literal.markdown_inline',  { bg = palette.overlay })
@@ -84,9 +87,6 @@ hl('MarkdownTagMarker', { fg = palette.muted })
 hl('MarkdownTag', { fg = palette.pine })
 
 -- Markdown List Marker
-
--- vim.cmd [[syntax match MarkdownListBullet "\m^\s*\zs[*+-]\ze.*$" keepend conceal]]
--- vim.cmd [[syntax match MarkdownListBullet "^\s*\zs[-+*]\ze\s"]] -- conceal cchar=•]]
 vim.cmd [[syntax region MarkdownListPrefix start="^\s*\ze[-+*]" end="[-+*]\zs\s" keepend oneline display contains=MarkdownListBullet]]
 vim.cmd [[syntax match MarkdownListBullet "[-+*]" contained conceal cchar=•]]
 hl('MarkdownListBullet', { fg = palette.muted })

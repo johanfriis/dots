@@ -7,12 +7,6 @@ if wez.config_builder() then
 	config = wez.config_builder()
 end
 
-config.default_workspace = 'main'
-config.initial_cols = 50
-config.initial_rows = 25
-config.scrollback_lines = 50000
-config.underline_position = -5
-
 -------------------------------------------------------------------------------
 -- {{{ // COLORS
 
@@ -60,32 +54,90 @@ config.inactive_pane_hsb = {
 -------------------------------------------------------------------------------
 -- {{{ // FONT
 
-config.font = wez.font { family = 'CaskaydiaCove Nerd Font' }
+local fira_code_features = {
+  'ss01', -- r
+  'zero', -- 0
+  'cv14', -- 3
+  -- 'ss05', -- @
+  'ss04', -- $
+  -- 'cv18', -- %
+  'ss03', -- &
+  'cv16', -- *
+  -- 'cv17', -- ~
+  'cv29', -- {}
+  'cv30', -- |
+  'cv31', -- ()
+
+  'ss02', -- <= >=
+  'ss08', -- == === != !==
+  'cv24', -- /=
+  'ss09', -- >>= <<= ||= |=
+  'cv25', -- .-
+  'cv26', -- :-
+  'cv32', -- .=
+  'cv27', -- []
+  'cv28', -- {. .}
+  'ss06', -- \\
+  'ss07', -- =~ !~
+  -- 'ss10', -- Fl Tl fi fj fl ft
+}
+
+-- https://github.com/tonsky/FiraCode
+config.font = wez.font_with_fallback({
+  {
+    family = 'Fira Code',
+    weight = 450,
+    harfbuzz_features = fira_code_features,
+    assume_emoji_presentation = false,
+  },
+  -- fall back to symbols nerd font
+  "Symbols Nerd Font Mono"
+})
+
+config.font_size = 12.8
+config.adjust_window_size_when_changing_font_size = false
+
+-- tweak spacing
+config.cell_width = 0.90
+-- config.line_height = 0.96
+
+config.underline_position = -5
 
 config.font_rules = {
 	{
 		intensity = 'Bold',
 		italic = false,
 		font = wez.font {
-			family = 'CaskaydiaCove Nerd Font',
-			weight = 'Bold',
-			style = 'Normal',
+			family = 'Fira Code',
+			weight = 900,
+      harfbuzz_features = fira_code_features,
+		},
+	},
+	{
+		intensity = 'Normal',
+		italic = true,
+		font = wez.font {
+			family = 'Fira Code',
+			weight = 200,
+      style = 'Italic',
+      harfbuzz_features = fira_code_features,
 		},
 	},
 }
 
--- turn off most ligatures
-config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
-
--- config.cell_width = 1.05
-config.font_size = 13
+-- I did not see any meaningful effect of these settings
+-- config.front_end = 'WebGpu'
+-- config.freetype_load_target = 'Light'
+-- config.freetype_load_flags = 'NO_HINTING'
 
 -- }}}
 
 -------------------------------------------------------------------------------
--- {{{ // UI
+-- {{{ // UI & GENERAL
 
-config.adjust_window_size_when_changing_font_size = false
+-- initial sizing
+config.initial_cols = 210
+config.initial_rows = 64
 
 -- don't show title bar but have resize handles
 config.window_decorations = 'RESIZE'
@@ -99,6 +151,9 @@ config.window_padding = {
   top = 46, -- this give fullscreen a padding to match top cutout
   bottom = 0,
 }
+
+config.default_workspace = 'main'
+config.scrollback_lines = 50000
 
 -- }}}
 
