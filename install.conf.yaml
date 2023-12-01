@@ -5,6 +5,7 @@
 
 - link:
     ~/.terminfo: terminfo
+    ~/.config/git: git
     ~/.config/fish: fish
     ~/.config/nvim: nvim
     ~/.config/wezterm: wezterm

@@ -1,0 +1,54 @@
+[init]
+	defaultBranch = main
+
+;; Using `delta` as pager
+;; https://github.com/dandavison/delta
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+  line-numbers = true
+  side-by-side = true
+  true-color = always
+  syntax-theme = Dracula
+  plus-style = bold syntax "#25465A"
+  minus-style = bold syntax "#4E2D40"
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+; Sources:
+; https://blog.hao.dev/how-to-use-different-git-emails-for-personal-and-work-repositories-on-the-same-machine
+; https://git-scm.com/docs/git-config#_includes
+; Alternative:
+; https://git.sr.ht/~bentinata/bentinata.com/tree/_/item/log/2023-05-11-git-insteadof-includeif.gmi
+[includeIf "gitdir:~/dev/**"]
+  path = private
+[includeIf "gitdir:~/work/**"]
+  path = work
+
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+	; rebase-reset-author = rebase -r --root --exec \"git commit --amend --no-edit --reset-author\"
+	st = status
+	co = checkout
+	cm = commit -m
+
+[status]
+  submodulesummary = 1
+
+; vim: ft=gitconfig
