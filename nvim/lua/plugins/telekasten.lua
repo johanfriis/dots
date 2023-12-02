@@ -1,4 +1,3 @@
-local f = require('utils.functions')
 local p = require('utils.pack')
 local tk = require('telekasten')
 
@@ -8,8 +7,6 @@ p.add({
 
 local notes = vim.fn.expand('~/dev/notes-tk')
 local weeklies = notes .. '/log'
-
-f.leader('n', 'nn', '<Cmd>Telekasten<CR>', 'Open Telekasten')
 
 tk.setup({
   home = notes,

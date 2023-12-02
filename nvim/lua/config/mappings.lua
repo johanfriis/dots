@@ -1,17 +1,19 @@
-local map = require('utils.functions').map
-local leader = require('utils.functions').leader
+local f = require('utils.functions')
+local map = f.map
+local leader = f.leader
 local pickers = require('utils.pickers')
 
+local M = {}
 -- ============================================================================
 -- mappings ===
 
 -- fix yanking and pasting
-map({'n', 'x'}, 'gy', '"+y', { desc = 'Yank to system clipboard' })
-map({'n', 'x'}, 'gyy', '"+yy', { desc = 'Yank to system clipboard' })
-map('n', 'gp', '"+p', { desc = 'Paste from system clipboard' })
+map({'n', 'x'}, 'gy',  '"+y',   { desc = 'Yank to system clipboard' })
+map({'n', 'x'}, 'gyy', '"+yy',  { desc = 'Yank to system clipboard' })
+map('n',        'gp',  '"+p',   { desc = 'Paste from system clipboard' })
 
 -- Paste in visual with P to not copy selected text (:h v_P)
-map('x', 'gp', '"+P', { desc = 'Paste from system clipboard' })
+map('x', 'gp', '"+P',   { desc = 'Paste from system clipboard' })
 map("n", "gV", "`[v`]", { desc = 'Reselect pasted text' })
 
 -- Move by visible lines
@@ -53,8 +55,49 @@ map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
+
+M.clues = {
+  { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
+  { mode = 'n', keys = '<Leader>d', desc = '+Dev' },
+  -- { mode = 'n', keys = '<Leader>c', desc = '+Code' },
+  -- { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
+  -- { mode = 'n', keys = '<Leader>f', desc = '+Find' },
+  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
+  { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
+  { mode = 'n', keys = '<Leader>n', desc = '+Notes' },
+  { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
+  { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
+
+  { mode = 'x', keys = '<Leader>d', desc = '+Dev' },
+  { mode = 'x', keys = '<Leader>l', desc = '+LSP' },
+}
+
+
+-- 'b' is for 'buffer'
+leader('n', 'ba', [[<Cmd>b#<CR>]],      '[A]lternate')
+leader('n', 'bs', f.new_scratch_buffer, '[S]cratch')
+leader('n', 'bq', [[<Cmd>close<CR>]],   '[Q]uit (close)')
+
+-- 'd' is for 'dev'
+leader('n', 'ds', [[<Cmd>source %<CR>]], '[S]ource this')
+leader('x', 'da', [[gA]], '[A]lign selection')
+
+-- 'g' is for 'git'
 leader('n', 'gg', '<Cmd>LazyGit<CR>', 'Open LazyGit')
 
+-- l is for 'LSP' (Language Server Protocol)
+leader('n', 'la', [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], 'Arguments popup')
+leader('n', 'ld', [[<Cmd>lua vim.diagnostic.open_float()<CR>]],  'Diagnostics popup')
+leader('n', 'lf', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]],     'Format')
+leader('n', 'li', [[<Cmd>lua vim.lsp.buf.hover()<CR>]],          'Information')
+leader('n', 'lj', [[<Cmd>lua vim.diagnostic.goto_next()<CR>]],   'Next diagnostic')
+leader('n', 'lk', [[<Cmd>lua vim.diagnostic.goto_prev()<CR>]],   'Prev diagnostic')
+leader('n', 'lR', [[<Cmd>lua vim.lsp.buf.references()<CR>]],     'References')
+leader('n', 'lr', [[<Cmd>lua vim.lsp.buf.rename()<CR>]],         'Rename')
+leader('n', 'ls', [[<Cmd>lua vim.lsp.buf.definition()<CR>]],     'Source definition')
+leader('x', 'lf', [[<Cmd>lua vim.lsp.buf.format()<CR><Esc>]],    'Format selection')
+
+-- 'p' is for 'pick'
 leader('n', 'pg', '<Cmd>Telescope git_files<CR>',                 '[G]it File')
 leader('n', 'pb', "<Cmd>Telescope file_browser<CR>",              '[B]rowse File')
 leader('n', 'ps', "<Cmd>Telescope live_grep<CR>",                 '[S]earch File')
@@ -63,19 +106,12 @@ leader('n', 'pt', "<Cmd>Telescope current_buffer_fuzzy_find<CR>", '[T]his File')
 leader('n', 'pa', pickers.adjacent,                               '[A]djacent File')
 leader('n', 'pj', "<Cmd>Telescope whaler<CR>",                    '[J]ump Dir')
 leader('n', 'pu', "<Cmd>Telescope undo<CR>",                      '[U]ndo Tree')
-
--- 'b' is for 'buffer'
--- leader('n', 'ba', [[<Cmd>b#<CR>]],                                 'Alternate')
--- leader('n', 'bd', [[<Cmd>lua MiniBufremove.delete()<CR>]],         'Delete')
--- leader('n', 'bD', [[<Cmd>lua MiniBufremove.delete(0, true)<CR>]],  'Delete!')
--- leader('n', 'bs', [[<Cmd>lua new_scratch_buffer()<CR>]],           'Scratch')
--- leader('n', 'bw', [[<Cmd>lua MiniBufremove.wipeout()<CR>]],        'Wipeout')
--- leader('n', 'bW', [[<Cmd>lua MiniBufremove.wipeout(0, true)<CR>]], 'Wipeout!')
+leader('n', 'nn', '<Cmd>Telekasten<CR>', 'Open Telekasten')
 
 -- 'c' is for 'code'
 
 -- 't' is for 'toggle'
-leader('n', 'td',  '<Cmd>lua toggle_diagnostic()<CR>',         'Toggle diagnostic')
+leader('n', 'td',  f.toggle_diagnostic,                        'Toggle diagnostic')
 leader('n', 'th',  '<Cmd>let v:hlsearch = 1 - v:hlsearch<CR>', 'Toggle search highlight')
 leader('n', 'ti',  '<Cmd>setlocal ignorecase!<CR>',            "Toggle 'ignorecase'")
 leader('n', 'tl',  '<Cmd>setlocal list!<CR>',                  "Toggle 'list'")
@@ -83,7 +119,7 @@ leader('n', 'tn',  '<Cmd>setlocal number!<CR>',                "Toggle 'number'"
 leader('n', 'tr',  '<Cmd>setlocal relativenumber!<CR>',        "Toggle 'relativenumber'")
 leader('n', 'ts',  '<Cmd>setlocal spell!<CR>',                 "Toggle 'spell'")
 leader('n', 'tw',  '<Cmd>setlocal wrap!<CR>',                  "Toggle 'wrap'")
-leader('n', 'tC',  '<Cmd>lua toggle_colorcolumn()<CR>',        'Toggle colorcolumn')
+leader('n', 'tC',  f.toggle_colorcolumn,                       'Toggle colorcolumn')
 leader('n', 'tcl', '<Cmd>setlocal cursorline!<CR>',            "Toggle 'cursorline'")
 leader('n', 'tcc', '<Cmd>setlocal cursorcolumn!<CR>',          "Toggle 'cursorcolumn'")
 
@@ -133,17 +169,8 @@ leader('n', 'tcc', '<Cmd>setlocal cursorcolumn!<CR>',          "Toggle 'cursorco
 --  leader('n', 'gx', [[<Cmd>lua require("gitsigns").reset_hunk()<CR>]],          'Discard (reset) hunk')
 --  leader('n', 'gX', [[<Cmd>lua require("gitsigns").reset_buffer()<CR>]],        'Discard (reset) buffer')
 
--- l is for 'LSP' (Language Server Protocol)
-leader('n', 'la', [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], 'Arguments popup')
-leader('n', 'ld', [[<Cmd>lua vim.diagnostic.open_float()<CR>]],  'Diagnostics popup')
-leader('n', 'lf', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]],     'Format')
-leader('n', 'li', [[<Cmd>lua vim.lsp.buf.hover()<CR>]],          'Information')
-leader('n', 'lj', [[<Cmd>lua vim.diagnostic.goto_next()<CR>]],   'Next diagnostic')
-leader('n', 'lk', [[<Cmd>lua vim.diagnostic.goto_prev()<CR>]],   'Prev diagnostic')
-leader('n', 'lR', [[<Cmd>lua vim.lsp.buf.references()<CR>]],     'References')
-leader('n', 'lr', [[<Cmd>lua vim.lsp.buf.rename()<CR>]],         'Rename')
-leader('n', 'ls', [[<Cmd>lua vim.lsp.buf.definition()<CR>]],     'Source definition')
 
-leader('x', 'lf', [[<Cmd>lua vim.lsp.buf.format()<CR><Esc>]],    'Format selection')
+return M
 
 -- vim: foldmethod=marker ts=2 sts=2 sw=2 et
+

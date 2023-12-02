@@ -1,20 +1,10 @@
 local clue = require('mini.clue')
-
-local main_clues = {
-  -- { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
-  -- { mode = 'n', keys = '<Leader>c', desc = '+Code' },
-  -- { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
-  -- { mode = 'n', keys = '<Leader>f', desc = '+Find' },
-  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
-  { mode = 'n', keys = '<Leader>n', desc = '+Notes' },
-  { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
-  { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
-}
+local mappings = require('config.mappings')
 
 clue.setup({
   clues = {
-    main_clues,
+    mappings.clues,
+    -- main_clues,
     clue.gen_clues.builtin_completion(),
     clue.gen_clues.g(),
     clue.gen_clues.marks(),
