@@ -11,7 +11,8 @@ g.loaded_tutor        = true
 g.loaded_zipPlugin    = true
 g.loaded_editorconfig = true
 g.loaded_man          = true
-
+g.loaded_netrw        = true
+g.loaded_netrwPlugin  = true
 
 require('config')
 

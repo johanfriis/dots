@@ -39,6 +39,7 @@ map('c', '<C-n>', '<Down>', { silent = false })
 
 map('n', '§', "<Cmd>Telescope buffers<CR>", 'Buffers')
 
+map('n', ',e', "<Cmd>NvimTreeToggle<CR>",            '[E]xplore Tree')
 map('n', ',f', "<Cmd>Telescope find_files<CR>",      '[F]iles')
 map('n', ',r', [[<Cmd>Trouble lsp_references<CR>]],  '[R]eferences')
 map('n', ',d', [[<Cmd>Trouble lsp_definitions<CR>]], '[D]efinitions')
@@ -74,14 +75,14 @@ leader('n', 'bs', f.new_scratch_buffer, '[S]cratch')
 leader('n', 'bq', [[<Cmd>close<CR>]],   '[Q]uit (close)')
 
 -- 'd' is for 'dev'
-leader('x',          'da', [[gA]],                     '[A]lign selection')
-leader({ 'n', 'v' }, 'dc', vim.lsp.buf.code_action,    '[C]ode Action')
-leader({ 'n', 'v' }, 'dc', vim.lsp.buf.format,         '[F]ormat')
-leader('n',          'dg', [[<Cmd>LazyGit<CR>]],       '[G]it Lazy (lazygit)')
-leader('n',          'dl', vim.diagnostic.open_float,  'F[l]oat Diagnostic')
-leader('n',          'dr', vim.lsp.buf.rename,         '[R]ename')
-leader('n',          'ds', vim.lsp.buf.signature_help, '[S]ignature help')
-leader('n',          'dS', [[<Cmd>source %<CR>]],      '[S]ource file')
+leader('x',          'da', [[gA]],                              '[A]lign selection')
+leader({ 'n', 'v' }, 'dc', vim.lsp.buf.code_action,             '[C]ode Action')
+leader({ 'n', 'v' }, 'dc', vim.lsp.buf.format,                  '[F]ormat')
+leader('n',          'dg', [[<Cmd>LazyGit<CR>]],                '[G]it Lazy (lazygit)')
+leader('n',          'dl', vim.diagnostic.open_float,           'F[l]oat Diagnostic')
+leader('n',          'dr', vim.lsp.buf.rename,                  '[R]ename')
+leader('n',          'ds', vim.lsp.buf.signature_help,          '[S]ignature help')
+leader('n',          'dS', [[<Cmd>write<CR><Cmd>source %<CR>]], '[S]ource file')
 
 -- 'g' is for 'goto'
 leader('n', 'gd', [[<Cmd>Trouble lsp_definitions<CR>]],     '[D]efinitions')

@@ -6,6 +6,8 @@ if vim.iter(vim.v.argv):any(function(pred) return pred == "--startuptime" end) t
 end
 
 p.load('smart-splits')
+p.load('nvim-tree')
+
 p.load('mini.align', {}, true)
 p.load('mini.comment', {}, true)
 p.load('mini.pairs', {}, true)
