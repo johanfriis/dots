@@ -15,24 +15,9 @@ local attach = function(client) --client, bufnr
     client.server_capabilities.semanticTokensProvider = nil
   end
 
-  p.add('trouble')
-  -- local trouble = require('trouble')
-
   bufmap('n', 'K',  vim.lsp.buf.hover)
-  bufmap('n', 'gd', '<Cmd>Trouble lsp_definitions<CR>')
-  bufmap('n', 'gD', vim.lsp.buf.declaration)
-  bufmap('n', 'gi', vim.lsp.buf.implementation)
-  bufmap('n', 'gt', vim.lsp.buf.type_definition)
-  bufmap('n', 'gr', '<Cmd>Trouble lsp_references<CR>')
-  bufmap('n', 'gs', vim.lsp.buf.signature_help)
-  bufmap('n', 'gn', vim.lsp.buf.rename)
-  -- bufmap('n', 'gf', vim.lsp.buf.format)
-  bufmap('n', 'gl', vim.diagnostic.open_float)
   bufmap('n', '[d', vim.diagnostic.goto_prev)
   bufmap('n', ']d', vim.diagnostic.goto_next)
-  bufmap('n', 'ge', '<Cmd>Trouble<CR>')
-
-  bufmap({ 'n', 'v' }, 'gl', vim.lsp.buf.code_action)
 
 end
 
@@ -42,8 +27,9 @@ end
 p.add({
   'mason',
   'mason-lspconfig',
-  'neodev',
   'cmp-lsp',
+  'trouble',
+  'neodev',
 })
 
 local lspconfig       = require('lspconfig')

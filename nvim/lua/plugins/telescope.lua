@@ -129,7 +129,6 @@ telescope.setup({
 })
 
 telescope.load_extension('file_browser')
-
 -- https://github.com/salorak/whaler.nvim
 telescope.load_extension('whaler')
 -- https://github.com/debugloop/telescope-undo.nvim

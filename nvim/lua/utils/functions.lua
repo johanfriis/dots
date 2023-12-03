@@ -51,14 +51,28 @@ local default_keymap_opts = {
   unique = false
 }
 
-M.map = function(mode, lhs, rhs, opts)
-  local o = vim.tbl_deep_extend('force', default_keymap_opts, opts or {})
+M.map = function(mode, lhs, rhs, desc, opts)
+  opts = opts or {}
+  if type(desc) == 'table' then
+    opts = desc
+  else
+    opts.desc = desc
+  end
+  local o = vim.tbl_deep_extend('force', default_keymap_opts, opts)
   keymap.set(mode, lhs, rhs, o)
 end
 
-M.bufmap = function(mode, lhs, rhs)
+M.bufmap = function(mode, lhs, rhs, desc)
   local opts = { buffer = true }
-  M.map(mode, lhs, rhs, opts)
+  M.map(mode, lhs, rhs, desc, opts)
+end
+
+
+--- --------------------------------------------------------------------------
+--- Create `<Leader>` mappings ---
+
+M.leader = function(mode, suffix, rhs, desc, opts)
+  M.map(mode, '<Leader>' .. suffix, rhs, desc, opts)
 end
 
 
@@ -79,16 +93,6 @@ M.hl = function(group, definitions)
   for _, g in ipairs(groups) do
     api.nvim_set_hl(0, g, definitions or {})
   end
-end
-
-
---- --------------------------------------------------------------------------
---- Create `<Leader>` mappings ---
-
-M.leader = function(mode, suffix, rhs, desc, opts)
-  opts = opts or {}
-  opts.desc = desc
-  keymap.set(mode, '<Leader>' .. suffix, rhs, opts)
 end
 
 

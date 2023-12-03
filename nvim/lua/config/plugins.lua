@@ -6,11 +6,7 @@ if vim.iter(vim.v.argv):any(function(pred) return pred == "--startuptime" end) t
 end
 
 p.load('smart-splits')
-p.load('mini.align', {
-  mappings = {
-    start_with_preview = '<leader>da'
-  },
-}, true)
+p.load('mini.align', {}, true)
 p.load('mini.comment', {}, true)
 p.load('mini.pairs', {}, true)
 p.load('mini-clue', nil, true)

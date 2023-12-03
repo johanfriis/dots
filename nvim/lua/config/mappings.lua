@@ -8,13 +8,13 @@ local M = {}
 -- mappings ===
 
 -- fix yanking and pasting
-map({'n', 'x'}, 'gy',  '"+y',   { desc = 'Yank to system clipboard' })
-map({'n', 'x'}, 'gyy', '"+yy',  { desc = 'Yank to system clipboard' })
-map('n',        'gp',  '"+p',   { desc = 'Paste from system clipboard' })
+map({'n', 'x'}, 'gy',  '"+y',  'Yank to system clipboard')
+map({'n', 'x'}, 'gyy', '"+yy', 'Yank to system clipboard')
+map('n',        'gp',  '"+p',  'Paste from system clipboard')
 
 -- Paste in visual with P to not copy selected text (:h v_P)
-map('x', 'gp', '"+P',   { desc = 'Paste from system clipboard' })
-map("n", "gV", "`[v`]", { desc = 'Reselect pasted text' })
+map('x', 'gp', '"+P',   'Paste from system clipboard')
+map("n", "gV", "`[v`]", 'Reselect pasted text')
 
 -- Move by visible lines
 map({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true })
@@ -25,29 +25,27 @@ map({ 'x' }, '<', "<gv", { nowait = true })
 map({ 'x' }, '>', ">gv", { nowait = true })
 
 -- some readline mappings in insert and command mode
-map({'i', 'c'}, '<C-b>', '<Left>',  { silent = false, desc = 'Left' })
-map({'i', 'c'}, '<C-f>', '<Right>', { silent = false, desc = 'Right' })
-map({'i', 'c'}, '<C-a>', '<Home>',  { silent = false, desc = 'Home' })
-map({'i', 'c'}, '<C-e>', '<End>',   { silent = false, desc = 'End' })
+map({'i', 'c'}, '<C-b>', '<Left>',  'Left',  { silent = false })
+map({'i', 'c'}, '<C-f>', '<Right>', 'Right', { silent = false })
+map({'i', 'c'}, '<C-a>', '<Home>',  'Home',  { silent = false })
+map({'i', 'c'}, '<C-e>', '<End>',   'End',   { silent = false })
 
 -- Disable `s` shortcut (use `cl` instead) for safer usage of 'mini.surround'
 map({'n', 'x'}, [[s]], [[<Nop>]])
 
 -- Better command history navigation
-map('c', '<C-p>', '<Up>', { silent = false })
+map('c', '<C-p>', '<Up>',   { silent = false })
 map('c', '<C-n>', '<Down>', { silent = false })
 
+map('n', '§', "<Cmd>Telescope buffers<CR>", 'Buffers')
 
--- delegate 'CR' to a customer function
---map('i', '<CR>', cr_action)
+map('n', ',f', "<Cmd>Telescope find_files<CR>",      '[F]iles')
+map('n', ',r', [[<Cmd>Trouble lsp_references<CR>]],  '[R]eferences')
+map('n', ',d', [[<Cmd>Trouble lsp_definitions<CR>]], '[D]efinitions')
 
--- show Lexplore
--- map('n', '§', '<CMD>Lexplore<CR>')
-
-
-map('n', '§',     "<Cmd>Telescope buffers<CR>")
-map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
-
+-- This is such a nice and simple way of switching buffers,
+-- I have to think a bit about it.
+-- nnoremap gb :buffers<CR>:buffer<Space>
 
 -- ============================================================================
 -- leader mappings ===
@@ -55,23 +53,20 @@ map('n', '<Tab>', "<Cmd>Telescope find_files<CR>")
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
-
+-- other good group names:
+-- +Code, +Explore, +Find
 M.clues = {
   { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>d', desc = '+Dev' },
-  -- { mode = 'n', keys = '<Leader>c', desc = '+Code' },
-  -- { mode = 'n', keys = '<Leader>e', desc = '+Explore' },
-  -- { mode = 'n', keys = '<Leader>f', desc = '+Find' },
-  { mode = 'n', keys = '<Leader>g', desc = '+Git' },
-  { mode = 'n', keys = '<Leader>l', desc = '+LSP' },
+  { mode = 'n', keys = '<Leader>g', desc = '+Goto' },
   { mode = 'n', keys = '<Leader>n', desc = '+Notes' },
   { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
   { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
 
   { mode = 'x', keys = '<Leader>d', desc = '+Dev' },
-  { mode = 'x', keys = '<Leader>l', desc = '+LSP' },
-}
 
+  { mode = 'n', keys = ',',         desc = '+Quick' },
+}
 
 -- 'b' is for 'buffer'
 leader('n', 'ba', [[<Cmd>b#<CR>]],      '[A]lternate')
@@ -79,23 +74,19 @@ leader('n', 'bs', f.new_scratch_buffer, '[S]cratch')
 leader('n', 'bq', [[<Cmd>close<CR>]],   '[Q]uit (close)')
 
 -- 'd' is for 'dev'
-leader('n', 'ds', [[<Cmd>source %<CR>]], '[S]ource this')
-leader('x', 'da', [[gA]], '[A]lign selection')
+leader('x',          'da', [[gA]],                     '[A]lign selection')
+leader({ 'n', 'v' }, 'dc', vim.lsp.buf.code_action,    '[C]ode Action')
+leader({ 'n', 'v' }, 'dc', vim.lsp.buf.format,         '[F]ormat')
+leader('n',          'dg', [[<Cmd>LazyGit<CR>]],       '[G]it Lazy (lazygit)')
+leader('n',          'dl', vim.diagnostic.open_float,  'F[l]oat Diagnostic')
+leader('n',          'dr', vim.lsp.buf.rename,         '[R]ename')
+leader('n',          'ds', vim.lsp.buf.signature_help, '[S]ignature help')
+leader('n',          'dS', [[<Cmd>source %<CR>]],      '[S]ource file')
 
--- 'g' is for 'git'
-leader('n', 'gg', '<Cmd>LazyGit<CR>', 'Open LazyGit')
-
--- l is for 'LSP' (Language Server Protocol)
-leader('n', 'la', [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], 'Arguments popup')
-leader('n', 'ld', [[<Cmd>lua vim.diagnostic.open_float()<CR>]],  'Diagnostics popup')
-leader('n', 'lf', [[<Cmd>lua vim.lsp.buf.formatting()<CR>]],     'Format')
-leader('n', 'li', [[<Cmd>lua vim.lsp.buf.hover()<CR>]],          'Information')
-leader('n', 'lj', [[<Cmd>lua vim.diagnostic.goto_next()<CR>]],   'Next diagnostic')
-leader('n', 'lk', [[<Cmd>lua vim.diagnostic.goto_prev()<CR>]],   'Prev diagnostic')
-leader('n', 'lR', [[<Cmd>lua vim.lsp.buf.references()<CR>]],     'References')
-leader('n', 'lr', [[<Cmd>lua vim.lsp.buf.rename()<CR>]],         'Rename')
-leader('n', 'ls', [[<Cmd>lua vim.lsp.buf.definition()<CR>]],     'Source definition')
-leader('x', 'lf', [[<Cmd>lua vim.lsp.buf.format()<CR><Esc>]],    'Format selection')
+-- 'g' is for 'goto'
+leader('n', 'gd', [[<Cmd>Trouble lsp_definitions<CR>]],     '[D]efinitions')
+leader('n', 'gr', [[<Cmd>Trouble lsp_references<CR>]],      '[R]eferences')
+leader('n', 'gt', [[<Cmd>Trouble lsp_type_definition<CR>]], '[T]ype')
 
 -- 'p' is for 'pick'
 leader('n', 'pg', '<Cmd>Telescope git_files<CR>',                 '[G]it File')
@@ -107,8 +98,6 @@ leader('n', 'pa', pickers.adjacent,                               '[A]djacent Fi
 leader('n', 'pj', "<Cmd>Telescope whaler<CR>",                    '[J]ump Dir')
 leader('n', 'pu', "<Cmd>Telescope undo<CR>",                      '[U]ndo Tree')
 leader('n', 'nn', '<Cmd>Telekasten<CR>', 'Open Telekasten')
-
--- 'c' is for 'code'
 
 -- 't' is for 'toggle'
 leader('n', 'td',  f.toggle_diagnostic,                        'Toggle diagnostic')
@@ -123,41 +112,6 @@ leader('n', 'tC',  f.toggle_colorcolumn,                       'Toggle colorcolu
 leader('n', 'tcl', '<Cmd>setlocal cursorline!<CR>',            "Toggle 'cursorline'")
 leader('n', 'tcc', '<Cmd>setlocal cursorcolumn!<CR>',          "Toggle 'cursorcolumn'")
 
-
--- 'e' is for 'explore'
--- leader('n', 'ed', [[<Cmd>lua MiniFiles.open()<CR>]],                             'Directory')
--- leader('n', 'ef', [[<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>]], 'File directory')
--- -- TODO maybe we don't want this one?
--- leader('n', 'el', [[<Cmd>lua MiniFiles.open('~/dev/notes/log')<CR>]],            'ZK Logs')
--- leader('n', 'eq', [[<Cmd>lua _G.toggle_quickfix()<CR>]],                         'Quickfix')
---
--- -- 'f' is for 'fuzzy find'
--- leader('n', 'f/', [[<Cmd>Pick history scope='/'<CR>]],                             '"/" history')
--- leader('n', 'f:', [[<Cmd>Pick history scope=':'<CR>]],                             '":" history')
--- leader('n', 'fa', [[<Cmd>Pick git_hunks scope='staged'<CR>]],                      'Added hunks (all)')
--- leader('n', 'fA', [[<Cmd>Pick git_hunks path='%' scope='staged'<CR>]],             'Added hunks (current)')
--- leader('n', 'fb', [[<Cmd>Pick buffers<CR>]],                                       'Open buffers')
--- leader('n', 'fc', [[<Cmd>Pick git_commits choose_type='show_patch'<CR>]],          'Commits')
--- leader('n', 'fC', [[<Cmd>Pick git_commits path='%' choose_type='show_patch'<CR>]], 'Buffer commits')
--- leader('n', 'fd', [[<Cmd>Pick diagnostic scope='all'<CR>]],                        'Diagnostic workspace')
--- leader('n', 'fD', [[<Cmd>Pick diagnostic scope='current'<CR>]],                    'Diagnostic buffer')
--- leader('n', 'ff', [[<Cmd>Pick files<CR>]],                                         'Files')
--- leader('n', 'fg', [[<Cmd>Pick grep_live<CR>]],                                     'Grep live')
--- leader('n', 'fG', [[<Cmd>Pick grep pattern='<cword>'<CR>]],                        'Grep current word')
--- leader('n', 'fh', [[<Cmd>Pick help<CR>]],                                          'Help tags')
--- leader('n', 'fH', [[<Cmd>Pick hl_groups<CR>]],                                     'Highlight groups')
--- leader('n', 'fl', [[<Cmd>Pick buf_lines scope='all'<CR>]],                         'Lines (all)')
--- leader('n', 'fL', [[<Cmd>Pick buf_lines scope='current'<CR>]],                     'Lines (current)')
--- leader('n', 'fm', [[<Cmd>Pick git_hunks<CR>]],                                     'Modified hunks (all)')
--- leader('n', 'fM', [[<Cmd>Pick git_hunks path='%'<CR>]],                            'Modified hunks (current)')
--- leader('n', 'fo', [[<Cmd>Pick oldfiles<CR>]],                                      'Old files')
--- leader('n', 'fO', [[<Cmd>Pick options<CR>]],                                       'Options')
--- leader('n', 'fr', [[<Cmd>Pick resume<CR>]],                                        'Resume')
--- leader('n', 'fR', [[<Cmd>Pick lsp scope='references'<CR>]],                        'References (LSP)')
--- leader('n', 'fs', [[<Cmd>Pick lsp scope='workspace_symbol'<CR>]],                  'Symbols workspace (LSP)')
--- leader('n', 'fS', [[<Cmd>Pick lsp scope='document_symbol'<CR>]],                   'Symbols buffer (LSP)')
--- TODO add a picker for TODO / FIXME / etc ...
-
 -- g is for git
 --  leader('n', 'gA', [[<Cmd>lua require("gitsigns").stage_buffer()<CR>]],        'Add buffer')
 --  leader('n', 'ga', [[<Cmd>lua require("gitsigns").stage_hunk()<CR>]],          'Add (stage) hunk')
@@ -168,7 +122,6 @@ leader('n', 'tcc', '<Cmd>setlocal cursorcolumn!<CR>',          "Toggle 'cursorco
 --  leader('n', 'gu', [[<Cmd>lua require("gitsigns").undo_stage_hunk()<CR>]],     'Undo stage hunk')
 --  leader('n', 'gx', [[<Cmd>lua require("gitsigns").reset_hunk()<CR>]],          'Discard (reset) hunk')
 --  leader('n', 'gX', [[<Cmd>lua require("gitsigns").reset_buffer()<CR>]],        'Discard (reset) buffer')
-
 
 return M
 
