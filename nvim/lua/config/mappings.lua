@@ -60,6 +60,7 @@ M.clues = {
   { mode = 'n', keys = '<Leader>b', desc = '+Buffer' },
   { mode = 'n', keys = '<Leader>d', desc = '+Dev' },
   { mode = 'n', keys = '<Leader>g', desc = '+Goto' },
+  { mode = 'n', keys = '<Leader>j', desc = '+Journal' },
   { mode = 'n', keys = '<Leader>n', desc = '+Notes' },
   { mode = 'n', keys = '<Leader>p', desc = '+Pick' },
   { mode = 'n', keys = '<Leader>t', desc = '+Toggle' },
@@ -88,6 +89,18 @@ leader('n',          'dS', [[<Cmd>write<CR><Cmd>source %<CR>]], '[S]ource file')
 leader('n', 'gd', [[<Cmd>Trouble lsp_definitions<CR>]],     '[D]efinitions')
 leader('n', 'gr', [[<Cmd>Trouble lsp_references<CR>]],      '[R]eferences')
 leader('n', 'gt', [[<Cmd>Trouble lsp_type_definition<CR>]], '[T]ype')
+
+-- 'j' is for 'journal'
+leader('n', 'jc', [[<Cmd>Telekasten show_calendar<CR>]],     '[C]alendar')
+leader('n', 'jd', [[<Cmd>Telekasten goto_today<CR>]],        '[D]aily')
+leader('n', 'jD', [[<Cmd>Telekasten find_daily_notes<CR>]],  'Find [D]aily')
+leader('n', 'jo', [[<Cmd>Telekasten find_notes<CR>]],        '[O]pen')
+leader('n', 'jn', [[<Cmd>Telekasten new_note<CR>]],          '[N]ew')
+leader('n', 'js', [[<Cmd>Telekasten search_notes<CR>]],      '[S]earch')
+leader('n', 'jt', [[<Cmd>Telekasten show_tags<CR>]],         '[T]ags')
+leader('n', 'jv', [[<Cmd>Telekasten switch_vault<CR>]],      '[V]ault')
+leader('n', 'jw', [[<Cmd>Telekasten goto_thisweek<CR>]],     '[W]eekly')
+leader('n', 'jW', [[<Cmd>Telekasten find_weekly_notes<CR>]], 'Find [W]eekly')
 
 -- 'p' is for 'pick'
 leader('n', 'pg', '<Cmd>Telescope git_files<CR>',                 '[G]it File')
