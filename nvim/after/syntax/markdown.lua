@@ -31,7 +31,7 @@ hl('MarkdownWikiLinkEnds',      { fg = palette.subtle })
 hl('MarkdownWikiLinkUnaliased', { fg = palette.rose })
 hl('MarkdownWikiLinkNamed',     { fg = palette.subtle })
 hl('MarkdownWikiLinkPipe',      { fg = palette.overlay })
-hl('MarkdownWikiLinkName',      { fg = palette.text, italic = true, underdotted = true })
+hl('MarkdownWikiLinkName',      { fg = palette.text, italic = false, underline = true, sp = palette.gold })
 
 -- Highlight
 vim.cmd [[syntax region MarkdownHighlight matchgroup=MarkdownHighlightEnds start="==" end="==" display oneline concealends]]
@@ -45,11 +45,14 @@ hl('MarkdownHighlight',     { fg = palette.love, standout = true })
 
 -- Headers
 hl('@text.title.1.markdown',         { fg = palette.love, underdouble = true, bold = true  })
-hl('@text.title.2.markdown',         { fg = palette.iris, undercurl = true, bold = true })
-hl('@text.title.3.markdown',         { fg = palette.gold, underline = true, bold = true })
-hl('@text.title.4.markdown',         { fg = palette.love, italic = true })
-hl('@text.title.5.markdown',         { fg = palette.iris, italic = true })
-hl('@text.title.6.markdown',         { fg = palette.gold, italic = true })
+hl('@text.title.2.markdown',         { fg = palette.iris, underline = true, bold = true })
+hl('@text.title.3.markdown',         { fg = palette.gold, bold = true })
+-- hl('@text.title.4.markdown',         { fg = palette.love, italic = false, underdouble = true })
+-- hl('@text.title.5.markdown',         { fg = palette.iris, italic = false, underline = true })
+-- hl('@text.title.6.markdown',         { fg = palette.gold, italic = false })
+hl('@text.title.4.markdown',         { fg = palette.love, underdouble = true, sp = palette.subtle })
+hl('@text.title.5.markdown',         { fg = palette.iris, underline = true, sp = palette.subtle })
+hl('@text.title.6.markdown',         { fg = palette.gold, underline = true, sp = palette.muted })
 
 hl('@text.title.1.marker.markdown',  { fg = palette.muted })
 hl('@text.title.2.marker.markdown',  { fg = palette.muted })
@@ -101,11 +104,11 @@ vim.cmd [[ab note: ☰]]
 vim.cmd [[ab meet: ◉]]
 vim.cmd [[ab work: ≻]]
 
-vim.cmd [[syn region MarkdownLogEntry start="^[☰≻◉]\s" end="$" contains=MarkdownLogTime,MarkdownLogContent]]
+vim.cmd [[syn region MarkdownLogEntry start="^\s*[☰≻◉]\s" end="$" contains=MarkdownLogTime,MarkdownLogContent]]
 vim.cmd [[syn match  MarkdownLogTime /\s:\d\{4}:\s/]]
-vim.cmd [[syn match  MarkdownLogNote /^☰/]]
-vim.cmd [[syn match  MarkdownLogMeet /^≻/]]
-vim.cmd [[syn match  MarkdownLogWork /^◉/]]
+vim.cmd [[syn match  MarkdownLogNote /^\s*☰/]]
+vim.cmd [[syn match  MarkdownLogMeet /^\s*≻/]]
+vim.cmd [[syn match  MarkdownLogWork /^\s*◉/]]
 
 hl('MarkdownLogNote', { fg = palette.iris })
 hl('MarkdownLogMeet', { fg = palette.gold })
