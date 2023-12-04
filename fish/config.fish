@@ -37,14 +37,14 @@ set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
 set --global --export NBRC_PATH "$HOME/.config/nb/nbrc"
 set --global --export NB_MARKDOWN_TOOL "glow"
 
-# https://starship.rs
-if command -q starship
-  starship init fish | source
-end
-
 # https://github.com/ajeetdsouza/zoxide
 if command -q zoxide
   zoxide init --cmd j fish | source
+end
+
+# https://github.com/jdx/rtx
+if command -q rtx
+  rtx activate fish | source
 end
 
 # start ssh-agent
@@ -55,7 +55,3 @@ if test -z (pgrep ssh-agent | string collect)
 end
 
 
-## RTX SETUP
-### https://github.com/jdx/rtx
-
-rtx activate fish | source 
