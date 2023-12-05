@@ -3,7 +3,7 @@ default:
 
 # create dotfile links for all targets
 link:
-  ./install --only link
+  LANG="en_US.UTF_8" ./install --only link
 
 # show the terminals colors
 what-colors:
@@ -31,7 +31,7 @@ submodule-delete target:
   git commit -m "{{"removed submodule " + target}}"
     
 submodules-init:
-  git submodule update --init --recursive
+  git submodule update --init --recursive --remote
 
 submodules-update:
   git submodule update --init --remote
