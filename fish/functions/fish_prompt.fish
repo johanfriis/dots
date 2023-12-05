@@ -23,8 +23,9 @@ function show_prefix
   end
 
   set_color $prefix_color
-  echo -n "❯ "
+  echo -n "» "
   # echo -n "λ "
+  # echo -n "❯ "
   set_color normal
 end
 
