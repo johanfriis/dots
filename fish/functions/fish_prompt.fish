@@ -23,7 +23,8 @@ function show_prefix
   end
 
   set_color $prefix_color
-  echo -en "❯ "
+  echo -n "❯ "
+  # echo -n "λ "
   set_color normal
 end
 
@@ -40,9 +41,29 @@ function show_git_branch
   echo -ne " $ref"
 end
 
+# this is modeled after the starship prompt
 function show_path
+
+  # default assumption is that we are in home dir
+  set path (string replace -r "^$HOME" "~" $PWD)
+
+  # if we are in a git directory, set base to git root
+  set git_root (command git -C $PWD rev-parse --show-toplevel 2> /dev/null)
+
+  if test -n "$git_root"
+    set trim (string replace $git_root "" $PWD)
+    set base (path basename $git_root)
+    set path (string join '' $base $trim)
+  end
+
+  # shorten visible directories
+  set segments (string split / $path)
+  if test (count $segments) -gt 3
+    set path (string join / $segments[-3..-1])
+  end
+
   set_color -o magenta
-  echo -en (prompt_pwd)
+  echo -n $path
 end
 
 function show_colors
