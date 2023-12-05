@@ -16,7 +16,7 @@ function fish_right_prompt
 end
 
 function show_prefix
-  set --local prefix_color blue
+  set --local prefix_color cyan
 
   if test $status -ne 0
     set prefix_color red
