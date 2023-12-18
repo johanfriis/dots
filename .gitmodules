@@ -9,9 +9,6 @@
 [submodule "nvim/pack/plugins/opt/vim-vsnip"]
 	path = nvim/pack/plugins/opt/vim-vsnip
 	url = https://github.com/hrsh7th/vim-vsnip.git
-[submodule "nvim/pack/plugins/opt/trouble"]
-	path = nvim/pack/plugins/opt/trouble
-	url = https://github.com/folke/trouble.nvim.git
 [submodule "nvim/pack/plugins/opt/vim-startuptime"]
 	path = nvim/pack/plugins/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
