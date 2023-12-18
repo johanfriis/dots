@@ -21,9 +21,6 @@
 [submodule "nvim/pack/plugins/opt/lspconfig"]
 	path = nvim/pack/plugins/opt/lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
-[submodule "nvim/pack/plugins/opt/cmp-lsp"]
-	path = nvim/pack/plugins/opt/cmp-lsp
-	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
 [submodule "nvim/pack/plugins/opt/cmp-path"]
 	path = nvim/pack/plugins/opt/cmp-path
 	url = https://github.com/hrsh7th/cmp-path.git
