@@ -1,5 +1,0 @@
-require('config.options')
-require('config.autocmds')
-require('config.colors')
-require('config.mappings')
-require('config.plugins')
