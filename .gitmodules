@@ -18,6 +18,3 @@
 [submodule "nvim/pack/plugins/opt/whaler"]
 	path = nvim/pack/plugins/opt/whaler
 	url = https://github.com/SalOrak/whaler.git
-[submodule "nvim/pack/plugins/opt/telescope-undo"]
-	path = nvim/pack/plugins/opt/telescope-undo
-	url = https://github.com/debugloop/telescope-undo.nvim.git
