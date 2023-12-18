@@ -30,9 +30,6 @@
 [submodule "nvim/pack/plugins/opt/trouble"]
 	path = nvim/pack/plugins/opt/trouble
 	url = https://github.com/folke/trouble.nvim.git
-[submodule "nvim/pack/plugins/opt/mini-clue"]
-	path = nvim/pack/plugins/opt/mini-clue
-	url = https://github.com/echasnovski/mini.clue.git
 [submodule "nvim/pack/plugins/opt/plenary"]
 	path = nvim/pack/plugins/opt/plenary
 	url = https://github.com/nvim-lua/plenary.nvim.git
