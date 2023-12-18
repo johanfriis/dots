@@ -27,18 +27,17 @@ local autocmds = require('utils.functions').autocmds
 --- }}}
 
 
--- ============================================================================
-do -- {{{ customize netrw to fit my style ===
+--- ============================================================================
+--- {{{ customize netrw to fit my style ===
 
-  g.netrw_liststyle    = 3
-  g.netrw_browse_split = 0
-  g.netrw_preview      = 1
-  g.netrw_alto         = 0
-  g.netrw_banner       = 0
+  g.netrw_liststyle    = 0 -- thin listing
+  g.netrw_browse_split = 0 -- use same window
+  g.netrw_preview      = 1 -- vertical split
+  g.netrw_alto         = 0 -- split below
+  g.netrw_banner       = 0 -- disable banner
   g.netrw_winsize      = 20
 
-end
--- }}}
+--- }}}
 
 
 --- ============================================================================
@@ -167,3 +166,4 @@ end
 -- }}}
 
 ---- vim: foldmethod=marker ts=2 sts=2 sw=2 et
+
