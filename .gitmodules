@@ -36,9 +36,6 @@
 [submodule "nvim/pack/plugins/opt/cmp-snippy"]
 	path = nvim/pack/plugins/opt/cmp-snippy
 	url = https://github.com/dcampos/cmp-snippy.git
-[submodule "nvim/pack/plugins/opt/copilot"]
-	path = nvim/pack/plugins/opt/copilot
-	url = https://github.com/zbirenbaum/copilot.lua.git
 [submodule "nvim/pack/plugins/opt/copilot-cmp"]
 	path = nvim/pack/plugins/opt/copilot-cmp
 	url = https://github.com/zbirenbaum/copilot-cmp.git
