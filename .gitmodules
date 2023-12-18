@@ -12,9 +12,6 @@
 [submodule "nvim/pack/plugins/opt/trouble"]
 	path = nvim/pack/plugins/opt/trouble
 	url = https://github.com/folke/trouble.nvim.git
-[submodule "nvim/pack/plugins/opt/telescope-file-browser"]
-	path = nvim/pack/plugins/opt/telescope-file-browser
-	url = https://github.com/nvim-telescope/telescope-file-browser.nvim.git
 [submodule "nvim/pack/plugins/opt/vim-startuptime"]
 	path = nvim/pack/plugins/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
