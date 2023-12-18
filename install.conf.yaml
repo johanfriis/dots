@@ -10,7 +10,7 @@
     ~/.config/nvim: nvim
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
-    ~/.config/starship.toml: starship.toml
+    # ~/.config/starship.toml: starship.toml
 
 - clean:
     ~/.config:
