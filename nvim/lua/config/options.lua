@@ -120,8 +120,8 @@ end
 -- ============================================================================
 do -- {{{ editing options setup ===
 
-  opt.shiftwidth    = 2         -- Use this number of spaces for indentation
-  opt.tabstop       = 2         -- Insert 4 spaces for a tab
+  opt.shiftwidth    = 4         -- Use this number of spaces for indentation
+  opt.tabstop       = 4         -- Insert 4 spaces for a tab
   opt.expandtab     = true      -- Convert tabs to spaces
 
   opt.autoindent    = true      -- Use auto indent
