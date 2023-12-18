@@ -60,18 +60,14 @@ end
 
 --- }}}
 
+
+--- ============================================================================
+do -- {{{ appearance options setup ===
+
   -- Enable syntax highlighing if it wasn't already (as it is time consuming)
   if vim.fn.exists("syntax_on") ~= 1 then
     vim.cmd([[syntax enable]])
   end
-
-  -- flash text on yank
-  autocmds('Highlights', {
-    {
-      events = { 'TextYankPost' },
-      callback = function() vim.highlight.on_yank() end,
-    },
-  })
 
   opt.showtabline   = 0           -- Never show tabline
 

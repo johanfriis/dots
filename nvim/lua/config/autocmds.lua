@@ -1,4 +1,14 @@
-local f = require('utils.functions')
+local autocmds = require('utils.functions').autocmds
+
+--- flash text on yank
+
+autocmds('Highlights', {
+  {
+    events = { 'TextYankPost' },
+    callback = function() vim.highlight.on_yank() end,
+  },
+})
+
 
 --- Close selected buffers with <q>
 
@@ -9,7 +19,7 @@ local closable = {
   'startuptime',
 }
 
-f.autocmds('UserCloseWithQ', {{
+autocmds('UserCloseWithQ', {{
     events = "FileType",
     pattern = closable,
     command = [[
