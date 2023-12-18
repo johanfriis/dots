@@ -4,8 +4,8 @@ local cmd = vim.cmd
 local fn  = vim.fn
 local autocmds = require('utils.functions').autocmds
 
--- ============================================================================
-do -- {{{ general options setup ===
+--- ============================================================================
+--- {{{ general options setup ===
 
   opt.mouse        = 'a'                                        -- Enable mouse
   opt.mousescroll  = 'ver:1,hor:1'                              -- Customize mouse scroll
@@ -20,12 +20,11 @@ do -- {{{ general options setup ===
   opt.shada        = [[!,'100,<50,s10,h,f1]]                    -- Add file marks to shadafile
 
   opt.timeout      = true                                       -- wait for timeout
-  opt.timeoutlen   = 400                                        -- only wait for this long
+  opt.timeoutlen   = 300                                        -- only wait for this long
 
   cmd [[filetype plugin indent on]]                             -- Enable all filetype plugins
 
-end
--- }}}
+--- }}}
 
 
 -- ============================================================================
@@ -42,17 +41,24 @@ end
 -- }}}
 
 
--- ============================================================================
-do -- {{{ appearance options setup ===
+--- ============================================================================
+--- {{{ statusline setup ===
 
-  opt.laststatus = 2              -- Always show statusline
+opt.laststatus = 2              -- Always show statusline
 
+do
   -- mode | file [modified?] [readonly?]
   local left     = '%2{mode()} | %f %m %r'
+
   local center   = ''
+
   -- spell [lang] linenr,colnr percentage
   local right    = '%{&spelllang} %y %8(%l,%c%) %4p%%'
-  opt.statusline = left .. ' %= ' .. center .. ' %= ' .. right
+
+  vim.opt.statusline = left .. ' %= ' .. center .. ' %= ' .. right
+end
+
+--- }}}
 
   -- Enable syntax highlighing if it wasn't already (as it is time consuming)
   if vim.fn.exists("syntax_on") ~= 1 then

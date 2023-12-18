@@ -58,7 +58,7 @@ M.map = function(mode, lhs, rhs, desc, opts)
   else
     opts.desc = desc
   end
-  local o = vim.tbl_deep_extend('force', default_keymap_opts, opts)
+  local o = vim.tbl_extend('force', default_keymap_opts, opts)
   keymap.set(mode, lhs, rhs, o)
 end
 

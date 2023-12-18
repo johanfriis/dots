@@ -8,6 +8,7 @@ M.adjacent = function()
   local current = utils.buffer_dir()
   builtin.find_files(themes.get_dropdown({
     prompt_title = 'Adjacent',
+    initial_mode = 'normal',
     cwd = current,
     previewer = false,
   }))
