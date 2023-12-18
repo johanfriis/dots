@@ -46,6 +46,3 @@
 [submodule "nvim/pack/plugins/opt/telescope-undo"]
 	path = nvim/pack/plugins/opt/telescope-undo
 	url = https://github.com/debugloop/telescope-undo.nvim.git
-[submodule "nvim/pack/plugins/opt/nvim-tree"]
-	path = nvim/pack/plugins/opt/nvim-tree
-	url = https://github.com/nvim-tree/nvim-tree.lua.git
