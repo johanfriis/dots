@@ -15,6 +15,3 @@
 [submodule "nvim/pack/plugins/opt/vim-startuptime"]
 	path = nvim/pack/plugins/opt/vim-startuptime
 	url = https://github.com/dstein64/vim-startuptime.git
-[submodule "nvim/pack/plugins/opt/whaler"]
-	path = nvim/pack/plugins/opt/whaler
-	url = https://github.com/SalOrak/whaler.git
