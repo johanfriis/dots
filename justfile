@@ -5,6 +5,10 @@ default:
 link:
   LANG="en_US.UTF_8" ./install --only link
 
+# clean dotfile links that should not exist
+clean:
+  LANG="en_US.UTF_8" ./install --only clean
+
 # show the terminals colors
 what-colors:
   msgcat --color=test
