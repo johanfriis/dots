@@ -51,9 +51,6 @@
 [submodule "nvim/pack/plugins/opt/trouble"]
 	path = nvim/pack/plugins/opt/trouble
 	url = https://github.com/folke/trouble.nvim.git
-[submodule "nvim/pack/plugins/opt/lazygit"]
-	path = nvim/pack/plugins/opt/lazygit
-	url = https://github.com/kdheepak/lazygit.nvim.git
 [submodule "nvim/pack/plugins/opt/mini-clue"]
 	path = nvim/pack/plugins/opt/mini-clue
 	url = https://github.com/echasnovski/mini.clue.git
