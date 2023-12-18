@@ -16,9 +16,6 @@
 	path = nvim/pack/plugins/opt/telescope
 	url = https://github.com/nvim-telescope/telescope.nvim.git
 	branch = 0.1.x
-[submodule "nvim/pack/plugins/opt/telekasten"]
-	path = nvim/pack/plugins/opt/telekasten
-	url = git@github.com:johanfriis/telekasten.nvim.git
 [submodule "nvim/pack/plugins/opt/telescope-file-browser"]
 	path = nvim/pack/plugins/opt/telescope-file-browser
 	url = https://github.com/nvim-telescope/telescope-file-browser.nvim.git
