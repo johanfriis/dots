@@ -12,9 +12,6 @@
 [submodule "nvim/pack/plugins/opt/mini.comment"]
 	path = nvim/pack/plugins/opt/mini.comment
 	url = https://github.com/echasnovski/mini.comment.git
-[submodule "nvim/pack/plugins/opt/mini.align"]
-	path = nvim/pack/plugins/opt/mini.align
-	url = https://github.com/echasnovski/mini.align.git
 [submodule "nvim/pack/plugins/opt/mini.pairs"]
 	path = nvim/pack/plugins/opt/mini.pairs
 	url = https://github.com/echasnovski/mini.pairs.git
