@@ -1,17 +1,24 @@
-local f = require('utils.functions')
-local smart = require('smart-splits')
+-- https://github.com/mrjones2014/smart-splits.nvim
+return {
+    {
+        'mrjones2014/smart-splits.nvim',
+        lazy = false,
+        opts = {},
+        config = function(_, opts)
+            local smart = require('smart-splits')
+            smart.setup(opts)
 
-f.map('n', '<C-h>', smart.move_cursor_left)
-f.map('n', '<C-j>', smart.move_cursor_down)
-f.map('n', '<C-k>', smart.move_cursor_up)
-f.map('n', '<C-l>', smart.move_cursor_right)
+            local map = require('utils.functions').map
 
-f.map('n', '<A-h>', smart.resize_left)
-f.map('n', '<A-j>', smart.resize_down)
-f.map('n', '<A-k>', smart.resize_up)
-f.map('n', '<A-l>', smart.resize_right)
+            map('n', '<C-h>', smart.move_cursor_left)
+            map('n', '<C-j>', smart.move_cursor_down)
+            map('n', '<C-k>', smart.move_cursor_up)
+            map('n', '<C-l>', smart.move_cursor_right)
 
-f.leader('n', 'bh', smart.swap_buf_left,  "Swap Left")
-f.leader('n', 'bj', smart.swap_buf_down,  "Swap Down")
-f.leader('n', 'bk', smart.swap_buf_up,    "Swap Up")
-f.leader('n', 'bl', smart.swap_buf_right, "Swap Right")
+            map('n', '<A-h>', smart.resize_left)
+            map('n', '<A-j>', smart.resize_down)
+            map('n', '<A-k>', smart.resize_up)
+            map('n', '<A-l>', smart.resize_right)
+        end,
+    },
+}
