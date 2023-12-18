@@ -32,5 +32,6 @@ plugin-delete name target=vim-target:
 ## ----------------------------------------------------------------------------
 ## Housekeeping
 
+# clean .local nvim folders
 clean:
   rm ~/.local/share/nvim/ ~/.local/state/nvim/ -rf
