@@ -281,15 +281,15 @@ map('j', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(1))
 map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
 
 map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
-map('p', 'SHIFT|LEADER', act.PaneSelect { mode = 'SwapWithActive' })
+map('p', 'CTRL|LEADER',  act.PaneSelect { mode = 'SwapWithActive' })
 
 map('1', 'LEADER',       act.ActivateTab(0))
 map('2', 'LEADER',       act.ActivateTab(1))
 map('3', 'LEADER',       act.ActivateTab(2))
 map('4', 'LEADER',       act.ActivateTab(3))
 
-map('w', 'LEADER',       act.SwitchToWorkspace)
-map('w', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'WORKSPACES' })
+-- map('w', 'LEADER',       act.SwitchToWorkspace)
+map('w', 'LEADER',       act.ShowLauncherArgs { flags = 'WORKSPACES' })
 
 map('z', 'LEADER',       act.TogglePaneZoomState)
 map(':', 'LEADER',       act.CharSelect)
