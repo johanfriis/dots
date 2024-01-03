@@ -5,6 +5,10 @@ default:
 link:
   LANG="en_US.UTF_8" ./install --only link
 
+# run the shell install script
+shell:
+  LANG="en_US.UTF_8" ./install --only shell
+
 # clean dotfile links that should not exist
 clean:
   LANG="en_US.UTF_8" ./install --only clean
