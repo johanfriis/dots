@@ -42,7 +42,8 @@ return {
                 CmpItemMenu = { fg = 'iris', italic = true },
                 CmpItemAbbrDeprecated = { fg = '#7E8294', strikethrough = true },
 
-
+                MiniJump2dSpot = { fg = 'iris', bg = 'base' },
+                MiniJump2dSpotUnique = { fg = 'love', bg = 'base' },
             },
         },
         name = 'rose-pine',
