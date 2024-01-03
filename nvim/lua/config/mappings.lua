@@ -28,6 +28,9 @@ map({'n', 'x'}, [[s]], [[<Nop>]])
 map('c', '<C-p>', '<Up>',   { silent = false })
 map('c', '<C-n>', '<Down>', { silent = false })
 
+-- I want to be able to hit Esc in terminal mode
+map("t",        "<Esc>", "<C-\\><C-n>", 'Exit Terminal mode')
+
 -- This is such a nice and simple way of switching buffers,
 -- I have to think a bit about whether I want to use it.
 -- nnoremap gb :buffers<CR>:buffer<Space>
