@@ -32,6 +32,8 @@ set --global --prepend --path fish_user_paths \
 set --global --export EDITOR nvim
 set --global --export FZF_TMUX_OPTS -p 55%,60%
 set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
+set --global --export DOTNET_CLI_TELEMETRY_OPTOUT 1
+
 
 # NB: https://xwmx.github.io/nb
 set --global --export NBRC_PATH "$HOME/.config/nb/nbrc"
