@@ -42,9 +42,9 @@ if command -q zoxide
   zoxide init --cmd j fish | source
 end
 
-# https://github.com/jdx/rtx
-if command -q rtx
-  rtx activate fish | source
+# https://github.com/jdx/mise
+if command -q mise
+  mise activate fish | source
 end
 
 # start ssh-agent

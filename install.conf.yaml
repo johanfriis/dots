@@ -1,3 +1,5 @@
+# https://github.com/anishathalye/dotbot
+
 - defaults:
     link:
       create: true
@@ -24,4 +26,8 @@
     ~/dev/tools:
     ~/dev/projects:
 
-- shell: []
+- shell:
+  -
+    command: brew bundle install --file=Brewfile
+    stdout: true
+    stderr: true

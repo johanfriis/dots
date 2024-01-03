@@ -1,4 +1,3 @@
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/bundle"
 tap "buo/cask-upgrade"
@@ -9,34 +8,41 @@ brew "mas"
 brew "coreutils"
 brew "moreutils"
 
+cask "wezterm"
+
+brew "fish"
+
 brew "gnu-sed"
 brew "wget"
-brew "sd"
-brew "fd"
 brew "ripgrep"
-brew "lf"
-brew "gcal"
+brew "fd"
+brew "sd"
 brew "bat"
-brew "fzf"
+brew "gcal"
 brew "fortune"
 brew "atool"
 brew "httpie"
 brew "ansifilter"
-
-brew "rtx"
-brew "starship"
-brew "walk"
+brew "highlight"
+brew "fzf"
+brew "mise"
 brew "zoxide"
-brew "just", args: ["HEAD"]
-brew "fish"
-cask "wezterm"
+brew "just"
+brew "jesseduffield/lazygit/lazygit"
+brew "lf"
+
+brew "marksman"
+brew "stylua"
+brew "lua-language-server"
 
 brew "broot"
 brew "glow"
 brew "git-delta"
+brew "walk"
 
-brew "jesseduffield/lazygit/lazygit"
 cask "1password-cli"
+mas "Velja", id: 1607635845
+mas "Color Picker", id: 1545870783
 
 cask "font-caskaydia-cove-nerd-font"
 cask "font-fira-code"
