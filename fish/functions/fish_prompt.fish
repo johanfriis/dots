@@ -56,9 +56,10 @@ function show_path
   set git_root (command git -C $PWD rev-parse --show-toplevel 2> /dev/null)
 
   if test -n "$git_root"
+    set parent (basename (dirname $git_root))
     set trim (string replace $git_root "" $PWD)
     set base (path basename $git_root)
-    set path (string join '' $base $trim)
+    set path (string join '' $parent '/' $base $trim)
   end
 
   # shorten visible directories
