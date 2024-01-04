@@ -1,0 +1,8 @@
+set previewer ~/.config/lf/preview.sh
+map i $LESSOPEN='| ~/.config/lf/pv.sh %s' less -R $f
+cmd open ${{
+    case $(file --mime-type -Lb $f) in
+        text/*) nvim $fx;;
+        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
