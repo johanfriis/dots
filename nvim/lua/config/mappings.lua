@@ -11,6 +11,10 @@ map('n',        'gp', '"+p',   'Paste from system clipboard')
 map('x',        'gp', '"+P',   'Paste from system clipboard')
 map("n",        "gV", "`[v`]", 'Reselect pasted text')
 
+-- move by visual lines
+map('n', 'j', 'gj')
+map('n', 'k', 'gk')
+
 -- In / Outdent
 map({ 'x' }, '<', "<gv", { nowait = true })
 map({ 'x' }, '>', ">gv", { nowait = true })
