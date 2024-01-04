@@ -74,6 +74,7 @@ return {
                         c = { ':setlocal cursorline!<CR>',                                'Toggle `cursorline`' },
                         v = { ':setlocal cursorcolumn!<CR>',                              'Toggle `cursorcolumn`' },
                         x = { ':lua require("utils.functions").toggle_colorcolumn()<CR>', 'Toggle colorcolumn' },
+                        z = { ':ZenMode<CR>',                                             'Toggle zen mode' },
                     },
                 },
             })
