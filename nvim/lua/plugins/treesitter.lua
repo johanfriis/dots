@@ -7,12 +7,16 @@ local langs = {
   'markdown_inline',
 }
 
+local additional_syntax = {
+ 'markdown',
+}
+
 local config = {
   ensure_installed = langs,
 
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = { 'markdown' },
+    additional_vim_regex_highlighting = additional_syntax,
   },
 
 
@@ -46,7 +50,10 @@ return {
           { 'nvim-treesitter/nvim-treesitter-textobjects' },
       },
       build = ':TSUpdate',
-      opts = config,
+      config = function()
+          local ts = require 'nvim-treesitter.configs'
+          ts.setup(config)
+      end,
   },
 }
 
