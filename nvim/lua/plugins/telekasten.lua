@@ -1,6 +1,6 @@
 -- https://github.com/renerocksai/telekasten.nvim
 
-local notes = vim.fn.expand('~/dev/notes-tk')
+local notes = vim.fn.expand('~/dev/notes')
 local weeklies = notes .. '/log'
 
 return {
@@ -9,6 +9,7 @@ return {
         lazy = true,
         cmd = { 'Telekasten' },
         dependencies = {
+            'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
         },
         opts = {
@@ -16,9 +17,7 @@ return {
             command_palette_theme = 'dropdown',
             show_tags_theme = 'get_cursor',
             with_live_grep = true,
-            weeklies = function()
-                return weeklies .. '/' .. os.date('%Y')
-            end,
+            weeklies = weeklies .. '/' .. os.date('%Y'),
             template_new_weekly = '.templates/weekly.md',
             calendar_opts = {
                 weeknm = 1, --> WK01
