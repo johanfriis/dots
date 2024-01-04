@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 -- https://github.com/hrsh7th/nvim-cmp
 -- https://github.com/dcampos/nvim-snippy
 
