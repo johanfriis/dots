@@ -11,6 +11,7 @@ local attach = function(client)
     end
 
     bufmap('n', 'K',  vim.lsp.buf.hover)
+    bufmap('n', 'gd', vim.lsp.buf.definition)
     bufmap('n', '[d', vim.diagnostic.goto_prev)
     bufmap('n', ']d', vim.diagnostic.goto_next)
 
