@@ -10,6 +10,7 @@ return {
         opts = {
             dark_variant = 'moon',
             disable_background = true,
+            disable_italics = true,
             highlight_groups = {
                 NormalFloat = { bg = 'base', },
                 FloatBorder = { fg = 'iris', bg = 'base', },
