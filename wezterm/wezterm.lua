@@ -118,7 +118,7 @@ config.font_rules = {
 		italic = true,
 		font = wez.font {
 			family = 'Fira Code',
-			weight = 200,
+			weight = 500,
       style = 'Italic',
       harfbuzz_features = fira_code_features,
 		},
