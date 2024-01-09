@@ -142,8 +142,8 @@ config.initial_rows = 64
 -- don't show title bar but have resize handles
 config.window_decorations = 'RESIZE'
 
- -- resize in terminal cell size increments
-config.use_resize_increments = true
+ -- resize in terminal cell size increments?
+config.use_resize_increments = false
 
 config.window_padding = {
   left = 20,
@@ -270,6 +270,7 @@ map('d', 'LEADER',       act.CloseCurrentPane { confirm = true } )
 map('n', 'LEADER',       act.SpawnTab "CurrentPaneDomain")
 map('n', 'CTRL|LEADER',  act.ActivateKeyTable { name = 'move_tab', one_shot = false })
 map('n', 'SHIFT|LEADER', act.ShowLauncherArgs { flags = 'TABS' })
+map('n', 'SUPER|LEADER', act.SpawnWindow)
 
 map('-', 'LEADER',       act.SplitHorizontal(here))
 map('_', 'LEADER',       act.SplitVertical(here))
