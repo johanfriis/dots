@@ -5,6 +5,9 @@ vim.g.mapleader = ' '
 --- ============================================================================
 --- core mappings ===
 
+-- easy move to previous buffer
+map('n', '<leader><leader>', '<C-^>', 'Switch to previous buffer')
+
 -- fix yanking and pasting - see (:h v_P) for explanation of second last map
 map({'n', 'x'}, 'gy', '"+y',   'Yank to system clipboard')
 map('n',        'gp', '"+p',   'Paste from system clipboard')
@@ -40,6 +43,11 @@ map("t",        "<Esc>", "<C-\\><C-n>", 'Exit Terminal mode')
 -- nnoremap gb :buffers<CR>:buffer<Space>
 -- map('n', 'gb', ':buffers<CR>:buffer<Space>',   'Show buffers')
 
+--- ============================================================================
+--- fix some mappings ===
+
+-- tab is mapped to mini.jump2d, so make sure to map <C-i> first
+map('n', '<C-i>', '<C-i>')
 
 --- ============================================================================
 --- tool mappings ===
