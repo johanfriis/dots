@@ -62,7 +62,7 @@ local config = function(_, opts)
     local cursor = function(c)
         return position(c, {
             padding = true
-        }) .. '  ' .. percentage()
+        }) .. '  ' .. percentage(_, opts)
     end
 
 
