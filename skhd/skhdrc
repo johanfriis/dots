@@ -1,0 +1,86 @@
+##############################################################################
+## setup "modes"
+## `one-thing` is a statusbar app that shows the current mode as an icon
+:: default : one-thing ⚪
+:: yabai @ : one-thing 🔴
+:: apps  @ : one-thing 🟣
+
+##############################################################################
+## start yabai "mode"
+cmd - h      ; yabai
+
+yabai < h   : yabai -m window --focus west
+yabai < j   : yabai -m window --focus south
+yabai < k   : yabai -m window --focus north
+yabai < l   : yabai -m window --focus east
+
+yabai < tab : yabai -m window --focus recent
+
+yabai < ctrl - h : yabai -m window --swap west
+yabai < ctrl - j : yabai -m window --swap south
+yabai < ctrl - k : yabai -m window --swap north
+yabai < ctrl - l : yabai -m window --swap east
+
+# send window to space
+yabai < ctrl - 1 : yabai -m window --space 1 --focus
+yabai < ctrl - 2 : yabai -m window --space 2 --focus
+yabai < ctrl - 3 : yabai -m window --space 3 --focus
+yabai < ctrl - 4 : yabai -m window --space 4 --focus
+yabai < ctrl - 5 : yabai -m window --space 5 --focus
+yabai < ctrl - 6 : yabai -m window --space 6 --focus
+
+# move to space ; send space move keys outside of yabai "mode"
+yabai < 1 : skhd -k "escape" ; skhd -k "hyper - 1" ; skhd -k "cmd -h"
+yabai < 2 : skhd -k "escape" ; skhd -k "hyper - 2" ; skhd -k "cmd -h"
+yabai < 3 : skhd -k "escape" ; skhd -k "hyper - 3" ; skhd -k "cmd -h"
+yabai < 4 : skhd -k "escape" ; skhd -k "hyper - 4" ; skhd -k "cmd -h"
+yabai < 5 : skhd -k "escape" ; skhd -k "hyper - 5" ; skhd -k "cmd -h"
+yabai < 6 : skhd -k "escape" ; skhd -k "hyper - 6" ; skhd -k "cmd -h"
+
+# change layout
+yabai < p : yabai -m space --toggle padding
+yabai < return : yabai -m space --layout bsp
+yabai < space  : yabai -m space --layout float
+
+# variatons of "enlarge"
+yabai < d : yabai -m window --toggle zoom-parent # fill column / row
+yabai < g : yabai -m window --toggle float --grid 20:16:1:1:14:18 # almost maximise
+yabai < m : yabai -m window --toggle zoom-fullscreen # maximise
+
+# reformat layout
+yabai < r : yabai -m space --rotate 90
+yabai < s : yabai -m window --toggle split
+
+# resize
+yabai < 0x21 : yabai -m window --ratio rel:-0.05 # 0x21 is the '[' key
+yabai < 0x1E : yabai -m window --ratio rel:0.05 # 0x1E is the ']' key
+yabai < 0    : yabai -m space --balance
+
+yabai < w : skhd -k "escape" ; skhd -k "hyper - w"
+yabai < a : skhd -k "escape" ; skhd -k "hyper - a"
+
+## multiple ways to exit yabai "mode"
+yabai < cmd - h  ; default
+yabai < ctrl - c ; default
+yabai < ctrl - g ; default
+yabai < escape   ; default 
+
+##############################################################################
+## start apps "mode"
+cmd - m ; apps
+
+apps < a         : open -a  /Applications/Arc.app                               ; skhd -k "escape"
+apps < c         : open -a "/Applications/Visual Studio Code.app"               ; skhd -k "escape"
+apps < e         : open -a "/Applications/Microsoft Edge.app"                   ; skhd -k "escape"
+apps < m         : open -a "/Applications/Miro.app"                             ; skhd -k "escape"
+apps < n         : open -a "/Applications/Obsidian.app"                         ; skhd -k "escape"
+apps < o         : open -a "/Applications/Microsoft Outlook.app"                ; skhd -k "escape"
+apps < t         : open -a "/Applications/Microsoft Teams (work or school).app" ; skhd -k "escape"
+apps < w         : open -a  /Applications/WezTerm.app                           ; skhd -k "escape"
+apps < shift - w : open -na /Applications/WezTerm.app                           ; skhd -k "escape"
+
+## multiple ways to exit apps "mode"
+yabai < cmd - m  ; default
+yabai < ctrl - c ; default
+yabai < ctrl - g ; default
+apps < escape    ; default 

@@ -11,6 +11,8 @@
     ~/.config/git: git
     ~/.config/fish: fish
     ~/.config/nvim: nvim
+    ~/.config/skhd: skhd
+    ~/.config/yabai: yabai
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
     # ~/.config/starship.toml: starship.toml
