@@ -274,6 +274,9 @@ map('n', 'SUPER|LEADER', act.SpawnWindow)
 
 map('-', 'LEADER',       act.SplitHorizontal(here))
 map('_', 'LEADER',       act.SplitVertical(here))
+map('=', 'LEADER',       act.RotatePanes('Clockwise'))
+map('+', 'LEADER',       act.RotatePanes('CounterClockwise'))
+
 
 map('a', 'LEADER',       act.ActivateLastTab)
 map('h', 'CTRL|LEADER',  act.ActivateTabRelative(-1))
