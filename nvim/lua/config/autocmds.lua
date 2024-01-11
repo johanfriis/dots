@@ -3,20 +3,20 @@ local autocmds = require('utils.functions').autocmds
 --- flash text on yank
 
 autocmds('Highlights', {
-  {
-    events = { 'TextYankPost' },
-    callback = function() vim.highlight.on_yank() end,
-  },
+    {
+        events = { 'TextYankPost' },
+        callback = function() vim.highlight.on_yank() end,
+    },
 })
 
 
---- Close selected buffers with <q>
+--- Close / Delete selected buffers with <q>
 
 local closable = {
-  'help',
-  'query',
-  'checkhealth',
-  'startuptime',
+    'help',
+    'query',
+    'checkhealth',
+    'startuptime',
 }
 
 autocmds('UserCloseWithQ', {{
@@ -28,4 +28,17 @@ autocmds('UserCloseWithQ', {{
     ]],
 }})
 
--- vim: foldmethod=marker ts=2 sts=2 sw=2 et
+local deleteable = {
+    'netrw',
+}
+
+autocmds('UserDeleteWithQ', {{
+    events = "FileType",
+    pattern = deleteable,
+    command = [[
+      nnoremap <buffer><silent> q :bdelete<CR>
+      set nobuflisted
+    ]],
+}})
+
+-- vim: foldmethod=marker
