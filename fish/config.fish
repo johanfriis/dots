@@ -1,6 +1,6 @@
-# #
-# # Init file for fish
-# #
+##
+## Init file for fish
+##
 
 if not status is-interactive
     exit
@@ -14,16 +14,9 @@ set --local BIN_DIR "$DEV_DIR/bin"
 # prepend homebrew to PATH
 set --global --prepend --path fish_user_paths /opt/homebrew/bin
 
-# https://github.com/asdf-vm/asdf
-#if command -q brew
-#	set --global --export ASDF_DATA_DIR "$TOOLS_DIR/asdf"
-#	source (brew --prefix asdf)/libexec/asdf.fish
-#end
-
 # prepend home-relative dirs to PATH. These have priority over system dirs
 set --global --prepend --path fish_user_paths \
 	"$BIN_DIR" \
-	"$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin" \
 	"$(brew --prefix coreutils)/libexec/gnubin" \
 	"$(brew --prefix)/sbin" \
 	"$(brew --prefix)/bin"
@@ -33,11 +26,6 @@ set --global --export EDITOR nvim
 set --global --export FZF_TMUX_OPTS -p 55%,60%
 set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
 set --global --export DOTNET_CLI_TELEMETRY_OPTOUT 1
-
-
-# NB: https://xwmx.github.io/nb
-set --global --export NBRC_PATH "$HOME/.config/nb/nbrc"
-set --global --export NB_MARKDOWN_TOOL "glow"
 
 # https://github.com/ajeetdsouza/zoxide
 if command -q zoxide
