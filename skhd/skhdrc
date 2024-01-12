@@ -9,10 +9,12 @@
 ## start yabai "mode"
 cmd - h      ; yabai
 
-yabai < h   : yabai -m window --focus west
-yabai < j   : yabai -m window --focus south
-yabai < k   : yabai -m window --focus north
-yabai < l   : yabai -m window --focus east
+yabai < h         : yabai -m window --focus west
+yabai < j         : yabai -m window --focus south
+yabai < k         : yabai -m window --focus north
+yabai < l         : yabai -m window --focus east
+yabai < shift - j : yabai -m window --focus next
+yabai < shift - k : yabai -m window --focus prev
 
 yabai < tab : yabai -m window --focus recent
 
@@ -28,6 +30,7 @@ yabai < ctrl - 3 : yabai -m window --space 3 --focus
 yabai < ctrl - 4 : yabai -m window --space 4 --focus
 yabai < ctrl - 5 : yabai -m window --space 5 --focus
 yabai < ctrl - 6 : yabai -m window --space 6 --focus
+yabai < ctrl - 7 : yabai -m window --space 7 --focus
 
 # move to space ; send space move keys outside of yabai "mode"
 yabai < 1 : skhd -k "escape" ; skhd -k "hyper - 1" ; skhd -k "cmd -h"
@@ -36,13 +39,14 @@ yabai < 3 : skhd -k "escape" ; skhd -k "hyper - 3" ; skhd -k "cmd -h"
 yabai < 4 : skhd -k "escape" ; skhd -k "hyper - 4" ; skhd -k "cmd -h"
 yabai < 5 : skhd -k "escape" ; skhd -k "hyper - 5" ; skhd -k "cmd -h"
 yabai < 6 : skhd -k "escape" ; skhd -k "hyper - 6" ; skhd -k "cmd -h"
+yabai < 7 : skhd -k "escape" ; skhd -k "hyper - 7" ; skhd -k "cmd -h"
 
 # change layout
 yabai < p : yabai -m space --toggle padding
 yabai < return : yabai -m space --layout bsp
 yabai < space  : yabai -m space --layout float
 
-# variatons of "enlarge"
+# variations of "enlarge"
 yabai < d : yabai -m window --toggle zoom-parent # fill column / row
 yabai < g : yabai -m window --toggle float --grid 20:16:1:1:14:18 # almost maximise
 yabai < m : yabai -m window --toggle zoom-fullscreen # maximise
@@ -56,8 +60,13 @@ yabai < 0x21 : yabai -m window --ratio rel:-0.05 # 0x21 is the '[' key
 yabai < 0x1E : yabai -m window --ratio rel:0.05 # 0x1E is the ']' key
 yabai < 0    : yabai -m space --balance
 
+# switch display
+yabai < 0x2F : yabai -m display --focus prev # 0x2f is the '.' key
+yabai < 0x2B : yabai -m display --focus next # 0x2b is the ',' key
+
+# test: Expose commands
 yabai < w : skhd -k "escape" ; skhd -k "hyper - w"
-yabai < a : skhd -k "escape" ; skhd -k "hyper - a"
+yabai < a : yabai -m window --toggle expose
 
 ## multiple ways to exit yabai "mode"
 yabai < cmd - h  ; default
