@@ -25,7 +25,7 @@ yabai -m config                                 \
     mouse_drop_action            swap           \
 
 # space settings
-yabai -m config --space 1 layout float
+# yabai -m config --space 1 layout float
 
 # application settings
 yabai -m rule --add app="^System Settings$" manage=off
