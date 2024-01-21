@@ -14,9 +14,10 @@ return {
                 [','] = {
                     name = 'Fastkey',
                     e = { ':Explore<CR>',                 'Explore [Netrw]' },
+                    d = { ':Trouble lsp_definitions<CR>', 'Definitions [LSP]' },
                     f = { ':Telescope find_files<CR>',    'Files [Pick]' },
                     r = { ':Trouble lsp_references<CR>',  'References [LSP]' },
-                    d = { ':Trouble lsp_definitions<CR>', 'Definitions [LSP]' },
+                    u = { ':UndotreeToggle<CR>',          'Undotree' },
                 },
                 ['<leader>'] = {
                     b = {
