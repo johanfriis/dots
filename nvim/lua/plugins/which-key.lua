@@ -59,7 +59,6 @@ return {
                         s = { ':Telescope live_grep<CR>',                     'Search File' },
                         r = { ':Telescope oldfiles<CR>',                      'Recent File' },
                         t = { ':Telescope current_buffer_fuzzy_finder<CR>',   'This File' },
-                        u = { ':Telescope undo<CR>',                          'Undotree' },
                         v = { ':Telescope help_tags<CR>',                     'Vim Help' },
                     },
                     t = {

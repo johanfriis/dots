@@ -5,7 +5,6 @@ return {{
     branch = '0.1.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'debugloop/telescope-undo.nvim',
     },
     lazy = true,
     cmd = { "Telescope" },
@@ -92,14 +91,6 @@ return {{
                 --         { alias = 'projects', path = f.home('dev/projects') },
                 --     },
                 -- },
-                undo = {
-                    use_delta = true,
-                    layout_strategy = 'vertical',
-                    initial_mode = 'normal',
-                    layout_config = {
-                        preview_height = 0.7,
-                    },
-                },
             },
         })
         telescope.load_extension('undo')
