@@ -9,6 +9,7 @@ brew "coreutils"
 brew "moreutils"
 
 cask "wezterm"
+cask "pika"
 
 brew "fish"
 
