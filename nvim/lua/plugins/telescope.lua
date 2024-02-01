@@ -1,5 +1,3 @@
--- https://github.com/debugloop/telescope-undo.nvim
-
 return {{
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -93,6 +91,5 @@ return {{
                 -- },
             },
         })
-        telescope.load_extension('undo')
     end,
 }}
