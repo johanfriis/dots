@@ -155,6 +155,8 @@ config.window_padding = {
 config.default_workspace = 'main'
 config.scrollback_lines = 50000
 
+config.command_palette_rows = 14
+
 -- }}}
 
 -------------------------------------------------------------------------------
@@ -286,6 +288,7 @@ map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
 
 map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
 map('p', 'CTRL|LEADER',  act.PaneSelect { mode = 'SwapWithActive' })
+map('p', 'SHIFT|LEADER', act.PaneSelect { mode = 'MoveToNewTab' })
 
 map('1', 'LEADER',       act.ActivateTab(0))
 map('2', 'LEADER',       act.ActivateTab(1))
