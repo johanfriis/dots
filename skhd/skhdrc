@@ -13,8 +13,9 @@ yabai < h         : yabai -m window --focus west
 yabai < j         : yabai -m window --focus south
 yabai < k         : yabai -m window --focus north
 yabai < l         : yabai -m window --focus east
-yabai < shift - j : yabai -m window --focus next
-yabai < shift - k : yabai -m window --focus prev
+
+yabai < shift - j : yabai -m window --focus next || yabai -m window --focus first
+yabai < shift - k : yabai -m window --focus prev || yabai -m window --focus last
 
 yabai < tab : yabai -m window --focus recent
 
