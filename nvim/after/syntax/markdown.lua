@@ -89,6 +89,13 @@ vim.cmd [[syntax region MarkdownTag matchgroup=MarkdownTagMarker start="\(^\|\s\
 hl('MarkdownTagMarker', { fg = palette.muted })
 hl('MarkdownTag', { fg = palette.pine })
 
+-- Markdown Lists & Todo
+-- vim.cmd [[syntax region MarkdownListItem start="^\s*\ze[-+*]" end="\ze\n" keepend transparent display]]
+-- vim.cmd [[syntax match MarkdownListBullet "\s\zs[-+*]\ze\s" containedin=MarkdownListItem conceal cchar=•]]
+-- vim.cmd [[syntax region MarkdownTodo start="^\s*\ze[-+*] \[\]" end="[-+*] \[\]\zs\s" keepend oneline display contains=MarkdownCheckbox]]
+-- vim.cmd [[syntax match MarkdownCheckbox "\[\]" contained conceal]]
+-- hl('MarkdownCheckbox', { fg = palette.iris })
+
 -- Markdown List Marker
 vim.cmd [[syntax region MarkdownListPrefix start="^\s*\ze[-+*]" end="[-+*]\zs\s" keepend oneline display contains=MarkdownListBullet]]
 vim.cmd [[syntax match MarkdownListBullet "[-+*]" contained conceal cchar=•]]
