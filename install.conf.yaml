@@ -6,6 +6,7 @@
       relink: true
 
 - link:
+    ~/dev/bin: bin
     ~/.terminfo: terminfo
     ~/.config/lf: lf
     ~/.config/git: git
@@ -23,7 +24,6 @@
 
 - create:
     ~/dev:
-    ~/dev/bin:
     ~/dev/tmp:
     ~/dev/work:
     ~/dev/tools:
