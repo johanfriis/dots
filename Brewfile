@@ -32,6 +32,7 @@ brew "zoxide"
 brew "just"
 brew "jesseduffield/lazygit/lazygit"
 brew "lf"
+brew "difftastic"
 
 brew "marksman"
 brew "stylua"

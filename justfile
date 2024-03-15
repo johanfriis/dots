@@ -43,3 +43,6 @@ submodules-init:
 
 submodules-update:
   git submodule update --init --remote
+
+brew:
+  brew bundle install --file=Brewfile
