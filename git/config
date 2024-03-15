@@ -1,56 +1,27 @@
 [init]
 	defaultBranch = main
 
-;; Using `delta` as pager
-;; https://github.com/dandavison/delta
-[core]
-  pager = delta
-
-[interactive]
-  diffFilter = delta --color-only
-
-[delta]
-  navigate = true
-  light = false
-  line-numbers = true
-  ; side-by-side = true
-  true-color = always
-
-  dark = true
-  file-style = omit
-  hunk-header-decoration-style = omit
-  hunk-header-file-style = magenta
-  hunk-header-line-number-style = dim magenta
-  hunk-header-style = file line-number syntax
-  line-numbers = false
-  minus-emph-style = bold red "#4E2D40"
-  minus-empty-line-marker-style = normal "#3f0001"
-  minus-non-emph-style = dim red
-  minus-style = bold red
-  plus-emph-style = bold "#acd385" "#3A4551"
-  plus-empty-line-marker-style = normal "#002800"
-  plus-non-emph-style = dim green
-  plus-style = bold "#acd385"
-  syntax-theme = Dracula
-  whitespace-error-style = reverse red
-  zero-style = dim syntax
-
 [merge]
-  conflictstyle = diff3
+    conflictstyle = diff3
+
+[pull]
+	rebase = true
 
 [diff]
-  colorMoved = default
+    external = difft
+    colorMoved = default
 
 ; Sources:
 ; https://blog.hao.dev/how-to-use-different-git-emails-for-personal-and-work-repositories-on-the-same-machine
 ; https://git-scm.com/docs/git-config#_includes
 ; Alternative:
 ; https://git.sr.ht/~bentinata/bentinata.com/tree/_/item/log/2023-05-11-git-insteadof-includeif.gmi
-[includeIf "gitdir:~/dev/**"]
-  path = private
-[includeIf "gitdir:~/work/**"]
-  path = work
 
+[includeIf "gitdir:~/dev/**"]
+    path = private
+
+[includeIf "gitdir:~/work/**"]
+    path = work
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -63,6 +34,7 @@
 	st = status
 	co = checkout
 	cm = commit -m
+    please = push --force-with-lease --force-if-includes
 
 [status]
   submodulesummary = 1
