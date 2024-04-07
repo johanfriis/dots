@@ -280,11 +280,15 @@ map('=', 'LEADER',       act.RotatePanes('Clockwise'))
 map('+', 'LEADER',       act.RotatePanes('CounterClockwise'))
 
 
-map('a', 'LEADER',       act.ActivateLastTab)
-map('h', 'CTRL|LEADER',  act.ActivateTabRelative(-1))
-map('l', 'CTRL|LEADER',  act.ActivateTabRelative(1))
-map('j', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(1))
-map('k', 'CTRL|LEADER',  act.SwitchWorkspaceRelative(-1))
+map('a',          'LEADER',      act.ActivateLastTab)
+map('h',          'CTRL|LEADER', act.ActivateTabRelative(-1))
+map('l',          'CTRL|LEADER', act.ActivateTabRelative(1))
+map('j',          'CTRL|LEADER', act.SwitchWorkspaceRelative(1))
+map('k',          'CTRL|LEADER', act.SwitchWorkspaceRelative(-1))
+map('LeftArrow',  'CTRL|SUPER', act.ActivateTabRelative(-1))
+map('RightArrow', 'CTRL|SUPER', act.ActivateTabRelative(1))
+map('DownArrow',  'CTRL|SUPER', act.SwitchWorkspaceRelative(1))
+map('UpArrow',    'CTRL|SUPER', act.SwitchWorkspaceRelative(-1))
 
 map('p', 'LEADER',       act.PaneSelect { mode = 'Activate' })
 map('p', 'CTRL|LEADER',  act.PaneSelect { mode = 'SwapWithActive' })
@@ -315,20 +319,32 @@ map('.', 'LEADER',       act.ShowDebugOverlay)
 local split_nav = require('smart-splits').split_nav
 
 -- move between split panes
-split_nav(keys, 'move', 'h')
-split_nav(keys, 'move', 'j')
-split_nav(keys, 'move', 'k')
-split_nav(keys, 'move', 'l')
+split_nav(keys, 'move', 'h', 'Left')
+split_nav(keys, 'move', 'j', 'Down')
+split_nav(keys, 'move', 'k', 'Up')
+split_nav(keys, 'move', 'l', 'Right')
 -- resize panes
-split_nav(keys, 'resize', 'h')
-split_nav(keys, 'resize', 'j')
-split_nav(keys, 'resize', 'k')
-split_nav(keys, 'resize', 'l')
+split_nav(keys, 'resize', 'h', 'Left')
+split_nav(keys, 'resize', 'j', 'Down')
+split_nav(keys, 'resize', 'k', 'Up')
+split_nav(keys, 'resize', 'l', 'Right')
+
+split_nav(keys, 'move',   'LeftArrow',  'Left')
+split_nav(keys, 'move',   'DownArrow',  'Down')
+split_nav(keys, 'move',   'UpArrow',    'Up')
+split_nav(keys, 'move',   'RightArrow', 'Right')
+-- resize panes
+split_nav(keys, 'resize', 'LeftArrow',  'Left')
+split_nav(keys, 'resize', 'DownArrow',  'Down')
+split_nav(keys, 'resize', 'UpArrow',    'Up')
+split_nav(keys, 'resize', 'RightArrow', 'Right')
 
 config.key_tables = {
   move_tab = {
     { key = 'h', action = act.MoveTabRelative(-1)},
     { key = 'l', action = act.MoveTabRelative(1)},
+    { key = 'LeftArrow', action = act.MoveTabRelative(-1)},
+    { key = 'RightArrow', action = act.MoveTabRelative(1)},
 
     -- Cancel the mode by pressing escape
     { key = 'q',      action = 'PopKeyTable' },
