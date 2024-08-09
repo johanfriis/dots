@@ -26,6 +26,7 @@ set --global --export EDITOR nvim
 set --global --export FZF_TMUX_OPTS -p 55%,60%
 set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
 set --global --export DOTNET_CLI_TELEMETRY_OPTOUT 1
+set --global --export MISE_USE_TOML 1
 
 # https://github.com/ajeetdsouza/zoxide
 if command -q zoxide
@@ -34,7 +35,11 @@ end
 
 # https://github.com/jdx/mise
 if command -q mise
-  mise activate fish | source
+  if status is-interactive
+    mise activate fish | source
+  else
+    mise activate fish --shims | source
+  end
 end
 
 # start ssh-agent
@@ -44,4 +49,9 @@ if test -z (pgrep ssh-agent | string collect)
 	set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 end
 
+if command -q mise
+  source ~/.config/op/plugins.sh
+end
+
+# vim: sw=2 ts=2 et
 
