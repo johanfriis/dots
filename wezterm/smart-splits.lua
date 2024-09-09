@@ -22,19 +22,7 @@ end
 --   return process_name == 'nvim' or process_name == 'vim'
 -- end
 
-local direction_keys = {
-  Left  = 'h',
-  Down  = 'j',
-  Up    = 'k',
-  Right = 'l',
-  -- reverse lookup
-  h = 'Left',
-  j = 'Down',
-  k = 'Up',
-  l = 'Right',
-}
-
-M.split_nav = function(keys, resize_or_move, key)
+M.split_nav = function(keys, resize_or_move, key, direction)
   table.insert(keys, {
     key = key,
     mods = resize_or_move == 'resize' and 'META' or 'CTRL',
@@ -46,9 +34,9 @@ M.split_nav = function(keys, resize_or_move, key)
         }, pane)
       else
         if resize_or_move == 'resize' then
-          win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+          win:perform_action({ AdjustPaneSize = { direction, 3 } }, pane)
         else
-          win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+          win:perform_action({ ActivatePaneDirection = direction }, pane)
         end
       end
     end),
