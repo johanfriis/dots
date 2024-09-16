@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Check if there is a command line argument
+if [ "$#" -eq 1 ]; then
+    arg="$1"
+# Check if input is coming from a pipe
+elif [ ! -t 0 ]; then
+    read -r arg
+else
+    echo "Usage: $0 arg or echo arg | $0"
+    exit 1
+fi
+
+number=$arg
+last_digit=$((number % 10))
+penultimate_digit=$(( (number % 100) / 10 ))
+
+if [ "$penultimate_digit" -eq 1 ]; then
+  suffix="th"
+elif [ "$last_digit" -eq 1 ]; then
+  suffix="st"
+elif [ "$last_digit" -eq 2 ]; then
+  suffix="nd"
+elif [ "$last_digit" -eq 3 ]; then
+  suffix="rd"
+else
+  suffix="th"
+fi
+
+echo "${number}${suffix}"
