@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Bring up a fzf window with a list of notes and a preview window.
+# Pressing enter will open a given note
+
+nb ls -a --no-header --no-footer --no-indicator \
+  | ansifilter \
+  | gsed 's/\[\([0-9]*\)\]/\1/' \
+  | fzf --nth=4.. \
+    --preview "nb show {1}" \
+    --preview-window=70%,border,top \
+    --bind='enter:execute(nb edit {1})'

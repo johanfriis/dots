@@ -10,9 +10,11 @@ end
 -------------------------------------------------------------------------------
 -- {{{ // COLORS
 
-local colors = require('rose-pine').moon
+-- local colors = require('rose-pine').moon
+-- config.color_scheme = 'rose-pine-moon'
+local colors = require('rose-pine').dawn
+config.color_scheme = 'rose-pine-dawn'
 
-config.color_scheme = 'rose-pine-moon'
 config.colors = {
   selection_fg = '#e0def4',
   selection_bg = '#44415a',
