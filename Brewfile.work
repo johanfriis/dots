@@ -1,0 +1,6 @@
+tap "databricks/tap"
+brew "awscli"
+brew "libpq"
+brew "nushell"
+brew "saml2aws"
+brew "databricks/tap/databricks"
