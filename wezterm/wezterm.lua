@@ -1,7 +1,7 @@
 local wez = require 'wezterm'
 local act = wez.action
 
-local config = {}
+local config = wez.config_builder()
 
 if wez.config_builder() then
 	config = wez.config_builder()
@@ -12,8 +12,9 @@ end
 
 -- local colors = require('rose-pine').moon
 -- config.color_scheme = 'rose-pine-moon'
-local colors = require('rose-pine').dawn
-config.color_scheme = 'rose-pine-dawn'
+local local_config = require('local')
+local colors = local_config.get_colors()
+config.color_scheme = local_config.get_colorscheme()
 
 config.colors = {
   selection_fg = '#e0def4',
@@ -358,6 +359,7 @@ config.key_tables = {
 config.keys = keys
 
 -- }}}
+
 
 return config
 
