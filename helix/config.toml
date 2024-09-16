@@ -1,0 +1,7 @@
+theme = "rose_pine_dawn"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal]
+D = ["ensure_selections_forward", "extend_to_line_end"]
