@@ -35,6 +35,8 @@
 	co = checkout
 	cm = commit -m
     please = push --force-with-lease --force-if-includes
+    assume = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
 
 [status]
   submodulesummary = 1
