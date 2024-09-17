@@ -35,3 +35,7 @@
     command: brew bundle install --file=Brewfile
     stdout: true
     stderr: true
+  -
+    command: source macos.default.sh
+    stdout: true
+    stderr: true
