@@ -49,7 +49,7 @@ if test -z (pgrep ssh-agent | string collect)
 	set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 end
 
-if command -q mise
+if test -f ~/.config/op/plugins.sh
   source ~/.config/op/plugins.sh
 end
 
