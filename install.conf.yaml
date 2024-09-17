@@ -17,6 +17,7 @@
     ~/.config/yabai: yabai
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
+    ~/.config/karabiner: karabiner
     # ~/.config/starship.toml: starship.toml
 
 - clean:
