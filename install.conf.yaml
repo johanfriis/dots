@@ -33,6 +33,10 @@
 
 - shell:
   -
-    command: brew bundle install --file=Brewfile
+    command: brew bundle install --file=Brewfile --verbose
+    stdout: true
+    stderr: true
+  -
+    command: source macos.default.sh
     stdout: true
     stderr: true

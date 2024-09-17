@@ -12,7 +12,7 @@ set --local TOOLS_DIR "$DEV_DIR/tools"
 set --local BIN_DIR "$DEV_DIR/bin"
 
 # prepend homebrew to PATH
-set --global --prepend --path fish_user_paths /opt/homebrew/bin
+#set --global --prepend --path fish_user_paths /usr/local/bin
 
 # prepend home-relative dirs to PATH. These have priority over system dirs
 set --global --prepend --path fish_user_paths \
@@ -49,7 +49,7 @@ if test -z (pgrep ssh-agent | string collect)
 	set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 end
 
-if command -q mise
+if test -f ~/.config/op/plugins.sh
   source ~/.config/op/plugins.sh
 end
 

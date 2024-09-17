@@ -45,7 +45,7 @@ submodules-update:
   git submodule update --init --remote
 
 brew-bundle:
-  brew bundle install --file=Brewfile
+  brew bundle install --file=Brewfile --verbose
 
 brew-bundle-work:
   brew bundle install --file=Brewfile.work
