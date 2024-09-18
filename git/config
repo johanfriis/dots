@@ -20,7 +20,7 @@
 [includeIf "gitdir:~/dev/**"]
     path = private
 
-[includeIf "gitdir:~/work/**"]
+[includeIf "gitdir:~/dev/work/**"]
     path = work
 
 [filter "lfs"]
