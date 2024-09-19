@@ -8,8 +8,8 @@ return {
     {
         'rose-pine/neovim',
         opts = {
-            -- dark_variant = 'moon',
-            dark_variant = 'dawn',
+            dark_variant = 'moon',
+            -- dark_variant = 'dawn',
             disable_background = true,
             disable_italics = true,
             highlight_groups = {
