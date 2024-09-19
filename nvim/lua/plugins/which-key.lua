@@ -8,78 +8,79 @@ return {
             local wk = require('which-key')
             local f = require('utils.functions')
             wk.setup({
+                preset = "helix",
                 show_help = false,
             })
-            wk.register({
-                [','] = {
-                    name = 'Fastkey',
-                    b = { ':lua require("telescope.builtin").buffers()<CR>', 'Explore [Netrw]' },
-                    e = { ':Explore<CR>',                                    'Explore [Netrw]' },
-                    d = { ':Trouble lsp_definitions<CR>',                    'Definitions [LSP]' },
-                    f = { ':Telescope find_files<CR>',                       'Files [Pick]' },
-                    r = { ':Trouble lsp_references<CR>',                     'References [LSP]' },
-                    u = { ':UndotreeToggle<CR>',                             'Undotree' },
-                },
-                ['<leader>'] = {
-                    b = {
-                        name = 'Buffer',
-                        a = { ':b#<CR>',    'Alternate' },
-                        h = { ':lua require("smart-list").swap_buf_left()<CR>',    'Swap Left' },
-                        j = { ':lua require("smart-list").swap_buf_down()<CR>',    'Swap Down' },
-                        k = { ':lua require("smart-list").swap_buf_up()<CR>',      'Swap Up' },
-                        l = { ':lua require("smart-list").swap_buf_right()<CR>',   'Swap Right' },
-                        s = { f.new_scratch_buffer,                                'Scratch' },
-                    },
-                    d = {
-                        name = 'Dev',
-                        c = { vim.lsp.buf.code_action,    'Code Action [LSP]' },
-                        d = { vim.diagnostic.open_float,  'Diagnostics [LSP]' },
-                        f = { vim.lsp.buf.format,         'Format [LSP]' },
-                        g = { ':LazyGit<CR>',             'LazyGit' },
-                        r = { vim.lsp.buf.rename,         'Rename [LSP]' },
-                        s = { vim.lsp.buf.signature_help, 'Signature Help [LSP]' },
-                        v = { ':lua <C-r>"<CR>',          'Eval " register' },
-                    },
-                    j = {
-                      name = 'Journal',
-                      c = { ':Telekasten show_calendar<CR>',     'Calendar' },
-                      d = { ':Telekasten goto_today<CR>',        'Daily' },
-                      D = { ':Telekasten find_daily_notes<CR>',  'Find Daily' },
-                      o = { ':Telekasten find_notes<CR>',        'Open' },
-                      n = { ':Telekasten new_note<CR>',          'New' },
-                      s = { ':Telekasten search_notes<CR>',      'Search' },
-                      t = { ':Telekasten show_tags<CR>',         'Tags' },
-                      v = { ':Telekasten switch_vault<CR>',      'Vault' },
-                      w = { ':Telekasten goto_thisweek<CR>',     'Weekly' },
-                      W = { ':Telekasten find_weekly_notes<CR>', 'Find Weekly' },
-                    },
-                    p = {
-                        name = 'Pick',
-                        a = { ':lua require("utils.pickers").adjacent()<CR>', 'Adjacent File' },
-                        g = { ':Telescope git_files<CR>',                     'Git File' },
-                        s = { ':Telescope live_grep<CR>',                     'Search File' },
-                        r = { ':Telescope oldfiles<CR>',                      'Recent File' },
-                        t = { ':Telescope current_buffer_fuzzy_finder<CR>',   'This File' },
-                        v = { ':Telescope help_tags<CR>',                     'Vim Help' },
-                    },
-                    t = {
-                        name = 'Toggle',
-                        d = { ':lua require("utils.functions").toggle_diagnostic()<CR>',  'Toggle Diagnostic' },
-                        h = { ':setlocal hlsearch!<CR>',                                  'Toggle `hlsearch`' },
-                        i = { ':setlocal ignorecase!<CR>',                                'Toggle `ignorecase`' },
-                        l = { ':setlocal list!<CR>',                                      'Toggle `list`' },
-                        n = { ':setlocal number!<CR>',                                    'Toggle `number`' },
-                        r = { ':setlocal relativenumber!<CR>',                            'Toggle `relativenumber`' },
-                        s = { ':setlocal spell!<CR>',                                     'Toggle `spell`' },
-                        w = { ':setlocal wrap!<CR>',                                      'Toggle `wrap`' },
-                        c = { ':setlocal cursorline!<CR>',                                'Toggle `cursorline`' },
-                        v = { ':setlocal cursorcolumn!<CR>',                              'Toggle `cursorcolumn`' },
-                        x = { ':lua require("utils.functions").toggle_colorcolumn()<CR>', 'Toggle colorcolumn' },
-                        z = { ':ZenMode<CR>',                                             'Toggle zen mode' },
-                    },
-                },
+            wk.add({
+                { ",", group = "Fastkey" },
+                { ",b", ':lua require("telescope.builtin").buffers()<CR>', desc = "Explore [Netrw]" },
+                { ",d", ":Trouble lsp_definitions<CR>", desc = "Definitions [LSP]" },
+                { ",e", ":Explore<CR>", desc = "Explore [Netrw]" },
+                { ",f", ":Telescope find_files<CR>", desc = "Files [Pick]" },
+                { ",r", ":Trouble lsp_references<CR>", desc = "References [LSP]" },
+                { ",u", ":UndotreeToggle<CR>", desc = "Undotree" },
+
+                { "<leader>b", group = "Buffer" },
+                { "<leader>ba", ":b#<CR>", desc = "Alternate" },
+                { "<leader>bh", ':lua require("smart-list").swap_buf_left()<CR>', desc = "Swap Left" },
+                { "<leader>bj", ':lua require("smart-list").swap_buf_down()<CR>', desc = "Swap Down" },
+                { "<leader>bk", ':lua require("smart-list").swap_buf_up()<CR>', desc = "Swap Up" },
+                { "<leader>bl", ':lua require("smart-list").swap_buf_right()<CR>', desc = "Swap Right" },
+                { "<leader>bs", f.new_scratch_buffer, desc = "Scratch" },
+
+                { "<leader>d", group = "Dev" },
+                { "<leader>dc", vim.lsp.buf.code_action, desc = "Code Action [LSP]" },
+                { "<leader>dd", vim.diagnostic.open_float, desc = "Diagnostics [LSP]" },
+                { "<leader>df", vim.lsp.buf.format, desc = "Format [LSP]" },
+                { "<leader>dg", ":LazyGit<CR>", desc = "LazyGit" },
+                { "<leader>dr", vim.lsp.buf.rename, desc = "Rename [LSP]" },
+                { "<leader>ds", vim.lsp.buf.signature_help, desc = "Signature Help [LSP]" },
+                { "<leader>dv", ':lua <C-r>"<CR>', desc = 'Eval " register' },
+
+                -- { "<leader>j", group = "Journal" },
+                -- { "<leader>jD", ":Telekasten find_daily_notes<CR>", desc = "Find Daily" },
+                -- { "<leader>jW", ":Telekasten find_weekly_notes<CR>", desc = "Find Weekly" },
+                -- { "<leader>jc", ":Telekasten show_calendar<CR>", desc = "Calendar" },
+                -- { "<leader>jd", ":Telekasten goto_today<CR>", desc = "Daily" },
+                -- { "<leader>jn", ":Telekasten new_note<CR>", desc = "New" },
+                -- { "<leader>jo", ":Telekasten find_notes<CR>", desc = "Open" },
+                -- { "<leader>js", ":Telekasten search_notes<CR>", desc = "Search" },
+                -- { "<leader>jt", ":Telekasten show_tags<CR>", desc = "Tags" },
+                -- { "<leader>jv", ":Telekasten switch_vault<CR>", desc = "Vault" },
+                -- { "<leader>jw", ":Telekasten goto_thisweek<CR>", desc = "Weekly" },
+
+                { "<leader>p", group = "Pick" },
+                { "<leader>pa", ':lua require("utils.pickers").adjacent()<CR>', desc = "Adjacent File" },
+                { "<leader>pg", ":Telescope git_files<CR>", desc = "Git File" },
+                { "<leader>pr", ":Telescope oldfiles<CR>", desc = "Recent File" },
+                { "<leader>ps", ":Telescope live_grep<CR>", desc = "Search File" },
+                { "<leader>pt", ":Telescope current_buffer_fuzzy_finder<CR>", desc = "This File" },
+                { "<leader>pv", ":Telescope help_tags<CR>", desc = "Vim Help" },
+
+                { "<leader>t", group = "Toggle" },
+                { "<leader>tc", ":setlocal cursorline!<CR>", desc = "Toggle `cursorline`" },
+                { "<leader>td", ':lua require("utils.functions").toggle_diagnostic()<CR>', desc = "Toggle Diagnostic" },
+                { "<leader>th", ":setlocal hlsearch!<CR>", desc = "Toggle `hlsearch`" },
+                { "<leader>ti", ":setlocal ignorecase!<CR>", desc = "Toggle `ignorecase`" },
+                { "<leader>tl", ":setlocal list!<CR>", desc = "Toggle `list`" },
+                { "<leader>tn", ":setlocal number!<CR>", desc = "Toggle `number`" },
+                { "<leader>tr", ":setlocal relativenumber!<CR>", desc = "Toggle `relativenumber`" },
+                { "<leader>ts", ":setlocal spell!<CR>", desc = "Toggle `spell`" },
+                { "<leader>tv", ":setlocal cursorcolumn!<CR>", desc = "Toggle `cursorcolumn`" },
+                { "<leader>tw", ":setlocal wrap!<CR>", desc = "Toggle `wrap`" },
+                { "<leader>tx", ':lua require("utils.functions").toggle_colorcolumn()<CR>', desc = "Toggle colorcolumn" },
+                { "<leader>tz", ":ZenMode<CR>", desc = "Toggle zen mode" },
             })
         end,
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer local keymaps"
+            }
+        }
     },
 }
 
