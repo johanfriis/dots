@@ -52,7 +52,7 @@ map('n', '<C-i>', '<C-i>')
 --- ============================================================================
 --- tool mappings ===
 
-map('n', '§', ':lua require("telescope.builtin").buffers()<CR>')
+map('n', '`', ':lua require("telescope.builtin").buffers()<CR>')
 
 -- vim: foldmethod=marker
 
