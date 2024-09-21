@@ -16,6 +16,8 @@
 ; https://git-scm.com/docs/git-config#_includes
 ; Alternative:
 ; https://git.sr.ht/~bentinata/bentinata.com/tree/_/item/log/2023-05-11-git-insteadof-includeif.gmi
+[include]
+    path = default
 
 [includeIf "gitdir:~/dev/**"]
     path = private

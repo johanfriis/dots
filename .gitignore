@@ -4,3 +4,4 @@ Brewfile.lock.json
 fish/fish_variables
 karabiner/automatic_backups
 Brewfile.work.lock.json
+git/default
