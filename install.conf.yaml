@@ -15,6 +15,7 @@
     ~/.config/skhd: skhd
     ~/.config/helix: helix
     ~/.config/yabai: yabai
+    ~/.config/direnv: direnv
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
     ~/.config/karabiner: karabiner
