@@ -12,9 +12,9 @@ outer.right =      8
 [mode.main.binding]
 
 # LAYOUT
-alt-slash  = 'layout tiles horizontal vertical'
-alt-period = 'layout accordion horizontal vertical'
-alt-comma  = 'fullscreen'
+alt-period = 'layout tiles horizontal vertical'
+alt-comma  = 'layout accordion horizontal vertical'
+alt-slash  = 'fullscreen'
 
 # FOCUS
 alt-h = 'focus left'
