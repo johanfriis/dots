@@ -1,6 +1,8 @@
 start-at-login = true
 accordion-padding = 8
 
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
 [gaps]
 inner.horizontal = 8
 inner.vertical =   8
@@ -33,18 +35,33 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # WORKSPACES
+# alt-l = 'workspace L'
+# alt-r = 'workspace R'
 alt-m = 'workspace M'
 alt-p = 'workspace P'
 alt-w = 'workspace W'
+alt-u = 'workspace U'
+alt-i = 'workspace I'
 
+# alt-shift-r = 'move-node-to-workspace L'
+# alt-shift-l = 'move-node-to-workspace R'
 alt-shift-m = 'move-node-to-workspace M'
 alt-shift-p = 'move-node-to-workspace P'
 alt-shift-w = 'move-node-to-workspace W'
+alt-shift-u = 'move-node-to-workspace U'
+alt-shift-i = 'move-node-to-workspace I'
 
 alt-tab = 'workspace-back-and-forth'
 
 # SERVICE MODE
 alt-shift-semicolon = 'mode service'
+
+[workspace-to-monitor-force-assignment]
+M = 'main'
+P = 'main'
+W = 'main'
+I = ['DELL U2722DE \(1\)']
+U = ['DELL U2722DE \(2\)']
 
 
 [mode.service.binding]
