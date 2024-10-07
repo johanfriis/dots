@@ -1,3 +1,4 @@
+-- https://github.com/zbirenbaum/copilot.lua
 return {
     {
         'zbirenbaum/copilot.lua',
@@ -8,11 +9,17 @@ return {
                 auto_refresh = false,
                 layout = {
                     position = 'right'
-                }
+                },
             },
             suggestion = {
                 auto_trigger = true,
+                keymap = {
+                    accept = '<M-CR>',
+                },
             },
+            filetypes = {
+                markdown = false
+            }
         },
     },
 }
