@@ -9,6 +9,7 @@
     ~/dev/bin: bin
     ~/.terminfo: terminfo
     ~/.config/lf: lf
+    ~/.config/bat: bat
     ~/.config/git: git
     ~/.config/fish: fish
     ~/.config/nvim: nvim
