@@ -53,9 +53,6 @@ alt-shift-i = 'move-node-to-workspace I'
 
 alt-tab = 'workspace-back-and-forth'
 
-# SERVICE MODE
-alt-shift-semicolon = 'mode service'
-
 [workspace-to-monitor-force-assignment]
 M = 'main'
 P = 'main'
@@ -63,6 +60,8 @@ W = 'main'
 I = ['DELL U2722DE \(1\)']
 U = ['DELL U2722DE \(2\)']
 
+# SERVICE MODE
+alt-shift-semicolon = 'mode service'
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
