@@ -282,6 +282,8 @@ map('_', 'LEADER',       act.SplitVertical(here))
 map('=', 'LEADER',       act.RotatePanes('Clockwise'))
 map('+', 'LEADER',       act.RotatePanes('CounterClockwise'))
 
+map('m', 'CTRL|LEADER',  act.ActivateKeyTable { name = 'resize_pane', one_shot = false })
+
 
 map('a',          'LEADER',      act.ActivateLastTab)
 map('h',          'CTRL|LEADER', act.ActivateTabRelative(-1))
@@ -354,6 +356,19 @@ config.key_tables = {
     { key = 'Escape', action = 'PopKeyTable' },
     { key = 'Enter',  action = 'PopKeyTable' },
   },
+
+  resize_pane = {
+    { key = 'h', action = act.AdjustPaneSize { 'Left', 1 } },
+    { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
+    { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
+    { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
+
+    -- Cancel the mode by pressing escape
+    { key = 'q',      action = 'PopKeyTable' },
+    { key = 'Escape', action = 'PopKeyTable' },
+    { key = 'Enter',  action = 'PopKeyTable' },
+  },
+
 }
 
 config.keys = keys
