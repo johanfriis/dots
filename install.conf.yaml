@@ -19,6 +19,7 @@
     ~/.config/wezterm: wezterm
     ~/.config/marksman: marksman
     ~/.config/karabiner: karabiner
+    ~/.config/aerospace: aerospace
     # ~/.config/starship.toml: starship.toml
 
 - clean:

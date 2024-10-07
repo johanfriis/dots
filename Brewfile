@@ -50,6 +50,7 @@ cask "pika"
 cask "raycast"
 cask "visual-studio-code"
 cask "wezterm"
+cask "nikitabobko/tap/aerospace"
 mas "Velja", id: 1607635845
 vscode "ctf0.auto-comment-next-line"
 vscode "ms-vsliveshare.vsliveshare"
