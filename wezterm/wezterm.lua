@@ -57,40 +57,20 @@ config.inactive_pane_hsb = {
 -------------------------------------------------------------------------------
 -- {{{ // FONT
 
-local fira_code_features = {
-  'ss01', -- r
-  'zero', -- 0
-  'cv14', -- 3
-  -- 'ss05', -- @
-  'ss04', -- $
-  -- 'cv18', -- %
-  'ss03', -- &
-  'cv16', -- *
-  -- 'cv17', -- ~
-  'cv29', -- {}
-  'cv30', -- |
-  'cv31', -- ()
-
-  'ss02', -- <= >=
-  'ss08', -- == === != !==
-  'cv24', -- /=
-  'ss09', -- >>= <<= ||= |=
-  'cv25', -- .-
-  'cv26', -- :-
-  'cv32', -- .=
-  'cv27', -- []
-  'cv28', -- {. .}
-  'ss06', -- \\
-  'ss07', -- =~ !~
-  -- 'ss10', -- Fl Tl fi fj fl ft
+local isosevka_features = {
+  'ss17',
+  'ss08',
+  'calt=0',
+  'dlig=1',
 }
 
--- https://github.com/tonsky/FiraCode
+-- https://typeof.net/Iosevka/
 config.font = wez.font_with_fallback({
   {
-    family = 'Fira Code',
-    weight = 450,
-    harfbuzz_features = fira_code_features,
+    family = 'Iosevka Fixed',
+    weight = 'Regular',
+    stretch = 'Expanded',
+    harfbuzz_features = isosevka_features,
     assume_emoji_presentation = false,
   },
   -- fall back to symbols nerd font
@@ -111,19 +91,21 @@ config.font_rules = {
 		intensity = 'Bold',
 		italic = false,
 		font = wez.font {
-			family = 'Fira Code',
-			weight = 900,
-      harfbuzz_features = fira_code_features,
+      family = 'Iosevka Fixed',
+      weight = 'ExtraBold',
+      stretch = 'Expanded',
+      harfbuzz_features = isosevka_features,
 		},
 	},
 	{
 		intensity = 'Normal',
 		italic = true,
 		font = wez.font {
-			family = 'Fira Code',
-			weight = 500,
+      family = 'Iosevka Fixed',
+      weight = 'Regular',
+      stretch = 'Expanded',
       style = 'Italic',
-      harfbuzz_features = fira_code_features,
+      harfbuzz_features = isosevka_features,
 		},
 	},
 }
