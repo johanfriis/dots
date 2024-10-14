@@ -1,5 +1,6 @@
 start-at-login = true
 accordion-padding = 8
+automatically-unhide-macos-hidden-apps = true
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
@@ -16,7 +17,7 @@ outer.right =      8
 # LAYOUT
 alt-period = 'layout tiles horizontal vertical'
 alt-comma  = 'layout accordion horizontal vertical'
-alt-slash  = 'fullscreen'
+alt-slash  = 'fullscreen --no-outer-gaps'
 
 # FOCUS
 alt-h = 'focus left'
