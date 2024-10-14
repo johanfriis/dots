@@ -8,6 +8,7 @@
 - link:
     ~/dev/bin: bin
     ~/.terminfo: terminfo
+    ~/.hammerspoon: hammerspoon
     ~/.config/lf: lf
     ~/.config/bat: bat
     ~/.config/git: git
