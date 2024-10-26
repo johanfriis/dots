@@ -67,8 +67,8 @@ local isosevka_features = {
 -- https://typeof.net/Iosevka/
 config.font = wez.font_with_fallback({
   {
-    family = 'Iosevka Fixed',
-    weight = 'Regular',
+    family = 'Iosevka Term',
+    weight = 'Medium',
     stretch = 'Expanded',
     harfbuzz_features = isosevka_features,
     assume_emoji_presentation = false,
