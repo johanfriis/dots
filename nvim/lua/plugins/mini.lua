@@ -2,7 +2,6 @@ return {
     {
         'echasnovski/mini.align',
         version = false,
-        event = { 'BufReadPre', 'BufNewFile' },
         opts = {},
     },
     {
