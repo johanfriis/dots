@@ -61,43 +61,44 @@ end
 
 
 --- ============================================================================
-do -- {{{ appearance options setup ===
-
+--- {{{ appearance options setup ===
+do
   -- Enable syntax highlighing if it wasn't already (as it is time consuming)
   if vim.fn.exists("syntax_on") ~= 1 then
     vim.cmd([[syntax enable]])
   end
 
-  opt.showtabline   = 0           -- Never show tabline
+  opt.showtabline    = 0           -- Never show tabline
 
-  opt.cmdheight     = 0           -- Don't show commandline unless in use
-  opt.showmode      = false       -- Don't show mode in command line
-  opt.shortmess     = 'a' ..      -- Include a lot of abbreviations
-                      'o' ..      -- Overwrite write / read messages
-                      'O' ..      -- Overwrite reading message
-                      'W' ..      -- Don't notify for write
-                      'F' ..      -- Don't give file info while editing
-                      'c' ..      -- Don't give |ins-completion-menu| messages
-                      'I'         -- Don't show intro message
+  opt.cmdheight      = 0           -- Don't show commandline unless in use
+  opt.showmode       = false       -- Don't show mode in command line
+  opt.shortmess      = 'a' ..      -- Include a lot of abbreviations
+                       'o' ..      -- Overwrite write / read messages
+                       'O' ..      -- Overwrite reading message
+                       'W' ..      -- Don't notify for write
+                       'F' ..      -- Don't give file info while editing
+                       'c' ..      -- Don't give |ins-completion-menu| messages
+                       'I'         -- Don't show intro message
 
-  opt.number        = true        -- Show line numbers
-  opt.signcolumn    = 'yes'       -- Always show signcolumn or it would frequently shift
+  opt.number         = true        -- Show line numbers
+  opt.relativenumber = true        -- Use relative line numbers
+  opt.signcolumn     = 'yes'       -- Always show signcolumn or it would frequently shift
 
-  opt.cursorline    = true        -- Enable highlighting of the current line
-  opt.textwidth     = 79          -- Set the desired maximum textwidth
-  -- opt.colorcolumn   = '+1'        -- Draw colored column one step to the right of desired maximum width
+  opt.cursorline     = true        -- Enable highlighting of the current line
+  opt.textwidth      = 79          -- Set the desired maximum textwidth
+  -- opt.colorcolumn    = '+1'        -- Draw colored column one step to the right of desired maximum width
 
-  opt.breakindent   = true        -- Indent wrapped lines to match line start
-  opt.linebreak     = true        -- Wrap long lines at 'breakat' (if 'wrap' is set)
-  opt.wrap          = false       -- Display long lines as just one line
+  opt.breakindent    = true        -- Indent wrapped lines to match line start
+  opt.linebreak      = true        -- Wrap long lines at 'breakat' (if 'wrap' is set)
+  opt.wrap           = false       -- Display long lines as just one line
 
-  opt.splitbelow    = true        -- Horizontal splits will be below
-  opt.splitright    = true        -- Vertical splits will be to the right
+  opt.splitbelow     = true        -- Horizontal splits will be below
+  opt.splitright     = true        -- Vertical splits will be to the right
 
 
-  opt.winblend      = 2           -- Make floating windows slightly transparent
-  opt.pumblend      = 2           -- Make builtin completion menus slightly transparent
-  opt.pumheight     = 10          -- Make popup menu smaller
+  opt.winblend       = 2           -- Make floating windows slightly transparent
+  opt.pumblend       = 2           -- Make builtin completion menus slightly transparent
+  opt.pumheight      = 10          -- Make popup menu smaller
 
   -- stylua: ignore start
   opt.fillchars     = 'eob: ,' ..     -- Disable '~' at eob
