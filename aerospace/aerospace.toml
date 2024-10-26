@@ -54,13 +54,6 @@ alt-shift-i = 'move-node-to-workspace I'
 
 alt-tab = 'workspace-back-and-forth'
 
-[workspace-to-monitor-force-assignment]
-M = 'main'
-P = 'main'
-W = 'main'
-I = ['DELL U2722DE \(1\)']
-U = ['DELL U2722DE \(2\)']
-
 # SERVICE MODE
 alt-shift-semicolon = 'mode service'
 
@@ -74,3 +67,10 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[workspace-to-monitor-force-assignment]
+M = 'main'
+P = 'main'
+W = 'main'
+I = ['DELL U2722DE \(1\)']
+U = ['DELL U2722DE \(2\)']
