@@ -10,23 +10,24 @@ end
 set --local DEV_DIR "$HOME/dev"
 set --local TOOLS_DIR "$DEV_DIR/tools"
 set --local BIN_DIR "$DEV_DIR/bin"
+set --local LOCAL_BIN_DIR "$HOME/.local/bin"
 
-# prepend homebrew to PATH
-set --global --prepend --path fish_user_paths /opt/homebrew/bin
+# set homebrew binary
+set BREW_BIN /opt/homebrew/bin/brew
 
-# prepend home-relative dirs to PATH. These have priority over system dirs
+# prepend home-relative dirs and brew dirs to PATH. These have priority over system dirs
 set --global --prepend --path fish_user_paths \
 	"$BIN_DIR" \
-	"$(brew --prefix coreutils)/libexec/gnubin" \
-	"$(brew --prefix)/sbin" \
-	"$(brew --prefix)/bin"
+	"$LOCAL_BIN_DIR" \
+	"$($BREW_BIN --prefix coreutils)/libexec/gnubin" \
+	"$($BREW_BIN --prefix)/sbin" \
+	"$($BREW_BIN --prefix)/bin"
 
 # initialize variables
 set --global --export EDITOR nvim
 set --global --export FZF_TMUX_OPTS -p 55%,60%
 set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
 set --global --export DOTNET_CLI_TELEMETRY_OPTOUT 1
-set --global --export MISE_USE_TOML 1
 
 # https://github.com/ajeetdsouza/zoxide
 if command -q zoxide
