@@ -54,11 +54,11 @@ if test -f ~/.config/op/plugins.sh
   source ~/.config/op/plugins.sh
 end
 
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-
-if command -q direnv
-  eval "$(direnv hook fish)"
-end
+# source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+#
+# if command -q direnv
+#   eval "$(direnv hook fish)"
+# end
 
 # vim: sw=2 ts=2 et
 
