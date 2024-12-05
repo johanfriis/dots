@@ -57,20 +57,40 @@ config.inactive_pane_hsb = {
 -------------------------------------------------------------------------------
 -- {{{ // FONT
 
-local isosevka_features = {
-  'ss17',
-  'ss08',
-  'calt=0',
-  'dlig=1',
+local fira_code_features = {
+  'ss01', -- r
+  'zero', -- 0
+  'cv14', -- 3
+  -- 'ss05', -- @
+  'ss04', -- $
+  -- 'cv18', -- %
+  'ss03', -- &
+  'cv16', -- *
+  -- 'cv17', -- ~
+  'cv29', -- {}
+  'cv30', -- |
+  'cv31', -- ()
+
+  'ss02', -- <= >=
+  'ss08', -- == === != !==
+  'cv24', -- /=
+  'ss09', -- >>= <<= ||= |=
+  'cv25', -- .-
+  'cv26', -- :-
+  'cv32', -- .=
+  'cv27', -- []
+  'cv28', -- {. .}
+  'ss06', -- \\
+  'ss07', -- =~ !~
+  -- 'ss10', -- Fl Tl fi fj fl ft
 }
 
--- https://typeof.net/Iosevka/
+-- https://github.com/tonsky/FiraCode
 config.font = wez.font_with_fallback({
   {
-    family = 'Iosevka Term',
-    weight = 'Medium',
-    stretch = 'Expanded',
-    harfbuzz_features = isosevka_features,
+    family = 'Fira Code',
+    weight = 550,
+    harfbuzz_features = fira_code_features,
     assume_emoji_presentation = false,
   },
   -- fall back to symbols nerd font
@@ -82,6 +102,7 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- tweak spacing
 config.cell_width = 0.90
+config.freetype_load_flags = 'NO_HINTING'
 -- config.line_height = 0.96
 
 config.underline_position = -5
@@ -91,29 +112,31 @@ config.font_rules = {
 		intensity = 'Bold',
 		italic = false,
 		font = wez.font {
-      family = 'Iosevka Fixed',
-      weight = 'ExtraBold',
-      stretch = 'Expanded',
-      harfbuzz_features = isosevka_features,
+			family = 'Fira Code',
+			weight = 900,
+      harfbuzz_features = fira_code_features,
 		},
 	},
 	{
 		intensity = 'Normal',
 		italic = true,
 		font = wez.font {
-      family = 'Iosevka Fixed',
-      weight = 'Regular',
-      stretch = 'Expanded',
+			family = 'Fira Code',
+			weight = 500,
       style = 'Italic',
-      harfbuzz_features = isosevka_features,
+      harfbuzz_features = fira_code_features,
+		},
+	},
+	{
+		intensity = 'Half',
+		font = wez.font {
+			family = 'Fira Code',
+			weight = 500,
+      harfbuzz_features = fira_code_features,
 		},
 	},
 }
 
--- I did not see any meaningful effect of these settings
--- config.front_end = 'WebGpu'
--- config.freetype_load_target = 'Light'
--- config.freetype_load_flags = 'NO_HINTING'
 
 -- }}}
 
