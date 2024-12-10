@@ -1,3 +1,4 @@
 function fish_greeting
-fortune
+    fortune -s
+    echo
 end
