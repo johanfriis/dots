@@ -6,28 +6,39 @@ if not status is-interactive
     exit
 end
 
+set -l os (uname)
+
 # setup some local directories
 set --local DEV_DIR "$HOME/dev"
 set --local TOOLS_DIR "$DEV_DIR/tools"
 set --local BIN_DIR "$DEV_DIR/bin"
 set --local LOCAL_BIN_DIR "$HOME/.local/bin"
 
-# set homebrew binary
-set BREW_BIN /opt/homebrew/bin/brew
+if test "$os" = Darwin
+	# set homebrew binary
+	set BREW_BIN /opt/homebrew/bin/brew
+
+	set --global --prepend --path fish_user_paths \
+		"$($BREW_BIN --prefix coreutils)/libexec/gnubin" \
+		"$($BREW_BIN --prefix)/sbin" \
+		"$($BREW_BIN --prefix)/bin"
+end
 
 # prepend home-relative dirs and brew dirs to PATH. These have priority over system dirs
 set --global --prepend --path fish_user_paths \
 	"$BIN_DIR" \
 	"$LOCAL_BIN_DIR" \
-	"$($BREW_BIN --prefix coreutils)/libexec/gnubin" \
-	"$($BREW_BIN --prefix)/sbin" \
-	"$($BREW_BIN --prefix)/bin"
 
 # initialize variables
-set --global --export EDITOR nvim
 set --global --export FZF_TMUX_OPTS -p 55%,60%
 set --global --export FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
-set --global --export DOTNET_CLI_TELEMETRY_OPTOUT 1
+
+# set default editor
+if command -q nvim
+	set --global --export EDITOR nvim
+else
+	set --global --export EDITOR vim
+end
 
 # https://github.com/ajeetdsouza/zoxide
 if command -q zoxide

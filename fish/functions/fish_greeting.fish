@@ -1,4 +1,6 @@
 function fish_greeting
-    fortune -s
-    echo
+	if command -q fortune
+		fortune -s
+		echo
+	end
 end
