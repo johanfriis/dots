@@ -88,3 +88,9 @@ P = 'main'
 W = 'main'
 I = ['DELL U2722DE \(1\)']
 U = ['DELL U2722DE \(2\)']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = [
+    'layout floating'
+]
