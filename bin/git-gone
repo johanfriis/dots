@@ -1,2 +1,0 @@
-git fetch --all --prune;
-git branch -vv | awk '/: gone]/{print $1}' | grep -v '^[*+]$' | sed 's/^[*+] *//' | xargs git branch -D
