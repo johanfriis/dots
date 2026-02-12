@@ -1,0 +1,95 @@
+#!/bin/bash
+set -e
+
+# Color codes for better readability
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Function to display usage
+usage() {
+  echo "Usage: git split-dir <directory> <new-repo-path>"
+  echo ""
+  echo "Split a directory into its own repository while preserving commit history."
+  echo ""
+  echo "Arguments:"
+  echo "  directory       Path to the directory to split (e.g., ./bin)"
+  echo "  new-repo-path   Path where the new repository should be created"
+  echo ""
+  echo "Example:"
+  echo "  git split-dir ./bin ../bin-repo"
+  exit 1
+}
+
+# Check arguments
+if [ $# -ne 2 ]; then
+  echo -e "${RED}Error: Expected 2 arguments, got $#${NC}" >&2
+  usage
+fi
+
+source_dir="$1"
+target_repo="$2"
+
+# Normalize paths
+source_dir="${source_dir#./}"  # Remove leading ./
+source_dir="${source_dir%/}"   # Remove trailing /
+
+# Validate we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+  echo -e "${RED}Error: Not in a git repository${NC}" >&2
+  exit 1
+fi
+
+# Validate source directory exists
+if [ ! -d "$source_dir" ]; then
+  echo -e "${RED}Error: Directory '$source_dir' does not exist${NC}" >&2
+  exit 1
+fi
+
+# Validate target repository path does not exist
+if [ -e "$target_repo" ]; then
+  echo -e "${RED}Error: Target path '$target_repo' already exists${NC}" >&2
+  exit 1
+fi
+
+# Create a unique branch name
+branch_name="split-${source_dir//\//-}-$(date +%s)"
+
+echo -e "${BLUE}Splitting directory:${NC} $source_dir"
+echo -e "${BLUE}Target repository:${NC} $target_repo"
+echo -e "${BLUE}Temporary branch:${NC} $branch_name"
+echo ""
+
+# Step 1: Create split branch
+git subtree split --prefix="$source_dir" --branch="$branch_name"
+echo ""
+echo -e "${GREEN}✓${NC} Split branch created"
+
+# Step 2: Create target repository
+mkdir -p "$target_repo"
+(cd "$target_repo" && git init) >/dev/null 2>&1
+echo -e "${GREEN}✓${NC} Target repository created"
+
+# Step 3: Pull split branch into target repo
+original_dir=$(pwd)
+cd "$target_repo"
+git pull "$original_dir" "$branch_name" >/dev/null 2>&1
+cd "$original_dir"
+echo -e "${GREEN}✓${NC} History transferred"
+
+# Step 4: Clean up temporary branch
+git branch -D "$branch_name" >/dev/null 2>&1
+echo -e "${GREEN}✓${NC} Cleanup complete"
+echo ""
+
+echo -e "${GREEN}✓${NC} Success! Directory '$source_dir' has been split into '$target_repo'"
+echo ""
+echo "Optional next steps:"
+echo "  1. Remove from original repo:"
+echo "     git rm -rf $source_dir"
+echo "     git commit -m \"Remove $source_dir (moved to separate repo)\""
+echo ""
+echo "  2. Add back as submodule:"
+echo "     git submodule add <your-remote-url> $source_dir"
